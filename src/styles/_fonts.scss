@@ -1,0 +1,303 @@
+.heading404 {
+  font-size: 404px;
+  font-family: var(--font-primary);
+  font-weight: 400;
+  letter-spacing: 0.15;
+  line-height: 404px;
+}
+.headingAbout {
+  font-size: 368px;
+  font-family: var(--font-secondary);
+  font-weight: 400;
+  line-height: 368px;
+}
+.headingXL {
+  font-size: 60px;
+  font-family: var(--font-secondary);
+  font-weight: 400;
+  line-height: 60px;
+}
+.headingL {
+  font-size: 44px;
+  font-family: var(--font-secondary);
+  font-weight: 400;
+  line-height: 37px;
+}
+.headingM {
+  font-size: 42px;
+  font-family: var(--font-secondary);
+  font-weight: 400;
+  line-height: 42px;
+}
+.headingS {
+  font-size: 40px;
+  font-family: var(--font-secondary);
+  font-weight: 400;
+  line-height: 40px;
+}
+.headingXS {
+  font-size: 30px;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  line-height: 30px;
+  letter-spacing: -0.08;
+}
+.paragraphXL {
+  font-size: 24px;
+  font-family: var(--font-primary);
+  font-weight: 400;
+  line-height: 24px;
+}
+.paragraphL {
+  font-size: 24px;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  letter-spacing: 0.1;
+  line-height: 24px;
+}
+.paragraphS {
+  font-size: 22px;
+  font-family: var(--font-primary);
+  font-weight: 400;
+  line-height: 35px;
+}
+.paragraphXSR {
+  font-size: 20px;
+  font-family: var(--font-primary);
+  font-weight: 400;
+  line-height: 30px;
+}
+.paragraphXSB {
+  font-size: 20px;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  line-height: 30px;
+}
+.paragraphMR {
+  font-size: 24px;
+  font-family: var(--font-primary);
+  font-weight: 400;
+  line-height: 37px;
+}
+.paragraphMB {
+  font-size: 24px;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  line-height: 37px;
+}
+.headingXXS {
+  font-size: 30px;
+  font-family: var(--font-secondary);
+  font-weight: 400;
+  line-height: 37px;
+}
+.paragraphXXSR {
+  font-size: 20px;
+  font-family: var(--font-primary);
+  font-weight: 400;
+  line-height: 20px;
+}
+.paragraphXXSB {
+  font-size: 20px;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  line-height: 20px;
+}
+.paragraphXXXS {
+  font-size: 16px;
+  font-family: var(--font-primary);
+  font-weight: 400;
+  line-height: 29px;
+}
+.paragraphXXXXS {
+  font-size: 14px;
+  font-family: var(--font-primary);
+  font-weight: 400;
+  letter-spacing: 0.1;
+  line-height: 14px;
+}
+.input {
+  font-size: 30px;
+  font-family: var(--font-primary);
+  font-weight: 400;
+  line-height: 30px;
+  text-decoration: uppercase;
+}
+.button {
+  font-size: 25px;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  line-height: 25px;
+}
+@include tablet {
+  .headingAbout {
+    font-size: 270px;
+    font-family: var(--font-secondary);
+    font-weight: 400;
+    line-height: 270px;
+  }
+  .headingXL {
+    font-size: 44px;
+    font-family: var(--font-secondary);
+    font-weight: 400;
+    line-height: 44px;
+  }
+  .button {
+    font-size: 20px;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    line-height: 25px;
+  }
+  .headingXS {
+    font-size: 18px;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    line-height: 18px;
+  }
+  .headingS {
+    font-size: 20px;
+    font-family: var(--font-secondary);
+    font-weight: 400;
+    line-height: 20px;
+  }
+  .paragraphL {
+    font-size: 18px;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    letter-spacing: 2px;
+    line-height: 18px;
+  }
+  .paragraphXL {
+    font-size: 22px;
+    font-family: var(--font-primary);
+    font-weight: 400;
+    line-height: 22px;
+  }
+  .paragraphMB {
+    font-size: 23px;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    line-height: 23px;
+  }
+  .headingM {
+    font-size: 25px;
+    font-family: var(--font-secondary);
+    font-weight: 400;
+    line-height: 25px;
+  }
+  .paragraphS {
+    font-size: 17px;
+    font-family: var(--font-primary);
+    font-weight: 400;
+    line-height: 25px;
+  }
+  .paragraphXXXXS {
+    font-size: 13px;
+    font-family: var(--font-primary);
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 13px;
+  }
+}
+
+@include mobile {
+  .heading404 {
+    font-size: 196px;
+    font-family: var(--font-primary);
+    font-weight: 400;
+    letter-spacing: 10px;
+    line-height: 196px;
+  }
+  .headingAbout {
+    font-size: 108px;
+    font-family: var(--font-secondary);
+    font-weight: 400;
+    line-height: 108px;
+  }
+  .headingXL {
+    font-size: 26px;
+    font-family: var(--font-secondary);
+    font-weight: 400;
+    line-height: 26px;
+  }
+  .button {
+    font-size: 14px;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    line-height: 14px;
+  }
+  .headingXS {
+    font-size: 15px;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    line-height: 15px;
+  }
+  .input {
+    font-size: 20px;
+    font-family: var(--font-primary);
+    font-weight: 400;
+    line-height: 25px;
+  }
+  .headingS {
+    font-size: 18px;
+    font-family: var(--font-secondary);
+    font-weight: 400;
+    line-height: 18px;
+  }
+  .paragraphXL {
+    font-size: 20px;
+    font-family: var(--font-primary);
+    font-weight: 400;
+    line-height: 20px;
+  }
+  .paragraphXSB {
+    font-size: 18px;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    line-height: 25px;
+  }
+  .paragraphXSR {
+    font-size: 18px;
+    font-family: var(--font-primary);
+    font-weight: 400;
+    line-height: 25px;
+  }
+  .paragraphL {
+    font-size: 20px;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    letter-spacing: 2px;
+    line-height: 20px;
+  }
+  .headingL {
+    font-size: 36px;
+    font-family: var(--font-secondary);
+    font-weight: 400;
+    line-height: 36px;
+  }
+  .headingM {
+    font-size: 20px;
+    font-family: var(--font-secondary);
+    font-weight: 400;
+    line-height: 37px;
+  }
+  .paragraphXXXXS {
+    font-size: 12px;
+    font-family: var(--font-primary);
+    font-weight: 400;
+    line-height: 12px;
+  }
+  .paragraphXXXS {
+    font-size: 12px;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 12px;
+  }
+  .paragraphXXS {
+    font-size: 16px;
+    font-family: var(--font-primary);
+    font-weight: 400;
+    line-height: 20px;
+  }
+}
