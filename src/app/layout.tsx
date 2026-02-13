@@ -1,15 +1,16 @@
 import "./globals.css";
 
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Alata, Anonymous_Pro } from "next/font/google";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const anonymousPro = Anonymous_Pro({
+  weight: ["400", "700"],
+  variable: "--font-anonymous-pro",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const alata = Alata({
+  weight: ["400"],
+  variable: "--font-alata",
   subsets: ["latin"],
 });
 
@@ -25,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${anonymousPro.variable} ${alata.variable}`}>
         {children}
       </body>
     </html>
