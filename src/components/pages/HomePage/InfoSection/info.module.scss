@@ -1,0 +1,70 @@
+@use "@/styles/fonts" as *;
+@use "@/styles/mixins" as *;
+
+.info {
+  position: relative;
+  padding-inline: 15px;
+  padding-block: 252px;
+
+  @include tablet {
+    padding-block: 169px;
+  }
+
+  @include mobile {
+    padding-block: 50px;
+  }
+
+  &::before {
+    z-index: -1;
+    position: absolute;
+    inset: 0;
+    background: url(/imgs/infobg.webp) no-repeat 0 15% / cover;
+    content: "";
+    opacity: 0.6;
+  }
+
+  &Content {
+    display: flex;
+    flex-direction: column;
+    width: min-content;
+
+    margin-inline: auto;
+    gap: 50px;
+
+    @include mobile {
+      width: fit-content;
+      gap: 30px;
+    }
+  }
+
+  &Title {
+    color: var(--cyberpink);
+    text-align: center;
+    text-wrap: nowrap;
+
+    @include hXL;
+
+    @include tablet {
+      @include thXL;
+    }
+
+    @include mobile {
+      @include mhXL;
+      text-wrap: initial;
+    }
+  }
+
+  &Text {
+    color: var(--cyberpink);
+    text-align: center;
+    @include pMR;
+
+    @include tablet {
+      @include pXSR;
+    }
+
+    @include mobile {
+      @include mpXXS;
+    }
+  }
+}
