@@ -1,16 +1,26 @@
 @use "reset";
+@use "fonts";
+@use "mixins" as *;
 
 :root {
-  --font-primary: var(--font-anonymous-pro);
-  --font-secondary: var(--font-alata);
   --cyberpink: #f12660;
   --maroon: #851843;
   --raspberry: #9a2260;
   --golden: #ffb13c;
   --white: #ffffff;
-  --darkSky: #180926;
+  --darksky: #180926;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--darksky);
+}
+
+.noScroll {
+  @include mobile {
+    overflow: hidden;
+  }
 }
