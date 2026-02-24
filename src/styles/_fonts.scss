@@ -71,7 +71,7 @@ $font-secondary: var(--font-alata);
   font-size: 24px;
   line-height: 24px;
   font-family: $font-primary;
-  letter-spacing: 2px;
+  letter-spacing: 0.1em;
 }
 @mixin pS {
   font-weight: 400;
@@ -132,14 +132,14 @@ $font-secondary: var(--font-alata);
   font-size: 14px;
   line-height: 14px;
   font-family: $font-primary;
-  letter-spacing: 1px;
+  letter-spacing: 0.1em;
 }
 @mixin mh404 {
   font-weight: 400;
   font-size: 196px;
   line-height: 196px;
   font-family: $font-primary;
-  letter-spacing: 10px;
+  letter-spacing: 0.5em;
 }
 @mixin mhAbout {
   font-weight: 400;
@@ -200,7 +200,7 @@ $font-secondary: var(--font-alata);
   font-size: 20px;
   line-height: 20px;
   font-family: $font-primary;
-  letter-spacing: 2px;
+  letter-spacing: 0.1em;
 }
 @mixin mhL {
   font-weight: 400;
@@ -219,13 +219,14 @@ $font-secondary: var(--font-alata);
   font-size: 12px;
   line-height: 12px;
   font-family: $font-primary;
+  letter-spacing: 0;
 }
 @mixin mpXXXS {
   font-weight: 700;
   font-size: 12px;
   line-height: 12px;
   font-family: $font-primary;
-  letter-spacing: 1px;
+  letter-spacing: 0.1em;
 }
 @mixin mpXXS {
   font-weight: 400;
@@ -268,7 +269,7 @@ $font-secondary: var(--font-alata);
   font-size: 18px;
   line-height: 18px;
   font-family: $font-primary;
-  letter-spacing: 2px;
+  letter-spacing: 0.1em;
 }
 @mixin tpXL {
   font-weight: 400;
@@ -299,5 +300,5 @@ $font-secondary: var(--font-alata);
   font-size: 13px;
   line-height: 13px;
   font-family: $font-primary;
-  letter-spacing: 1px;
+  letter-spacing: 0.1em;
 }
