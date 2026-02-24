@@ -1,0 +1,99 @@
+@use "@/styles/fonts" as *;
+@use "@/styles/mixins" as *;
+
+.buttonPlus {
+  display: flex;
+  position: relative;
+  align-items: center;
+  gap: 10px;
+  color: var(--cyberpink);
+  @include pXL;
+
+  @include mobile {
+    @include mpXL;
+  }
+
+  &:hover {
+    color: var(--maroon);
+  }
+
+  &:hover::before {
+    background-color: var(--maroon);
+  }
+
+  &::before {
+    aspect-ratio: 1;
+    width: 32px;
+    background-color: var(--cyberpink);
+    content: "";
+    mask: url(/icons/plus.svg) no-repeat center / cover;
+
+    @include mobile {
+      width: 26px;
+    }
+  }
+}
+
+.smallButton {
+  padding: 19px 32px;
+  border: 2px var(--cyberpink) solid;
+  border-radius: 70px;
+  color: var(--cyberpink);
+  @include button;
+
+  @include tablet {
+    padding: 14px 28px;
+    border-width: 0px;
+    @include tButton;
+  }
+
+  @include mobile {
+    padding: 8px 12px;
+    // border-width: 1px;
+    @include mButton;
+  }
+
+  &:hover {
+    border-color: #f1266080;
+    background-color: #f1266033;
+  }
+
+  &:active {
+    background-color: var(--cyberpink);
+    color: var(--maroon);
+  }
+
+  &Active {
+    background-color: var(--cyberpink);
+    color: var(--maroon);
+    &:hover {
+      border-color: var(--cyberpink);
+      background-color: var(--cyberpink);
+      color: #85184380;
+    }
+  }
+}
+
+.arrowButton {
+  --bg-color: var(--cyberpink);
+  aspect-ratio: 1;
+  min-width: 55px;
+  margin: 4px;
+  background-color: var(--bg-color);
+  mask: url(/icons/arrowLeft.svg) no-repeat center / cover;
+
+  @include mobile {
+    display: none;
+  }
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  &Disable {
+    opacity: 0.2;
+  }
+  &Right {
+    transform: rotate(180deg);
+  }
+}
