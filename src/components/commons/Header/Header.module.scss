@@ -1,0 +1,131 @@
+@use "@/styles/fonts" as *;
+@use "@/styles/mixins" as *;
+
+.header {
+  z-index: 1000;
+  position: sticky;
+  top: 0;
+  padding-inline: 15px;
+  padding-block: 30px;
+  background-color: var(--darksky);
+
+  @include mobile {
+    padding-block: 15px;
+  }
+
+  &Content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include container(1180, 880);
+  }
+
+  &Logo {
+    width: auto;
+    height: 74px;
+
+    @include mobile {
+      height: 46px;
+    }
+  }
+
+  &Nav {
+    margin-right: 62px;
+    margin-left: auto;
+
+    @include tablet {
+      margin: 0;
+    }
+
+    @include mobile {
+      display: flex;
+      z-index: -1;
+      position: fixed;
+      top: 0;
+      left: -100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      height: calc(100vh);
+      padding-top: 76px;
+      background-color: var(--darksky);
+      opacity: 0;
+      transition: 300ms;
+
+      &::before {
+        position: absolute;
+        inset: 0;
+        background: url(/imgs/menubg.webp) no-repeat center / cover;
+        content: "";
+        filter: blur(20px);
+        opacity: 0.2;
+      }
+    }
+
+    &Open {
+      left: 0;
+      opacity: 1;
+    }
+  }
+
+  &NavList {
+    display: flex;
+    gap: 60px;
+
+    @include mobile {
+      position: absolute;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
+  &NavLink {
+    @include pXL;
+    color: var(--raspberry);
+
+    &Active {
+      color: var(--cyberpink);
+    }
+  }
+
+  &Menu {
+    display: none;
+    appearance: none;
+    position: relative;
+    aspect-ratio: 1;
+    min-width: 40px;
+    padding: 10px 5px;
+    cursor: pointer;
+
+    @include mobile {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    &::before,
+    &::after,
+    .menuLine {
+      height: 2px;
+      border-radius: 20px;
+      background-color: var(--cyberpink);
+      content: "";
+      transition:
+        opacity 300ms,
+        transform 300ms;
+    }
+
+    &Open {
+      &::before {
+        transform: translateY(9px) rotate(45deg);
+      }
+      &::after {
+        transform: translateY(-9px) rotate(-45deg);
+      }
+      .menuLine {
+        opacity: 0;
+      }
+    }
+  }
+}

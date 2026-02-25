@@ -1,0 +1,68 @@
+import { Movie } from "./types";
+
+export const movies: Movie[] = [
+  {
+    id: "1",
+    title: "Major Thunder",
+    subtitle: "2018",
+    rating: "9,5",
+    imgSrc: "/imgs/cardbg.webp",
+    imgAlt: "card bg",
+  },
+  {
+    id: "2",
+    title: "Major Thunder",
+    subtitle: "2018",
+    rating: "9,5",
+    imgSrc: "/imgs/cardbg.webp",
+    imgAlt: "card bg",
+  },
+  {
+    id: "3",
+    title: "Major Thunder",
+    subtitle: "2018",
+    rating: "9,5",
+    imgSrc: "/imgs/cardbg.webp",
+    imgAlt: "card bg",
+  },
+  {
+    id: "4",
+    title: "Major Thunder",
+    subtitle: "2018",
+    rating: "9,5",
+    imgSrc: "/imgs/cardbg.webp",
+    imgAlt: "card bg",
+  },
+  {
+    id: "5",
+    title: "Major Thunder",
+    subtitle: "2018",
+    rating: "9,5",
+    imgSrc: "/imgs/cardbg.webp",
+    imgAlt: "card bg",
+  },
+  {
+    id: "6",
+    title: "Major Thunder",
+    subtitle: "2018",
+    rating: "9,5",
+    imgSrc: "/imgs/cardbg.webp",
+    imgAlt: "card bg",
+  },
+  {
+    id: "7",
+    title: "Major Thunder",
+    subtitle: "2018",
+    rating: "9,5",
+    imgSrc: "/imgs/cardbg.webp",
+    imgAlt: "card bg",
+  },
+  {
+    id: "8",
+    title: "Major Thunder",
+    subtitle: "2018",
+    rating: "9,5",
+    imgSrc: "/imgs/cardbg.webp",
+    imgAlt: "card bg",
+  },
+];

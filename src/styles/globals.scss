@@ -1,0 +1,33 @@
+@use "reset";
+@use "fonts";
+@use "mixins" as *;
+
+:root {
+  --cyberpink: #f12660;
+  --maroon: #851843;
+  --raspberry: #9a2260;
+  --golden: #ffb13c;
+  --white: #ffffff;
+  --darksky: #180926;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--darksky);
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.noScroll {
+  @include mobile {
+    overflow: hidden;
+  }
+}

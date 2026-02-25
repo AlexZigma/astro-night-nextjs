@@ -1,0 +1,89 @@
+@use "@/styles/fonts" as *;
+@use "@/styles/mixins" as *;
+
+.hero {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  padding-inline: 15px;
+  padding-block: 257px 100px;
+
+  @include tablet {
+    padding-block: 150px 100px;
+  }
+
+  @include mobile {
+    padding-block: 55px 55px;
+  }
+
+  &::before {
+    z-index: -1;
+    position: absolute;
+    inset: 0;
+    background: url(/imgs/heroBackground.webp) no-repeat center / cover;
+    content: "";
+    opacity: 0.8;
+  }
+
+  &Container {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+
+    @include container;
+
+    @include mobile {
+      gap: 30px;
+    }
+  }
+
+  &Title {
+    color: var(--cyberpink);
+    @include hXL;
+
+    @include tablet {
+      height: 34px;
+      @include thXL;
+    }
+
+    @include mobile {
+      @include mhXL;
+    }
+  }
+
+  &List {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-height: 1100px;
+    overflow: hidden;
+    gap: 50px 20px;
+
+    @include tablet {
+      max-height: 706px;
+    }
+
+    @include mobile {
+      max-height: 586px;
+      gap: 20px 15px;
+    }
+  }
+
+  &ListItem {
+    height: 525px;
+    @include tablet {
+      height: auto;
+    }
+  }
+
+  &Button {
+    align-self: center;
+    color: var(--cyberpink);
+    @include hM;
+
+    @include mobile {
+      @include mhXL;
+    }
+  }
+}

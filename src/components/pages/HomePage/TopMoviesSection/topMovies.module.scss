@@ -1,0 +1,67 @@
+@use "@/styles/fonts" as *;
+@use "@/styles/mixins" as *;
+
+.topMovies {
+  padding-inline: 15px;
+  padding-block: 150px;
+  @include tablet {
+    padding-block: 70px;
+  }
+
+  &Content {
+    display: flex;
+    flex-direction: column;
+    margin-inline: auto;
+
+    gap: 150px;
+    @include container(1180, 880);
+    @include tablet {
+      gap: 70px;
+    }
+  }
+
+  &Title {
+    color: var(--cyberpink);
+    text-align: center;
+
+    @include hXL;
+    @include tablet {
+      @include thXL;
+    }
+    @include mobile {
+      text-align: left;
+      @include mhXL;
+    }
+  }
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  &List {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+
+    scroll-snap-type: x mandatory;
+    @include container(980, 720);
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &Item {
+    flex: 0 0 20%;
+    margin-right: 0.5px;
+    padding-right: 20px;
+    scroll-snap-align: start;
+
+    @include tablet {
+      padding-right: 15px;
+    }
+  }
+}

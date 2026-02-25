@@ -1,0 +1,136 @@
+@use "@/styles/fonts" as *;
+@use "@/styles/mixins" as *;
+
+.card {
+  width: 280px;
+
+  @include tablet {
+    width: 180px;
+  }
+  @include mobile {
+    width: 165px;
+  }
+
+  &Top {
+    position: relative;
+  }
+
+  &Img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+  }
+
+  &Rating {
+    display: flex;
+    position: absolute;
+    right: 15px;
+    bottom: 11px;
+    align-items: center;
+    gap: 11px;
+
+    color: var(--golden);
+
+    @include hXS;
+
+    @include tablet {
+      @include thXS;
+      right: 8px;
+      bottom: 7px;
+      gap: 10px;
+    }
+
+    @include mobile {
+      @include mhXS;
+      right: 10px;
+      bottom: 9px;
+      gap: 7px;
+    }
+
+    &::before {
+      aspect-ratio: 1;
+      width: 0.6em;
+      background-size: cover;
+      background-color: var(--golden);
+      content: "";
+      mask: url(/icons/star.svg) no-repeat center / contain;
+    }
+  }
+
+  &Info {
+    margin-top: 40px;
+
+    @include tablet {
+      margin-top: 15px;
+    }
+    @include mobile {
+      margin-top: 12px;
+    }
+  }
+
+  &Title {
+    color: var(--white);
+
+    @include hS;
+    @include tablet {
+      @include thS;
+    }
+    @include mobile {
+      @include mhS;
+    }
+  }
+
+  &Subtitle {
+    margin-top: 18px;
+    color: var(--raspberry);
+
+    @include pL;
+    @include tablet {
+      @include tpL;
+    }
+    @include mobile {
+      margin-top: 6px;
+
+      @include mpXXXS;
+    }
+  }
+
+  &Small {
+    width: 180px;
+
+    @include tablet {
+      width: 165px;
+    }
+
+    & .cardInfo {
+      margin-top: 15px;
+      @include tablet {
+        margin-top: 12px;
+      }
+    }
+
+    & .cardTitle {
+      @include thS;
+      @include tablet {
+        @include mhS;
+      }
+    }
+
+    & .cardSubtitle {
+      @include tpL;
+      @include tablet {
+        margin-top: 6px;
+        @include mpXXXS;
+      }
+    }
+
+    & .cardRating {
+      @include thXS;
+      @include tablet {
+        @include mhXS;
+      }
+    }
+  }
+}
