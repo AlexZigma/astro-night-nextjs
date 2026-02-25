@@ -98,13 +98,11 @@
   }
 
   &Small {
-    // & .cardImg {
     width: 180px;
 
     @include tablet {
       width: 165px;
     }
-    // }
 
     & .cardInfo {
       margin-top: 15px;

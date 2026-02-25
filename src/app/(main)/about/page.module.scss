@@ -98,11 +98,9 @@
   }
   &Text {
     max-width: 382px;
-    // margin-top: 30px;
     margin-inline: auto;
     @include pXSB;
     @include mobile {
-      // margin-top: 10px;
       @include mpXSB;
     }
   }
