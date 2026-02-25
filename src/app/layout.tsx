@@ -18,6 +18,18 @@ const alata = Alata({
 export const metadata: Metadata = {
   title: "Astro Night",
   description: "Astro Night is a movie library",
+  icons: {
+    icon: [
+      {
+        url: "/favicon_light.ico",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/favicon_dark.ico",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
