@@ -1,5 +1,5 @@
 import SmallButton from "@/components/commons/Button/SmallButton";
-import Header from "@/components/commons/Header/Header";
+import Header from "@/components/commons/Header";
 
 import styles from "./not-found.module.scss";
 

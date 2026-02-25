@@ -1,4 +1,4 @@
-import Card from "@/components/commons/Card/Card";
+import Card from "@/components/commons/Card";
 import { movies } from "@/models/movies/consts";
 
 import styles from "./Hero.module.scss";

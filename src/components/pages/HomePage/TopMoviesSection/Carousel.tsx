@@ -3,7 +3,7 @@
 import { useRef } from "react";
 
 import ArrowButton from "@/components/commons/Button/ArrowButton";
-import Card from "@/components/commons/Card/Card";
+import Card from "@/components/commons/Card";
 import { Movie } from "@/models/movies/types";
 
 import styles from "./topMovies.module.scss";

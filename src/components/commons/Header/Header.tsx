@@ -6,9 +6,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
+import PlusButton from "@/components/commons/Button/PlusButton";
 import { navigationList } from "@/models/nav/consts";
 
-import PlusButton from "../Button/PlusButton";
 import styles from "./Header.module.scss";
 
 export default function Header({ className }: { className?: string }) {
