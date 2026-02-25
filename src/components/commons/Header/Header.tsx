@@ -12,16 +12,16 @@ import { navigationList } from "@/models/nav/consts";
 import styles from "./Header.module.scss";
 
 export default function Header({ className }: { className?: string }) {
-  const [menuOpen, setmenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
   const handleMenuClick = () => {
-    setmenuOpen((prev) => !prev);
-    document.body.classList.toggle("noScroll", !menuOpen);
+    setIsMenuOpen((prev) => !prev);
+    document.body.classList.toggle("noScroll", !isMenuOpen);
   };
 
   const handleLinkClick = () => {
-    setmenuOpen(false);
+    setIsMenuOpen(false);
     document.body.classList.toggle("noScroll", false);
   };
 
@@ -29,7 +29,10 @@ export default function Header({ className }: { className?: string }) {
     <header className={clsx(styles.header, className)}>
       <div className={styles.headerContent}>
         <button
-          className={clsx(styles.headerMenu, menuOpen && styles.headerMenuOpen)}
+          className={clsx(
+            styles.headerMenu,
+            isMenuOpen && styles.headerMenuOpen,
+          )}
           onClick={() => handleMenuClick()}
         >
           <span className={styles.menuLine} />
@@ -44,7 +47,7 @@ export default function Header({ className }: { className?: string }) {
           />
         </Link>
         <nav
-          className={clsx(styles.headerNav, menuOpen && styles.headerNavOpen)}
+          className={clsx(styles.headerNav, isMenuOpen && styles.headerNavOpen)}
         >
           <ul className={styles.headerNavList}>
             {navigationList.map((navItem) => (
