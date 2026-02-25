@@ -2,7 +2,7 @@ import styles from "./page.module.scss";
 
 export default function About() {
   return (
-    <section className={styles.about}>
+    <main className={styles.about}>
       <div className={styles.aboutContent}>
         <p className={styles.aboutTitle}>ASTRO</p>
         <div className={styles.aboutBlock}>
@@ -48,6 +48,6 @@ export default function About() {
           </p>
         </div>
       </div>
-    </section>
+    </main>
   );
 }
