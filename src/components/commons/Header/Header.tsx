@@ -6,16 +6,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
+import { navigationList } from "@/models/nav/consts";
+
 import PlusButton from "../Button/PlusButton";
 import styles from "./Header.module.scss";
 
 export default function Header({ className }: { className?: string }) {
-  const navigation = [
-    { link: "/storage", label: ".storage." },
-    { link: "/about", label: ".about." },
-    { link: "/search", label: ".search." },
-  ];
-
   const [menuOpen, setmenuOpen] = useState(false);
   const pathname = usePathname();
 
@@ -51,7 +47,7 @@ export default function Header({ className }: { className?: string }) {
           className={clsx(styles.headerNav, menuOpen && styles.headerNavOpen)}
         >
           <ul className={styles.headerNavList}>
-            {navigation.map((navItem) => (
+            {navigationList.map((navItem) => (
               <li key={navItem.link}>
                 <Link
                   href={navItem.link}
