@@ -9,13 +9,12 @@ import { Movie } from "@/models/movies/types";
 import styles from "./topMovies.module.scss";
 
 export default function Carousel({ movies }: { movies: Movie[] }) {
-  const buttonPrev = useRef<HTMLLIElement>(null);
   const spinnerRef = useRef<HTMLUListElement>(null);
 
   const handlePrevClick = () => {
     if (spinnerRef.current) {
-      const itemWidth = spinnerRef.current?.scrollWidth / 7;
-      spinnerRef.current.scrollLeft -= itemWidth;
+      const itemWidth = spinnerRef.current?.children[0].clientWidth;
+      spinnerRef.current.scrollBy({ left: -itemWidth, behavior: "smooth" });
     }
   };
 
@@ -31,12 +30,7 @@ export default function Carousel({ movies }: { movies: Movie[] }) {
       <ArrowButton onClick={handlePrevClick} variant="left" />
       <ul ref={spinnerRef} className={styles.carouselList}>
         {movies.map((item) => (
-          <li
-            className={styles.carouselItem}
-            key={item.id}
-            ref={buttonPrev}
-            id={`#${item.id}`}
-          >
+          <li className={styles.carouselItem} key={item.id} id={`#${item.id}`}>
             <Card {...item} small />
           </li>
         ))}
