@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
+import { useModal } from "@/app/(main)/ModalProvider";
 import PlusButton from "@/components/commons/Button/PlusButton";
 import { navigationList } from "@/models/nav/consts";
 
@@ -14,6 +15,7 @@ import styles from "./Header.module.scss";
 export default function Header({ className }: { className?: string }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { openModal } = useModal();
 
   const handleMenuClick = () => {
     setIsMenuOpen((prev) => !prev);
@@ -66,7 +68,7 @@ export default function Header({ className }: { className?: string }) {
             ))}
           </ul>
         </nav>
-        <PlusButton />
+        <PlusButton onClick={() => openModal()} />
       </div>
     </header>
   );
