@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { SubmitEventHandler, useState } from "react";
+import { SubmitEventHandler, useEffect, useState } from "react";
 
 import { useModal } from "@/app/(main)/ModalProvider";
 import { useClickOutside } from "@/utils/hooks";
@@ -20,6 +20,13 @@ export default function MovieModal() {
   const modalRef = useClickOutside<HTMLFormElement>(() => {
     if (isModalOpen) closeModal();
   });
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
 
   const handleSubmit: SubmitEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
