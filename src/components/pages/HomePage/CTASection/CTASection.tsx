@@ -1,3 +1,5 @@
+"use client";
+
 import { useModal } from "@/app/(main)/ModalProvider";
 import SmallButton from "@/components/commons/Button/SmallButton";
 
