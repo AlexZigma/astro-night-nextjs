@@ -3,9 +3,9 @@
 import clsx from "clsx";
 import { ChangeEvent, useState } from "react";
 
+import { useClickOutside } from "@/lib/hooks";
 import { TAGS } from "@/models/tags/consts";
 import { Tag } from "@/models/tags/types";
-import { useClickOutside } from "@/utils/hooks";
 
 import styles from "./movieModal.module.scss";
 
@@ -23,11 +23,10 @@ export default function MultiSelect({ id, isError }: MultiSelectProps) {
   const handleTagChange =
     (tag: Tag) => (event: ChangeEvent<HTMLInputElement>) => {
       if (event.target.checked) {
-        setSelectedTags((prev) => [...prev, tag.label]);
+        setSelectedTags((prev) => [...prev, tag]);
       } else {
-        setSelectedTags((prev) => prev.filter((item) => item != tag.label));
+        setSelectedTags((prev) => prev.filter((item) => item != tag));
       }
-      tag.isChecked = event.target.checked;
     };
 
   const tagsLength = selectedTags.length;
@@ -65,17 +64,16 @@ export default function MultiSelect({ id, isError }: MultiSelectProps) {
           className={clsx(styles.selectItems, isOpen && styles.selectItemsOpen)}
         >
           {TAGS.map((tag) => (
-            <div key={tag.label} className={styles.selectItem}>
-              <label htmlFor={tag.label} className={styles.selectLabel}>
-                {tag.label}
+            <div key={tag} className={styles.selectItem}>
+              <label htmlFor={tag} className={styles.selectLabel}>
+                {tag}
               </label>
               <input
-                id={tag.label}
+                id={tag}
                 name={id}
-                value={tag.label}
+                value={tag}
                 type="checkbox"
                 className={styles.selectCheckbox}
-                defaultChecked={tag.isChecked}
                 onChange={handleTagChange(tag)}
               />
             </div>
