@@ -2,6 +2,7 @@
 @use "@/styles/mixins" as *;
 
 .card {
+  position: relative;
   width: 280px;
 
   @include tablet {
@@ -11,8 +12,15 @@
     width: 165px;
   }
 
-  &Top {
+  &Link {
+    z-index: 100;
+    position: absolute;
+    inset: 0;
+  }
+
+  &Poster {
     position: relative;
+    aspect-ratio: 280 / 400;
   }
 
   &Img {
