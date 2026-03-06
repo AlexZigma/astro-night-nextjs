@@ -1,0 +1,111 @@
+@use "@/styles/fonts" as *;
+@use "@/styles/mixins" as *;
+
+.wrapper {
+  background: url(/imgs/moviebg.png) no-repeat center / cover;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  padding-top: 170px;
+  padding-bottom: 80px;
+  gap: 70px;
+  color: var(--cyberpink);
+  @include container;
+
+  &Top {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &Title {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+  }
+
+  &Content {
+    display: flex;
+    gap: 140px;
+  }
+
+  &Info {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  &Tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+}
+
+.title {
+  @include hL;
+}
+
+.year {
+  @include pL;
+}
+
+.edit {
+  aspect-ratio: 1;
+  width: 40px;
+  background-color: var(--cyberpink);
+  mask: url(/icons/edit.svg) no-repeat center / contain;
+}
+
+.poster {
+  width: 479px;
+  height: 687px;
+}
+
+.actors {
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  max-height: 40px;
+  overflow: hidden;
+  transition: max-height 300ms;
+
+  &:hover {
+    max-height: 100px;
+  }
+
+  &Names {
+    width: 526px;
+  }
+  &::after {
+    display: inline-block;
+    aspect-ratio: 1;
+    width: 40px;
+    transform: rotateZ(180deg);
+    background: url(/icons/toggle.svg) no-repeat center / 20px;
+    content: "";
+  }
+
+  @include pMB;
+}
+
+.director {
+  @include pXSB;
+}
+
+.description {
+  @include pXSR;
+}
+
+.cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
+  gap: 60px;
+
+  &Title {
+    @include hXL;
+  }
+}
