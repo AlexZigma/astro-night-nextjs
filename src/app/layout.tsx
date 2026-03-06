@@ -4,6 +4,11 @@ import clsx from "clsx";
 import type { Metadata } from "next";
 import { Alata, Anonymous_Pro } from "next/font/google";
 
+import MovieModal from "@/components/commons/Modal/MovieModal";
+
+import { ModalProvider } from "./(main)/ModalProvider";
+import StoreProvider from "./StoreProvider";
+
 const anonymousPro = Anonymous_Pro({
   weight: ["400", "700"],
   variable: "--font-anonymous-pro",
@@ -40,7 +45,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={clsx(anonymousPro.variable, alata.variable)}>
-        {children}
+        <StoreProvider>
+          <ModalProvider>
+            {children}
+            <MovieModal />
+          </ModalProvider>
+        </StoreProvider>
       </body>
     </html>
   );
