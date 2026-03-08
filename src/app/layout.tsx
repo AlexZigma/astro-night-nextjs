@@ -4,6 +4,8 @@ import clsx from "clsx";
 import type { Metadata } from "next";
 import { Alata, Anonymous_Pro } from "next/font/google";
 
+import Footer from "@/components/commons/Footer";
+import Header from "@/components/commons/Header";
 import MovieModal from "@/components/commons/Modal/MovieModal";
 
 import { ModalProvider } from "./(main)/ModalProvider";
@@ -47,7 +49,9 @@ export default function RootLayout({
       <body className={clsx(anonymousPro.variable, alata.variable)}>
         <StoreProvider>
           <ModalProvider>
+            <Header />
             {children}
+            <Footer />
             <MovieModal />
           </ModalProvider>
         </StoreProvider>
