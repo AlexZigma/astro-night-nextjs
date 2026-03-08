@@ -1,9 +1,14 @@
+import Link from "next/link";
+
 import Card from "@/components/commons/Card";
-import { movies } from "@/models/movies/consts";
+import { selectFirst8Movies } from "@/lib/features/movies/selectors";
+import { useAppSelector } from "@/lib/hooks";
 
 import styles from "./Hero.module.scss";
 
 export default function HeroSection() {
+  const movies = useAppSelector(selectFirst8Movies);
+
   return (
     <section className={styles.hero}>
       <div className={styles.heroContainer}>
@@ -11,11 +16,19 @@ export default function HeroSection() {
         <ul className={styles.heroList}>
           {movies.map((item) => (
             <li key={item.id} className={styles.heroListItem}>
-              <Card {...item} />
+              <Card
+                id={item.id}
+                // image={""}
+                rating={item.rating}
+                title={item.title}
+                year={item.year}
+              />
             </li>
           ))}
         </ul>
-        <button className={styles.heroButton}>See more</button>
+        <Link href="/storage" className={styles.heroButton}>
+          See more
+        </Link>
       </div>
     </section>
   );
