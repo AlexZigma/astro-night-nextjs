@@ -25,8 +25,9 @@ function SortToggle() {
       }
     >
       <svg
-        width="50"
-        height="50"
+        className={styles.toggleSvg}
+        // width="50"
+        // height="50"
         viewBox="0 0 50 50"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -60,22 +61,14 @@ function PageMarker({
   isActive: boolean;
 }) {
   return (
-    <button type="button" onClick={onClick}>
+    <button type="button" onClick={onClick} className={styles.marker}>
       <svg
-        width="20"
-        height="20"
+        className={styles.markerSvg}
         viewBox="0 0 20 20"
-        fill="none"
+        fill={isActive ? "#F12660" : "none"}
         xmlns="http://www.w3.org/2000/svg"
       >
-        <circle
-          cx="10"
-          cy="10"
-          r="7"
-          fill={isActive ? "#F12660" : ""}
-          stroke="#F12660"
-          strokeWidth="2"
-        />
+        <circle cx="10" cy="10" r="8" stroke="#F12660" strokeWidth="2" />
       </svg>
     </button>
   );
@@ -94,7 +87,7 @@ export default function StoragePage() {
   return (
     <main>
       <section className={styles.filters}>
-        <p className={styles.filtersTitle}>Filter (0)</p>
+        <p className={styles.filtersTitle}>Filter ( 0 )</p>
         <div className={styles.filtersList}>
           {TAGS.map((tag) => (
             <SmallButton key={tag}>{tag}</SmallButton>
@@ -103,7 +96,9 @@ export default function StoragePage() {
       </section>
       <section className={styles.storage}>
         <div className={styles.storageTop}>
-          <p className={styles.storageTitle}>48 objects found</p>
+          <p className={styles.storageTitle}>
+            {`${movies.length} objects found`}
+          </p>
           <div className={styles.storageSorting}>
             <SortToggle />
             <SmallButton>sort by</SmallButton>
