@@ -4,7 +4,10 @@ import clsx from "clsx";
 import { SubmitEventHandler, useEffect, useState } from "react";
 
 import { useModal } from "@/app/(main)/ModalProvider";
-import { useClickOutside } from "@/utils/hooks";
+import { addMovie } from "@/lib/features/movies/moviesSlice";
+import { useAppDispatch, useClickOutside } from "@/lib/hooks";
+import { MoviePayload } from "@/models/movies/types";
+import { Tag } from "@/models/tags/types";
 
 import SmallButton from "../Button/SmallButton";
 import ImageInput from "./ImageInput";
@@ -14,7 +17,7 @@ import StarsRange from "./StarsRange";
 
 export default function MovieModal() {
   const [errors, setErrors] = useState<Record<string, string>>({});
-
+  const dispatch = useAppDispatch();
   const { isModalOpen, closeModal } = useModal();
 
   const modalRef = useClickOutside<HTMLFormElement>(() => {
@@ -22,11 +25,12 @@ export default function MovieModal() {
   });
 
   useEffect(() => {
+    if (!isModalOpen) return;
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "";
     };
-  }, []);
+  }, [isModalOpen]);
 
   const handleSubmit: SubmitEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
@@ -35,10 +39,10 @@ export default function MovieModal() {
     const formData = new FormData(event.target);
 
     const image = formData.get("image");
-    const rating = formData.get("rating")?.toString();
+    const rating = formData.get("rating")?.toString() ?? "";
     const title = formData.get("title")?.toString().trim() ?? "";
     const year = formData.get("year")?.toString().trim() ?? "";
-    const genres = formData.getAll("genre").map(String);
+    const genres = formData.getAll("genre").map(String) as Tag[];
     const director = formData.get("director")?.toString().trim() ?? "";
     const mainActor = formData.get("mainActor")?.toString().trim() ?? "";
     const description = formData.get("description")?.toString().trim() ?? "";
@@ -63,19 +67,27 @@ export default function MovieModal() {
 
     if (Object.keys(newErrors).length !== 0) return;
 
-    const payload = {
+    const payload: MoviePayload = {
       title,
       year,
       genres,
       director,
       mainActor,
       description,
-      image,
+      image: "/imgs/cardbg.webp",
       rating,
     };
 
-    console.log(payload);
+    dispatch(addMovie(payload));
+    closeModal();
   };
+
+  if (!isModalOpen) return null;
+
+  function handleCloseModal() {
+    setErrors({});
+    closeModal();
+  }
 
   return (
     <div className={styles.overlay}>
@@ -85,7 +97,7 @@ export default function MovieModal() {
           <button
             type="button"
             className={styles.closeButton}
-            onClick={() => closeModal()}
+            onClick={handleCloseModal}
           />
         </div>
 
