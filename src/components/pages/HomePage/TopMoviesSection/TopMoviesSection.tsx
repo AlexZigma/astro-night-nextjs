@@ -1,9 +1,11 @@
-import { movies } from "@/models/movies/consts";
+import { selectTop10Movies } from "@/lib/features/movies/selectors";
+import { useAppSelector } from "@/lib/hooks";
 
 import Carousel from "./Carousel";
 import styles from "./topMovies.module.scss";
 
 export default function TopMoviesSection() {
+  const movies = useAppSelector(selectTop10Movies);
   return (
     <section className={styles.topMovies}>
       <div className={styles.topMoviesContent}>
