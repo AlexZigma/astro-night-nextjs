@@ -6,7 +6,7 @@ import styles from "./card.module.scss";
 
 interface CardProps {
   id: string;
-  image: string;
+  image?: string;
   title: string;
   year: string;
   rating: string;
@@ -15,24 +15,17 @@ interface CardProps {
 
 export function CardPoster({
   rating,
-  image,
-  className,
+  image = "/imgs/cardbg.webp",
+  isBig,
 }: {
   rating: string;
-  image: string;
-  className?: string;
+  image?: string;
+  isBig?: boolean;
 }) {
   return (
-    <div className={clsx(styles.cardPoster, className)}>
-      <Image
-        className={styles.cardImg}
-        src={image}
-        alt="movie card"
-        // width={280}
-        // height={400}
-        fill
-      />
-      <span className={styles.cardRating}>{rating}</span>
+    <div className={clsx(styles.poster, isBig && styles.posterBig)}>
+      <Image className={styles.posterImage} src={image} alt="movie card" fill />
+      <span className={styles.posterRating}>{Number(rating).toFixed(1)}</span>
     </div>
   );
 }
