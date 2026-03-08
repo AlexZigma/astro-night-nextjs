@@ -1,31 +1,11 @@
 @use "@/styles/fonts" as *;
 @use "@/styles/mixins" as *;
 
-.card {
+.poster {
   position: relative;
-  width: 280px;
+  aspect-ratio: 280 / 400;
 
-  @include tablet {
-    width: 180px;
-  }
-  @include mobile {
-    width: 165px;
-  }
-
-  &Link {
-    z-index: 100;
-    position: absolute;
-    inset: 0;
-  }
-
-  &Poster {
-    position: relative;
-    aspect-ratio: 280 / 400;
-  }
-
-  &Img {
-    width: 100%;
-    height: auto;
+  &Image {
     object-fit: cover;
     object-position: center;
     border-radius: 10px;
@@ -65,6 +45,40 @@
       content: "";
       mask: url(/icons/star.svg) no-repeat center / contain;
     }
+  }
+
+  &Big {
+    width: 100%;
+    max-height: 687px;
+
+    @include tablet {
+      max-height: 405px;
+    }
+
+    @include mobile {
+      align-self: center;
+      width: 100%;
+      max-width: 345px;
+      max-height: 500px;
+    }
+  }
+}
+
+.card {
+  position: relative;
+  width: 280px;
+
+  @include tablet {
+    width: 180px;
+  }
+  @include mobile {
+    width: 165px;
+  }
+
+  &Link {
+    z-index: 100;
+    position: absolute;
+    inset: 0;
   }
 
   &Info {
