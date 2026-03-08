@@ -12,7 +12,7 @@ import { navigationList } from "@/models/nav/consts";
 
 import styles from "./Header.module.scss";
 
-export default function Header({ className }: { className?: string }) {
+export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const { openModal } = useModal();
@@ -28,7 +28,7 @@ export default function Header({ className }: { className?: string }) {
   };
 
   return (
-    <header className={clsx(styles.header, className)}>
+    <header className={styles.header}>
       <div className={styles.headerContent}>
         <button
           className={clsx(
