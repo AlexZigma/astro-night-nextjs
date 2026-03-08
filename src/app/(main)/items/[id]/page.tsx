@@ -8,7 +8,7 @@ import { CardPoster } from "@/components/commons/Card";
 import { selectMovieById, selectStatus } from "@/lib/features/movies/selectors";
 import { useAppSelector } from "@/lib/hooks";
 
-import { useModal } from "../../../ModalProvider";
+import { useModal } from "../../ModalProvider";
 import styles from "./page.module.scss";
 
 export default function MoviePage({
