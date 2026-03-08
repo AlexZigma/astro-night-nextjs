@@ -2,7 +2,13 @@
 @use "@/styles/mixins" as *;
 
 .wrapper {
-  background: url(/imgs/moviebg.png) no-repeat center / cover;
+  background: url(/imgs/moviebg.png) no-repeat bottom / cover;
+  mix-blend-mode: lighten;
+
+  @include mobile {
+    background-position: top;
+    background-size: 100% 750px;
+  }
 }
 
 .section {
@@ -12,7 +18,16 @@
   padding-bottom: 80px;
   gap: 70px;
   color: var(--cyberpink);
-  @include container;
+  @include container(1180, 880, 880);
+
+  @include tablet {
+    padding-block: 100px 80px;
+  }
+
+  @include mobile {
+    padding-inline: 15px;
+    padding-block: 30px 80px;
+  }
 
   &Top {
     display: flex;
@@ -26,29 +41,62 @@
   }
 
   &Content {
-    display: flex;
-    gap: 140px;
+    display: grid;
+    grid-template-columns: 1fr 580px;
+    gap: 120px;
+
+    @include tablet {
+      gap: 20px;
+    }
+
+    @include mobile {
+      grid-template-rows: min-content min-content;
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
   }
 
   &Info {
     display: flex;
     flex-direction: column;
     gap: 25px;
+
+    @include tablet {
+      gap: 20px;
+    }
+
+    @include mobile {
+      align-self: center;
+      max-width: initial;
+    }
   }
 
   &Tags {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+
+    @include mobile {
+      justify-content: center;
+    }
   }
 }
 
 .title {
   @include hL;
+
+  @include mobile {
+    @include mhL;
+  }
 }
 
 .year {
+  color: var(--raspberry);
   @include pL;
+
+  @include mobile {
+    @include mpL;
+  }
 }
 
 .edit {
@@ -58,44 +106,60 @@
   mask: url(/icons/edit.svg) no-repeat center / contain;
 }
 
-.poster {
-  width: 479px;
-  height: 687px;
-}
-
 .actors {
-  display: inline-flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 40px;
   max-height: 40px;
-  overflow: hidden;
+  gap: 30px;
   transition: max-height 300ms;
+
+  @include pMB;
+
+  @include tablet {
+    @include tpMB;
+  }
+
+  @include mobile {
+    @include mButton;
+  }
 
   &:hover {
     max-height: 100px;
+
+    & .actorsNames {
+      white-space: initial;
+    }
   }
 
   &Names {
-    width: 526px;
+    align-self: center;
+    overflow: hidden;
+    white-space: nowrap;
   }
+
   &::after {
-    display: inline-block;
     aspect-ratio: 1;
     width: 40px;
     transform: rotateZ(180deg);
     background: url(/icons/toggle.svg) no-repeat center / 20px;
     content: "";
   }
-
-  @include pMB;
 }
 
 .director {
   @include pXSB;
+
+  @include mobile {
+    @include mpXSB;
+  }
 }
 
 .description {
   @include pXSR;
+
+  @include mobile {
+    @include mpXSB;
+  }
 }
 
 .cta {
@@ -105,7 +169,24 @@
   padding-top: 100px;
   gap: 60px;
 
+  @include tablet {
+    align-self: center;
+    max-width: 480px;
+  }
+
+  @include mobile {
+    padding-top: 0;
+    gap: 30px;
+  }
+
   &Title {
+    text-align: center;
     @include hXL;
+    @include tablet {
+      @include thXL;
+    }
+    @include mobile {
+      @include mhXL;
+    }
   }
 }
