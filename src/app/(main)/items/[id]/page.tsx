@@ -5,9 +5,10 @@ import { use } from "react";
 
 import SmallButton from "@/components/commons/Button/SmallButton";
 import { CardPoster } from "@/components/commons/Card";
-import { selectMovieById } from "@/lib/features/movies/selectors";
+import { selectMovieById, selectStatus } from "@/lib/features/movies/selectors";
 import { useAppSelector } from "@/lib/hooks";
 
+import { useModal } from "../../../ModalProvider";
 import styles from "./page.module.scss";
 
 export default function MoviePage({
@@ -16,10 +17,15 @@ export default function MoviePage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = use(params);
-  const movie = useAppSelector(selectMovieById(id));
 
-  if (!movie) {
+  const movie = useAppSelector(selectMovieById(id));
+  const movieStatus = useAppSelector(selectStatus);
+  const { openModal } = useModal();
+
+  if (movieStatus === "succeeded" && !movie) {
     notFound();
+  } else if (!movie) {
+    return <main></main>;
   }
 
   return (
@@ -28,16 +34,12 @@ export default function MoviePage({
         <div className={styles.sectionTop}>
           <p className={styles.sectionTitle}>
             <span className={styles.title}>{movie.title}</span>
-            <span className={styles.year}>{movie.year}</span>
+            <span className={styles.year}>{`[${movie.year}]`}</span>
           </p>
           <button type="button" className={styles.edit}></button>
         </div>
         <div className={styles.sectionContent}>
-          <CardPoster
-            rating={movie.rating}
-            image={movie.image}
-            className={styles.poster}
-          />
+          <CardPoster rating={movie.rating} image={movie.image} isBig={true} />
           <div className={styles.sectionInfo}>
             <div className={styles.sectionTags}>
               {movie.genres.map((genre) => (
@@ -49,13 +51,15 @@ export default function MoviePage({
             <div className={styles.actors}>
               <span className={styles.actorsNames}>{movie.mainActor}</span>
             </div>
-            <p className={styles.director}>{movie.director}</p>
+            <p className={styles.director}>{`Director: ${movie.director}`}</p>
             <p className={styles.description}>{movie.description} </p>
           </div>
         </div>
         <div className={styles.cta}>
           <p className={styles.ctaTitle}>Would you like to add something?</p>
-          <SmallButton variant="active">.yes.</SmallButton>
+          <SmallButton variant="active" onClick={() => openModal()}>
+            .yes.
+          </SmallButton>
         </div>
       </section>
     </main>
