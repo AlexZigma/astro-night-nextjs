@@ -4,10 +4,12 @@ import { Movie, MoviePayload } from "@/models/movies/types";
 
 type MovieState = {
   items: Movie[];
+  status: "loading" | "idle" | "succeeded" | "failed";
 };
 
 const initialState: MovieState = {
   items: [],
+  status: "loading",
 };
 
 export const moviesSlice = createSlice({
@@ -26,6 +28,7 @@ export const moviesSlice = createSlice({
     },
     initializeMovies: (state, action: PayloadAction<Movie[]>) => {
       state.items = action.payload;
+      state.status = "succeeded";
     },
   },
 });
