@@ -1,11 +1,11 @@
 "use client";
 
 import clsx from "clsx";
-import { useState } from "react";
+import { memo, useState } from "react";
 
 import styles from "./movieModal.module.scss";
 
-export default function StarsRange({
+export default memo(function StarsRange({
   id,
   maxLength = 10,
 }: {
@@ -53,4 +53,4 @@ export default function StarsRange({
       </label>
     </div>
   );
-}
+});

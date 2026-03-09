@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, memo, useState } from "react";
 
 import { useClickOutside } from "@/lib/hooks";
 import { TAGS } from "@/models/tags/consts";
@@ -14,7 +14,7 @@ interface MultiSelectProps {
   isError?: boolean;
 }
 
-export default function MultiSelect({ id, isError }: MultiSelectProps) {
+export default memo(function MultiSelect({ id, isError }: MultiSelectProps) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useClickOutside<HTMLDivElement>(() => setIsOpen(false));
 
@@ -82,4 +82,4 @@ export default function MultiSelect({ id, isError }: MultiSelectProps) {
       </div>
     </div>
   );
-}
+});

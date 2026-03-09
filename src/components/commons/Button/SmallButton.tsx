@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import Link from "next/link";
-import React, { ButtonHTMLAttributes } from "react";
+import React, { ButtonHTMLAttributes, memo } from "react";
 
 import styles from "./Button.module.scss";
 
@@ -9,7 +9,7 @@ interface SmallButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "hover" | "active";
 }
 
-export default function SmallButton({
+export default memo(function SmallButton({
   children,
   href,
   onClick,
@@ -33,4 +33,4 @@ export default function SmallButton({
       {children}
     </button>
   );
-}
+});

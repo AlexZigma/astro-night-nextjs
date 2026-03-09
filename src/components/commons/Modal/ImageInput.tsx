@@ -2,11 +2,11 @@
 
 import clsx from "clsx";
 import Image from "next/image";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, memo, useState } from "react";
 
 import styles from "./movieModal.module.scss";
 
-export default function ImageInput({ id }: { id: string }) {
+export default memo(function ImageInput({ id }: { id: string }) {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
@@ -39,4 +39,4 @@ export default function ImageInput({ id }: { id: string }) {
       </label>
     </div>
   );
-}
+});
