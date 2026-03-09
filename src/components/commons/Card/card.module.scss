@@ -47,6 +47,28 @@
     }
   }
 
+  &RatingBig {
+    display: flex;
+    position: absolute;
+    right: 15px;
+    bottom: 11px;
+    align-items: center;
+    gap: 11px;
+
+    color: var(--golden);
+
+    @include hXS;
+
+    &::before {
+      aspect-ratio: 1;
+      width: 0.7em;
+      background-size: cover;
+      background-color: var(--golden);
+      content: "";
+      mask: url(/icons/star.svg) no-repeat center / contain;
+    }
+  }
+
   &Big {
     width: 100%;
     max-height: 687px;

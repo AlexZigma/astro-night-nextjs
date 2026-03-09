@@ -26,7 +26,11 @@ export const CardPoster = memo(function CardPoster({
   return (
     <div className={clsx(styles.poster, isBig && styles.posterBig)}>
       <Image className={styles.posterImage} src={image} alt="movie card" fill />
-      <span className={styles.posterRating}>{Number(rating).toFixed(1)}</span>
+      <span
+        className={clsx(styles.posterRating, isBig && styles.posterRatingBig)}
+      >
+        {Number(rating).toFixed(1)}
+      </span>
     </div>
   );
 });
