@@ -44,7 +44,7 @@ export default function MovieModal() {
     const year = formData.get("year")?.toString().trim() ?? "";
     const genres = formData.getAll("genre").map(String) as Tag[];
     const director = formData.get("director")?.toString().trim() ?? "";
-    const mainActor = formData.get("mainActor")?.toString().trim() ?? "";
+    const mainActors = formData.get("mainActors")?.toString().trim() ?? "";
     const description = formData.get("description")?.toString().trim() ?? "";
 
     const newErrors: Record<string, string> = {};
@@ -72,7 +72,7 @@ export default function MovieModal() {
       year,
       genres,
       director,
-      mainActor,
+      mainActors,
       description,
       image: "/imgs/cardbg.webp",
       rating,
@@ -155,10 +155,10 @@ export default function MovieModal() {
 
             <div className={styles.field}>
               <input
-                id="mainActor"
-                name="mainActor"
+                id="mainActors"
+                name="mainActors"
                 className={styles.input}
-                placeholder="main actor"
+                placeholder="main actors"
               />
             </div>
 

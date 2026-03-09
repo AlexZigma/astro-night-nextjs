@@ -7,7 +7,7 @@ export type Movie = {
   rating: string;
   genres: Tag[];
   director?: string;
-  mainActor?: string;
+  mainActors?: string;
   description?: string;
   image?: string;
 };

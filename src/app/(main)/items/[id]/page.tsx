@@ -49,7 +49,7 @@ export default function MoviePage({
               ))}
             </div>
             <div className={styles.actors}>
-              <span className={styles.actorsNames}>{movie.mainActor}</span>
+              <span className={styles.actorsNames}>{movie.mainActors}</span>
             </div>
             <p className={styles.director}>{`Director: ${movie.director}`}</p>
             <p className={styles.description}>{movie.description} </p>
