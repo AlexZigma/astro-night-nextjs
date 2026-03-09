@@ -46,6 +46,7 @@ export default function Header() {
             alt="astro night logo"
             width={120}
             height={74}
+            loading="eager"
           />
         </Link>
         <nav
