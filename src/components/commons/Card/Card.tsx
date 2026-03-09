@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
+import { memo } from "react";
 
 import styles from "./card.module.scss";
 
@@ -13,7 +14,7 @@ interface CardProps {
   small?: boolean;
 }
 
-export function CardPoster({
+export const CardPoster = memo(function CardPoster({
   rating,
   image = "/imgs/cardbg.webp",
   isBig,
@@ -28,9 +29,9 @@ export function CardPoster({
       <span className={styles.posterRating}>{Number(rating).toFixed(1)}</span>
     </div>
   );
-}
+});
 
-export default function Card({
+export default memo(function Card({
   id,
   image,
   title,
@@ -48,4 +49,4 @@ export default function Card({
       </div>
     </div>
   );
-}
+});
