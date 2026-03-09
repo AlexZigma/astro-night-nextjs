@@ -1,52 +1,20 @@
-@use "@/styles/fonts" as *;
 @use "@/styles/mixins" as *;
+@use "@/styles/fonts" as *;
 
-.filters {
-  display: flex;
-  flex-direction: column;
-  padding-block: 50px;
-  gap: 40px;
+.content {
+  display: grid;
+  grid-template-columns: repeat(4, min-content);
+  row-gap: 50px;
+  justify-content: space-between;
+  width: 100%;
   @include container(1180, 880);
 
-  @include tablet {
-    margin-block: 23px;
-    padding-block: 30px;
-  }
-
   @include mobile {
-    width: 100%;
-    margin-block: 25px;
-    padding: 0 15px;
-    gap: 25px;
-  }
-
-  &Title {
-    @include hXXS;
-
-    @include tablet {
-      @include thM;
-    }
-
-    @include mobile {
-      @include mhS;
-    }
-  }
-
-  &List {
-    display: flex;
-    column-gap: 20px;
-    row-gap: 30px;
-    flex-wrap: wrap;
-    align-items: center;
+    grid-template-columns: repeat(2, min-content);
+    column-gap: 15px;
+    row-gap: 20px;
     justify-content: center;
-
-    @include tablet {
-      gap: 18px 14px;
-    }
-
-    @include mobile {
-      gap: 8px;
-    }
+    padding-inline: 15px;
   }
 }
 
@@ -117,23 +85,6 @@
   @include mobile {
     width: 40px;
     height: 40px;
-  }
-}
-
-.content {
-  display: grid;
-  grid-template-columns: repeat(4, min-content);
-  row-gap: 50px;
-  justify-content: space-between;
-  width: 100%;
-  @include container(1180, 880);
-
-  @include mobile {
-    grid-template-columns: repeat(2, min-content);
-    column-gap: 15px;
-    row-gap: 20px;
-    justify-content: center;
-    padding-inline: 15px;
   }
 }
 
