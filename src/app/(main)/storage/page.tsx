@@ -111,7 +111,7 @@ export default function StoragePage() {
               rating={movie.rating}
               title={movie.title}
               year={movie.year}
-              image="/imgs/cardbg.webp"
+              image={movie.image}
               key={movie.id}
             />
           ))}
