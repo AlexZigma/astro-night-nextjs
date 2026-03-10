@@ -4,10 +4,7 @@ import { Provider } from "react-redux";
 
 import { initializeMovies } from "@/lib/features/movies/moviesSlice";
 import { AppStore, makeStore } from "@/lib/store";
-import {
-  loadMoviesFromLocalStorage,
-  saveMoviesToLocalStorage,
-} from "@/lib/utils";
+import { loadMoviesFromLocalStorage } from "@/lib/utils";
 
 export default function StoreProvider({
   children,
@@ -19,11 +16,6 @@ export default function StoreProvider({
   useEffect(() => {
     const movies = loadMoviesFromLocalStorage();
     store.dispatch(initializeMovies(movies));
-    const unsubscribe = store.subscribe(() => {
-      saveMoviesToLocalStorage(store.getState().movies.items);
-    });
-
-    return unsubscribe;
   }, [store]);
 
   return <Provider store={store}>{children}</Provider>;
