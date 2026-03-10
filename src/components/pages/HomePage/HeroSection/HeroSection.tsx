@@ -18,7 +18,6 @@ export default function HeroSection() {
             <li key={item.id} className={styles.heroListItem}>
               <Card
                 id={item.id}
-                // image={""}
                 rating={item.rating}
                 title={item.title}
                 year={item.year}
