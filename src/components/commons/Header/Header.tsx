@@ -9,7 +9,7 @@ import { useState } from "react";
 import PlusButton from "@/components/commons/Button/PlusButton";
 import { useAppDispatch } from "@/lib/hooks";
 import { openModal } from "@/models/modal/modalSlice";
-import { NAV_ITEMS } from "@/models/nav/consts";
+import { NAV_ITEMS } from "@/models/nav/constants";
 
 import styles from "./Header.module.scss";
 
