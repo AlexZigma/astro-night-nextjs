@@ -3,16 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { memo } from "react";
 
-import styles from "./card.module.scss";
+import { MovieCard } from "@/models/movies/types";
 
-interface CardProps {
-  id: string;
-  image?: string;
-  title: string;
-  year: string;
-  rating: string;
-  small?: boolean;
-}
+import styles from "./card.module.scss";
 
 export const CardPoster = memo(function CardPoster({
   rating,
@@ -41,10 +34,10 @@ export default memo(function Card({
   title,
   year,
   rating,
-  small,
-}: CardProps) {
+  isSmall,
+}: MovieCard) {
   return (
-    <div className={clsx(styles.card, small && styles.cardSmall)}>
+    <div className={clsx(styles.card, isSmall && styles.cardSmall)}>
       <Link className={styles.cardLink} href={`/items/${id}`} />
       <CardPoster rating={rating} image={image} />
       <div className={styles.cardInfo}>

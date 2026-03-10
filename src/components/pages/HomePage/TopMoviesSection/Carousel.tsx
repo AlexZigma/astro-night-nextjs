@@ -39,7 +39,7 @@ export default function Carousel({ movies }: { movies: Movie[] }) {
       <ul ref={spinnerRef} className={styles.carouselList}>
         {movies.map((item) => (
           <li className={styles.carouselItem} key={item.id} id={`#${item.id}`}>
-            <Card {...item} small />
+            <Card {...item} isSmall={true} />
           </li>
         ))}
       </ul>

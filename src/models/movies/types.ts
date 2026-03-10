@@ -18,3 +18,8 @@ export type MovieState = {
   items: Movie[];
   status: "loading" | "idle" | "succeeded" | "failed";
 };
+
+export type MovieCard = Pick<
+  Movie,
+  "id" | "image" | "title" | "year" | "rating"
+> & { isSmall?: boolean };
