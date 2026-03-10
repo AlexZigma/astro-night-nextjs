@@ -1,11 +1,9 @@
-import { movies } from "@/models/movies/consts";
+import { MOVIES, MOVIES_STORAGE_KEY } from "@/models/movies/consts";
 import { Movie } from "@/models/movies/types";
-
-const MOVIES_STORAGE_KEY = "movies";
 
 export function loadMoviesFromLocalStorage(): Movie[] {
   const raw = localStorage.getItem(MOVIES_STORAGE_KEY);
-  if (!raw) return movies;
+  if (!raw) return MOVIES;
 
   try {
     const parsed = JSON.parse(raw);
