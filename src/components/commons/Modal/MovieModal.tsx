@@ -3,9 +3,9 @@
 import clsx from "clsx";
 import { SubmitEventHandler, useEffect, useState } from "react";
 
-import { closeModal } from "@/lib/features/modal/modalSlice";
-import { addMovie } from "@/lib/features/movies/moviesSlice";
 import { useAppDispatch, useAppSelector, useClickOutside } from "@/lib/hooks";
+import { closeModal } from "@/models/modal/modalSlice";
+import { addMovie } from "@/models/movies/moviesSlice";
 import { MoviePayload } from "@/models/movies/types";
 import { Tag } from "@/models/tags/types";
 

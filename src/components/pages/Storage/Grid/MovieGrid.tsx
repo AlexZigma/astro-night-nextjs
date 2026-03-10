@@ -4,8 +4,8 @@ import { useCallback, useMemo, useState } from "react";
 
 import SmallButton from "@/components/commons/Button/SmallButton";
 import Card from "@/components/commons/Card";
-import { selectMovies } from "@/lib/features/movies/selectors";
 import { useAppSelector } from "@/lib/hooks";
+import { selectMovies } from "@/models/movies/selectors";
 
 import styles from "./grid.module.scss";
 import PageMarker from "./PageMarker";

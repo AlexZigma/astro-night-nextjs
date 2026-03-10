@@ -2,8 +2,8 @@
 import { useEffect, useState } from "react";
 import { Provider } from "react-redux";
 
-import { initializeMovies } from "@/lib/features/movies/moviesSlice";
 import { AppStore, makeStore } from "@/lib/store";
+import { initializeMovies } from "@/models/movies/moviesSlice";
 import { loadMoviesFromLocalStorage } from "@/models/movies/utils";
 
 export default function StoreProvider({

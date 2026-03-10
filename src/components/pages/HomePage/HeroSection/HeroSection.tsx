@@ -1,8 +1,8 @@
 import Link from "next/link";
 
 import Card from "@/components/commons/Card";
-import { selectFirst8Movies } from "@/lib/features/movies/selectors";
 import { useAppSelector } from "@/lib/hooks";
+import { selectFirst8Movies } from "@/models/movies/selectors";
 
 import styles from "./Hero.module.scss";
 

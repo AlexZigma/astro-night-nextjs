@@ -1,8 +1,8 @@
 import { configureStore, isAnyOf } from "@reduxjs/toolkit";
 
+import modalReducer from "../models/modal/modalSlice";
+import movieReducer, { addMovie } from "../models/movies/moviesSlice";
 import { saveMoviesToLocalStorage } from "../models/movies/utils";
-import modalReducer from "./features/modal/modalSlice";
-import movieReducer, { addMovie } from "./features/movies/moviesSlice";
 import { listenerMiddleware, startAppListening } from "./listnerMiddleware";
 
 startAppListening({

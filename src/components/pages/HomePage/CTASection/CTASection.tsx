@@ -1,8 +1,8 @@
 "use client";
 
 import SmallButton from "@/components/commons/Button/SmallButton";
-import { openModal } from "@/lib/features/modal/modalSlice";
 import { useAppDispatch } from "@/lib/hooks";
+import { openModal } from "@/models/modal/modalSlice";
 
 import styles from "./cta.module.scss";
 

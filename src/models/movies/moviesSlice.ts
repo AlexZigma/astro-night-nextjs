@@ -2,19 +2,11 @@ import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
 
 import { Movie, MoviePayload } from "@/models/movies/types";
 
-type MovieState = {
-  items: Movie[];
-  status: "loading" | "idle" | "succeeded" | "failed";
-};
-
-const initialState: MovieState = {
-  items: [],
-  status: "loading",
-};
+import { initialState } from "./consts";
 
 export const moviesSlice = createSlice({
   name: "movies",
-  initialState,
+  initialState: initialState,
   reducers: {
     addMovie: {
       reducer(state, action: PayloadAction<Movie>) {

@@ -5,9 +5,9 @@ import { use } from "react";
 
 import SmallButton from "@/components/commons/Button/SmallButton";
 import { CardPoster } from "@/components/commons/Card";
-import { openModal } from "@/lib/features/modal/modalSlice";
-import { selectMovieById, selectStatus } from "@/lib/features/movies/selectors";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { openModal } from "@/models/modal/modalSlice";
+import { selectMovieById, selectStatus } from "@/models/movies/selectors";
 
 import styles from "./page.module.scss";
 

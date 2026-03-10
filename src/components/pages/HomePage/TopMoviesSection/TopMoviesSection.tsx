@@ -1,5 +1,5 @@
-import { selectTop10Movies } from "@/lib/features/movies/selectors";
 import { useAppSelector } from "@/lib/hooks";
+import { selectTop10Movies } from "@/models/movies/selectors";
 
 import Carousel from "./Carousel";
 import styles from "./topMovies.module.scss";

@@ -13,3 +13,8 @@ export type Movie = {
 };
 
 export type MoviePayload = Omit<Movie, "id">;
+
+export type MovieState = {
+  items: Movie[];
+  status: "loading" | "idle" | "succeeded" | "failed";
+};
