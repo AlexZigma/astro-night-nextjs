@@ -5,7 +5,7 @@ import { ChangeEvent, memo, useState } from "react";
 
 import { useClickOutside } from "@/lib/hooks";
 import { GENRES } from "@/models/tags/constants";
-import { GenreType } from "@/models/tags/types";
+import { Genre } from "@/models/tags/types";
 
 import styles from "./movieModal.module.scss";
 
@@ -21,7 +21,7 @@ export default memo(function MultiSelect({ id, isError }: MultiSelectProps) {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const handleTagChange =
-    (tag: GenreType) => (event: ChangeEvent<HTMLInputElement>) => {
+    (tag: Genre) => (event: ChangeEvent<HTMLInputElement>) => {
       if (event.target.checked) {
         setSelectedTags((prev) => [...prev, tag]);
       } else {

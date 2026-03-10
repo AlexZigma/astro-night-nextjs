@@ -1,6 +1,6 @@
-import { GenreType } from "./types";
+import { Genre } from "./types";
 
-export const GENRES: GenreType[] = [
+export const GENRES: Genre[] = [
   "noir",
   "horror",
   "action",

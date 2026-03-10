@@ -1,8 +1,8 @@
-import { MovieState, MovieType } from "./types";
+import { LoadingStatus, Movie, MovieState } from "./types";
 
 export const MOVIES_STORAGE_KEY = "movies";
 
-export const MOVIES: MovieType[] = [
+export const MOVIES: Movie[] = [
   {
     id: "1",
     title: "Major Thunder",
@@ -69,5 +69,5 @@ her with his gang`,
 
 export const initialState: MovieState = {
   items: MOVIES,
-  status: "loading",
+  status: LoadingStatus.Loading,
 };

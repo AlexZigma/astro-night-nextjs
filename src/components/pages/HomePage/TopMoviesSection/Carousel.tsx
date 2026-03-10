@@ -4,11 +4,11 @@ import { useRef } from "react";
 
 import ArrowButton from "@/components/commons/Button/ArrowButton";
 import Card from "@/components/commons/Card";
-import { MovieType } from "@/models/movies/types";
+import { Movie } from "@/models/movies/types";
 
 import styles from "./topMovies.module.scss";
 
-export default function Carousel({ movies }: { movies: MovieType[] }) {
+export default function Carousel({ movies }: { movies: Movie[] }) {
   const spinnerRef = useRef<HTMLUListElement>(null);
 
   const scrollCarousel = (direction: number) => {

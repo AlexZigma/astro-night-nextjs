@@ -1,4 +1,4 @@
-export type GenreType =
+export type Genre =
   | "noir"
   | "horror"
   | "action"

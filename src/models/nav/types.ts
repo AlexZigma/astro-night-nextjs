@@ -1,4 +1,4 @@
-export type NavItemType = {
+export type NavItem = {
   label: string;
   link: string;
 };
