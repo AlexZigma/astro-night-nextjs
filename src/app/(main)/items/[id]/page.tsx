@@ -5,10 +5,10 @@ import { use } from "react";
 
 import SmallButton from "@/components/commons/Button/SmallButton";
 import { CardPoster } from "@/components/commons/Card";
+import { openModal } from "@/lib/features/modal/modalSlice";
 import { selectMovieById, selectStatus } from "@/lib/features/movies/selectors";
-import { useAppSelector } from "@/lib/hooks";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 
-import { useModal } from "../../ModalProvider";
 import styles from "./page.module.scss";
 
 export default function MoviePage({
@@ -20,7 +20,7 @@ export default function MoviePage({
 
   const movie = useAppSelector(selectMovieById(id));
   const movieStatus = useAppSelector(selectStatus);
-  const { openModal } = useModal();
+  const dispatch = useAppDispatch();
 
   if (movieStatus === "succeeded" && !movie) {
     notFound();
@@ -51,13 +51,15 @@ export default function MoviePage({
             <div className={styles.actors}>
               <span className={styles.actorsNames}>{movie.mainActors}</span>
             </div>
-            <p className={styles.director}>{`Director: ${movie.director}`}</p>
+            <p
+              className={styles.director}
+            >{`Director: ${movie.director ?? ""}`}</p>
             <p className={styles.description}>{movie.description} </p>
           </div>
         </div>
         <div className={styles.cta}>
           <p className={styles.ctaTitle}>Would you like to add something?</p>
-          <SmallButton variant="active" onClick={() => openModal()}>
+          <SmallButton variant="active" onClick={() => dispatch(openModal())}>
             .yes.
           </SmallButton>
         </div>
