@@ -115,8 +115,10 @@
   }
 
   &Title {
+    overflow: hidden;
     color: var(--white);
-
+    text-overflow: ellipsis;
+    white-space: nowrap;
     @include hS;
     @include tablet {
       @include thS;
