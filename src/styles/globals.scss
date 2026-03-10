@@ -20,6 +20,8 @@ body {
   flex-direction: column;
   min-height: 100vh;
   background-color: var(--darksky);
+  color: var(--cyberpink);
+  overflow-wrap: break-word;
 }
 
 main {

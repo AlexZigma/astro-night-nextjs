@@ -1,8 +1,15 @@
 @use "@/styles/mixins" as *;
 @use "@/styles/fonts" as *;
 
-.notFoundHeader {
-  background: none;
+body:has(.notFound) {
+  & header {
+    position: relative;
+    background: none;
+  }
+
+  & footer {
+    display: none;
+  }
 }
 
 .notFound {

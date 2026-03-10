@@ -1,30 +1,36 @@
 import clsx from "clsx";
 import Link from "next/link";
-import React from "react";
+import React, { ButtonHTMLAttributes, memo } from "react";
 
 import styles from "./Button.module.scss";
-export default function SmallButton({
+
+interface SmallButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  href?: string;
+  variant?: "hover" | "active";
+}
+
+export default memo(function SmallButton({
   children,
-  active,
   href,
   onClick,
-}: {
-  children: React.ReactNode;
-  active: boolean;
-  href?: string;
-  onClick?: () => void;
-}) {
-  const className = clsx(
+  className,
+  variant,
+  type = "button",
+}: SmallButtonProps) {
+  const clss = clsx(
     styles.smallButton,
-    active && styles.smallButtonActive,
+    variant === "hover" && styles.smallButtonHover,
+    variant === "active" && styles.smallButtonActive,
+    className,
   );
+
   return href ? (
-    <Link href={href} className={className}>
+    <Link href={href} className={clss}>
       {children}
     </Link>
   ) : (
-    <button type="button" onClick={onClick} className={className}>
+    <button type={type} onClick={onClick} className={clss}>
       {children}
     </button>
   );
-}
+});

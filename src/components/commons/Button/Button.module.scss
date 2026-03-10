@@ -43,7 +43,6 @@
 
   @include tablet {
     padding: 14px 28px;
-    border-width: 0px;
     @include tButton;
   }
 
@@ -52,24 +51,22 @@
     @include mButton;
   }
 
-  &:hover {
+  &:hover,
+  &Hover {
     border-color: #f1266080;
     background-color: #f1266033;
   }
 
-  &:active {
+  &:active,
+  &Active {
     background-color: var(--cyberpink);
     color: var(--maroon);
   }
 
-  &Active {
+  &Active:hover {
+    border-color: var(--cyberpink);
     background-color: var(--cyberpink);
-    color: var(--maroon);
-    &:hover {
-      border-color: var(--cyberpink);
-      background-color: var(--cyberpink);
-      color: #85184380;
-    }
+    color: #85184380;
   }
 }
 

@@ -7,13 +7,16 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 import PlusButton from "@/components/commons/Button/PlusButton";
-import { navigationList } from "@/models/nav/consts";
+import { useAppDispatch } from "@/lib/hooks";
+import { openModal } from "@/models/modal/modalSlice";
+import { NAV_ITEMS } from "@/models/nav/constants";
 
 import styles from "./Header.module.scss";
 
-export default function Header({ className }: { className?: string }) {
+export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const dispatch = useAppDispatch();
 
   const handleMenuClick = () => {
     setIsMenuOpen((prev) => !prev);
@@ -26,7 +29,7 @@ export default function Header({ className }: { className?: string }) {
   };
 
   return (
-    <header className={clsx(styles.header, className)}>
+    <header className={styles.header}>
       <div className={styles.headerContent}>
         <button
           className={clsx(
@@ -44,13 +47,14 @@ export default function Header({ className }: { className?: string }) {
             alt="astro night logo"
             width={120}
             height={74}
+            loading="eager"
           />
         </Link>
         <nav
           className={clsx(styles.headerNav, isMenuOpen && styles.headerNavOpen)}
         >
           <ul className={styles.headerNavList}>
-            {navigationList.map((navItem) => (
+            {NAV_ITEMS.map((navItem) => (
               <li key={navItem.link}>
                 <Link
                   href={navItem.link}
@@ -66,7 +70,7 @@ export default function Header({ className }: { className?: string }) {
             ))}
           </ul>
         </nav>
-        <PlusButton />
+        <PlusButton onClick={() => dispatch(openModal())} />
       </div>
     </header>
   );

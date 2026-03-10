@@ -1,23 +1,11 @@
 @use "@/styles/fonts" as *;
 @use "@/styles/mixins" as *;
 
-.card {
-  width: 280px;
+.poster {
+  position: relative;
+  aspect-ratio: 280 / 400;
 
-  @include tablet {
-    width: 180px;
-  }
-  @include mobile {
-    width: 165px;
-  }
-
-  &Top {
-    position: relative;
-  }
-
-  &Img {
-    width: 100%;
-    height: auto;
+  &Image {
     object-fit: cover;
     object-position: center;
     border-radius: 10px;
@@ -59,6 +47,62 @@
     }
   }
 
+  &RatingBig {
+    display: flex;
+    position: absolute;
+    right: 15px;
+    bottom: 11px;
+    align-items: center;
+    gap: 11px;
+
+    color: var(--golden);
+
+    @include hXS;
+
+    &::before {
+      aspect-ratio: 1;
+      width: 0.7em;
+      background-size: cover;
+      background-color: var(--golden);
+      content: "";
+      mask: url(/icons/star.svg) no-repeat center / contain;
+    }
+  }
+
+  &Big {
+    width: 100%;
+    max-height: 687px;
+
+    @include tablet {
+      max-height: 405px;
+    }
+
+    @include mobile {
+      align-self: center;
+      width: 100%;
+      max-width: 345px;
+      max-height: 500px;
+    }
+  }
+}
+
+.card {
+  position: relative;
+  width: 280px;
+
+  @include tablet {
+    width: 180px;
+  }
+  @include mobile {
+    width: 165px;
+  }
+
+  &Link {
+    z-index: 100;
+    position: absolute;
+    inset: 0;
+  }
+
   &Info {
     margin-top: 40px;
 
@@ -71,8 +115,10 @@
   }
 
   &Title {
+    overflow: hidden;
     color: var(--white);
-
+    text-overflow: ellipsis;
+    white-space: nowrap;
     @include hS;
     @include tablet {
       @include thS;
