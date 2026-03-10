@@ -1,4 +1,6 @@
-export const TAGS = [
+import { GenreType } from "./types";
+
+export const GENRES: GenreType[] = [
   "noir",
   "horror",
   "action",

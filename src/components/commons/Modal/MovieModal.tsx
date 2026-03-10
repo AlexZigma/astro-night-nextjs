@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector, useClickOutside } from "@/lib/hooks";
 import { closeModal } from "@/models/modal/modalSlice";
 import { addMovie } from "@/models/movies/moviesSlice";
 import { MoviePayload } from "@/models/movies/types";
-import { Tag } from "@/models/tags/types";
+import { GenreType } from "@/models/tags/types";
 
 import SmallButton from "../Button/SmallButton";
 import ImageInput from "./ImageInput";
@@ -41,7 +41,7 @@ export default function MovieModal() {
     const rating = formData.get("rating")?.toString() ?? "";
     const title = formData.get("title")?.toString().trim() ?? "";
     const year = formData.get("year")?.toString().trim() ?? "";
-    const genres = formData.getAll("genre").map(String) as Tag[];
+    const genres = formData.getAll("genre").map(String) as GenreType[];
     const director = formData.get("director")?.toString().trim() ?? "";
     const mainActors = formData.get("mainActors")?.toString().trim() ?? "";
     const description = formData.get("description")?.toString().trim() ?? "";

@@ -1,11 +1,11 @@
-import { Tag } from "../tags/types";
+import { GenreType } from "../tags/types";
 
 export type Movie = {
   id: string;
   title: string;
   year: string;
   rating: string;
-  genres: Tag[];
+  genres: GenreType[];
   director?: string;
   mainActors?: string;
   description?: string;

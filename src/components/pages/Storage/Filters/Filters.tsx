@@ -1,5 +1,5 @@
 import SmallButton from "@/components/commons/Button/SmallButton";
-import { TAGS } from "@/models/tags/consts";
+import { GENRES } from "@/models/tags/constants";
 
 import styles from "./filters.module.scss";
 
@@ -8,7 +8,7 @@ export default function Filters() {
     <section className={styles.filters}>
       <p className={styles.filtersTitle}>Filter ( 0 )</p>
       <div className={styles.filtersList}>
-        {TAGS.map((tag) => (
+        {GENRES.map((tag) => (
           <SmallButton key={tag}>{tag}</SmallButton>
         ))}
       </div>

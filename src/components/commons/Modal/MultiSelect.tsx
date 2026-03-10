@@ -4,8 +4,8 @@ import clsx from "clsx";
 import { ChangeEvent, memo, useState } from "react";
 
 import { useClickOutside } from "@/lib/hooks";
-import { TAGS } from "@/models/tags/consts";
-import { Tag } from "@/models/tags/types";
+import { GENRES } from "@/models/tags/constants";
+import { GenreType } from "@/models/tags/types";
 
 import styles from "./movieModal.module.scss";
 
@@ -21,7 +21,7 @@ export default memo(function MultiSelect({ id, isError }: MultiSelectProps) {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const handleTagChange =
-    (tag: Tag) => (event: ChangeEvent<HTMLInputElement>) => {
+    (tag: GenreType) => (event: ChangeEvent<HTMLInputElement>) => {
       if (event.target.checked) {
         setSelectedTags((prev) => [...prev, tag]);
       } else {
@@ -63,7 +63,7 @@ export default memo(function MultiSelect({ id, isError }: MultiSelectProps) {
         <div
           className={clsx(styles.selectItems, isOpen && styles.selectItemsOpen)}
         >
-          {TAGS.map((tag) => (
+          {GENRES.map((tag) => (
             <div key={tag} className={styles.selectItem}>
               <label htmlFor={tag} className={styles.selectLabel}>
                 {tag}

@@ -1,3 +1,10 @@
-import { TAGS } from "./consts";
-
-export type Tag = (typeof TAGS)[number];
+export type GenreType =
+  | "noir"
+  | "horror"
+  | "action"
+  | "comedy"
+  | "animation"
+  | "romantic"
+  | "ski-fi"
+  | "drama"
+  | "advanture";
