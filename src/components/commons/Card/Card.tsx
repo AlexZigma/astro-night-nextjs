@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { memo } from "react";
 
-import { MovieCard } from "@/models/movies/types";
+import { numberToRating } from "@/lib/utils";
 
 import styles from "./card.module.scss";
 
@@ -16,17 +16,27 @@ export const CardPoster = memo(function CardPoster({
   image?: string;
   isBig?: boolean;
 }) {
+  const posterRating = numberToRating(Number(rating));
   return (
     <div className={clsx(styles.poster, isBig && styles.posterBig)}>
       <Image className={styles.posterImage} src={image} alt="movie card" fill />
       <span
         className={clsx(styles.posterRating, isBig && styles.posterRatingBig)}
       >
-        {Number(rating).toFixed(1)}
+        {posterRating}
       </span>
     </div>
   );
 });
+
+export type MovieCardProps = {
+  id: string;
+  image?: string;
+  title: string;
+  year: string;
+  rating: string;
+  isSmall?: boolean;
+};
 
 export default memo(function Card({
   id,
@@ -35,7 +45,7 @@ export default memo(function Card({
   year,
   rating,
   isSmall,
-}: MovieCard) {
+}: MovieCardProps) {
   return (
     <div className={clsx(styles.card, isSmall && styles.cardSmall)}>
       <Link className={styles.cardLink} href={`/items/${id}`} />
