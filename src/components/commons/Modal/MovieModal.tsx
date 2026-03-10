@@ -38,7 +38,6 @@ export default function MovieModal() {
 
     const formData = new FormData(event.target);
 
-    const image = formData.get("image");
     const rating = formData.get("rating")?.toString() ?? "";
     const title = formData.get("title")?.toString().trim() ?? "";
     const year = formData.get("year")?.toString().trim() ?? "";
