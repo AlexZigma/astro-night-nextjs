@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 
+import modalReducer from "./features/modal/modalSlice";
 import movieReducer from "./features/movies/moviesSlice";
 
 export const makeStore = () => {
   return configureStore({
-    reducer: { movies: movieReducer },
+    reducer: { movies: movieReducer, modal: modalReducer },
   });
 };
 
