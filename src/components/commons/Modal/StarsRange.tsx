@@ -3,6 +3,8 @@
 import clsx from "clsx";
 import { memo, useState } from "react";
 
+import { numberToRating } from "@/lib/utils";
+
 import styles from "./movieModal.module.scss";
 
 export default memo(function StarsRange({
@@ -14,9 +16,11 @@ export default memo(function StarsRange({
 }) {
   const [value, setValue] = useState(0.0);
 
-  const active = Math.trunc(value);
-  const half = Number(value % 1 > 0);
-  const inactive = maxLength - active - half;
+  const activeCount = Math.trunc(value);
+  const halfActiveCount = Number(value % 1 > 0);
+  const inactiveCount = maxLength - activeCount - halfActiveCount;
+
+  const rangeRating = numberToRating(value);
 
   return (
     <div className={styles.stars}>
@@ -32,25 +36,23 @@ export default memo(function StarsRange({
           value={value}
           onChange={(event) => setValue(Number(event.target.value))}
         />
-        {Array.from({ length: active }, (_, index) => (
+        {Array.from({ length: activeCount }, (_, index) => (
           <div
             key={`a${index}`}
             className={clsx(styles.star, styles.starActive)}
           />
         ))}
-        {Array.from({ length: half }, (_, index) => (
+        {Array.from({ length: halfActiveCount }, (_, index) => (
           <div
             key={`b${index}`}
             className={clsx(styles.star, styles.starHalf)}
           />
         ))}
-        {Array.from({ length: inactive }, (_, index) => (
+        {Array.from({ length: inactiveCount }, (_, index) => (
           <div key={`c${index}`} className={styles.star} />
         ))}
       </div>
-      <label className={styles.starsLabel}>
-        {value.toFixed(1).toString().replace(".", ",")}
-      </label>
+      <label className={styles.starsLabel}>{rangeRating}</label>
     </div>
   );
 });
