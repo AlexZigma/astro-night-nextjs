@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector, useClickOutside } from "@/lib/hooks";
 import { closeModal } from "@/models/modal/modalSlice";
 import { addMovie } from "@/models/movies/moviesSlice";
 import { MoviePayload } from "@/models/movies/types";
-import { GenreType } from "@/models/tags/types";
+import { Genre } from "@/models/tags/types";
 
 import SmallButton from "../Button/SmallButton";
 import ImageInput from "./ImageInput";
@@ -41,7 +41,7 @@ export default function MovieModal() {
     const rating = formData.get("rating")?.toString() ?? "";
     const title = formData.get("title")?.toString().trim() ?? "";
     const year = formData.get("year")?.toString().trim() ?? "";
-    const genres = formData.getAll("genre").map(String) as GenreType[];
+    const genres = formData.getAll("genre").map(String) as Genre[];
     const director = formData.get("director")?.toString().trim() ?? "";
     const mainActors = formData.get("mainActors")?.toString().trim() ?? "";
     const description = formData.get("description")?.toString().trim() ?? "";
@@ -83,10 +83,10 @@ export default function MovieModal() {
 
   if (!isModalOpen) return null;
 
-  function handleCloseModal() {
+  const handleCloseModal = () => {
     setErrors({});
     dispatch(closeModal());
-  }
+  };
 
   return (
     <div className={styles.overlay}>
