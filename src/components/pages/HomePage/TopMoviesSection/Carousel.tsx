@@ -11,18 +11,26 @@ import styles from "./topMovies.module.scss";
 export default function Carousel({ movies }: { movies: Movie[] }) {
   const spinnerRef = useRef<HTMLUListElement>(null);
 
+  const scrollCarousel = (direction: number) => {
+    if (!spinnerRef.current) return;
+
+    const firstItem = spinnerRef.current.children[0];
+    if (!firstItem) return;
+
+    const itemWidth = firstItem.clientWidth;
+
+    spinnerRef.current.scrollBy({
+      left: direction * itemWidth,
+      behavior: "smooth",
+    });
+  };
+
   const handlePrevClick = () => {
-    if (spinnerRef.current) {
-      const itemWidth = spinnerRef.current?.children[0].clientWidth;
-      spinnerRef.current.scrollBy({ left: -itemWidth, behavior: "smooth" });
-    }
+    scrollCarousel(-1);
   };
 
   const handleNextClick = () => {
-    if (spinnerRef.current) {
-      const itemWidth = spinnerRef.current?.children[0].clientWidth;
-      spinnerRef.current.scrollBy({ left: itemWidth, behavior: "smooth" });
-    }
+    scrollCarousel(1);
   };
 
   return (
