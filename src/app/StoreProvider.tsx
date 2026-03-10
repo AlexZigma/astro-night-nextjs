@@ -19,10 +19,12 @@ export default function StoreProvider({
   useEffect(() => {
     const movies = loadMoviesFromLocalStorage();
     store.dispatch(initializeMovies(movies));
-    store.subscribe(() =>
-      saveMoviesToLocalStorage(store.getState().movies.items),
-    );
-  });
+    const unsubscribe = store.subscribe(() => {
+      saveMoviesToLocalStorage(store.getState().movies.items);
+    });
+
+    return unsubscribe;
+  }, [store]);
 
   return <Provider store={store}>{children}</Provider>;
 }
