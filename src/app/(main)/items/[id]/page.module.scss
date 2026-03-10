@@ -2,7 +2,7 @@
 @use "@/styles/mixins" as *;
 
 .wrapper {
-  background: url(/imgs/moviebg.png) no-repeat bottom / cover;
+  background: url(/imgs/moviebg.webp) no-repeat bottom / cover;
   mix-blend-mode: lighten;
 
   @include mobile {
