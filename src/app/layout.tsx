@@ -8,7 +8,6 @@ import Footer from "@/components/commons/Footer";
 import Header from "@/components/commons/Header";
 import MovieModal from "@/components/commons/Modal/MovieModal";
 
-import { ModalProvider } from "./(main)/ModalProvider";
 import StoreProvider from "./StoreProvider";
 
 const anonymousPro = Anonymous_Pro({
@@ -48,13 +47,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={clsx(anonymousPro.variable, alata.variable)}>
         <StoreProvider>
-          <ModalProvider>
-            <Header />
-            {children}
-            <Footer />
-            <MovieModal />
-          </ModalProvider>
+          <Header />
+          {children}
+          <MovieModal />
         </StoreProvider>
+        <Footer />
       </body>
     </html>
   );
