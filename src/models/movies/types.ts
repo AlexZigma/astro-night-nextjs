@@ -1,25 +1,27 @@
-import { GenreType } from "../tags/types";
+import { Genre } from "../tags/types";
 
-export type MovieType = {
+export type Movie = {
   id: string;
   title: string;
   year: string;
   rating: string;
-  genres: GenreType[];
+  genres: Genre[];
   director?: string;
   mainActors?: string;
   description?: string;
   image?: string;
 };
 
-export type MoviePayload = Omit<MovieType, "id">;
+export type MoviePayload = Omit<Movie, "id">;
+
+export enum LoadingStatus {
+  Loading = "loading",
+  Idle = "idle",
+  Succeeded = "succeeded",
+  Failed = "failed",
+}
 
 export type MovieState = {
-  items: MovieType[];
-  status: "loading" | "idle" | "succeeded" | "failed";
+  items: Movie[];
+  status: LoadingStatus;
 };
-
-export type MovieCard = Pick<
-  MovieType,
-  "id" | "image" | "title" | "year" | "rating"
-> & { isSmall?: boolean };
