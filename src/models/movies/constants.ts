@@ -1,8 +1,8 @@
-import { Movie, MovieState } from "./types";
+import { MovieState, MovieType } from "./types";
 
 export const MOVIES_STORAGE_KEY = "movies";
 
-export const MOVIES: Movie[] = [
+export const MOVIES: MovieType[] = [
   {
     id: "1",
     title: "Major Thunder",

@@ -1,15 +1,15 @@
 import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
 
-import { Movie, MoviePayload } from "@/models/movies/types";
+import { MoviePayload, MovieType } from "@/models/movies/types";
 
-import { initialState } from "./consts";
+import { initialState } from "./constants";
 
 export const moviesSlice = createSlice({
   name: "movies",
   initialState: initialState,
   reducers: {
     addMovie: {
-      reducer(state, action: PayloadAction<Movie>) {
+      reducer(state, action: PayloadAction<MovieType>) {
         state.items.push(action.payload);
       },
       prepare(movie: MoviePayload) {
@@ -18,7 +18,7 @@ export const moviesSlice = createSlice({
         };
       },
     },
-    initializeMovies: (state, action: PayloadAction<Movie[]>) => {
+    initializeMovies: (state, action: PayloadAction<MovieType[]>) => {
       state.items = action.payload;
       state.status = "succeeded";
     },

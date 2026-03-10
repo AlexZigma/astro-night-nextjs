@@ -1,7 +1,7 @@
-import { MOVIES, MOVIES_STORAGE_KEY } from "@/models/movies/consts";
-import { Movie } from "@/models/movies/types";
+import { MOVIES, MOVIES_STORAGE_KEY } from "@/models/movies/constants";
+import { MovieType } from "@/models/movies/types";
 
-export function loadMoviesFromLocalStorage(): Movie[] {
+export function loadMoviesFromLocalStorage(): MovieType[] {
   const raw = localStorage.getItem(MOVIES_STORAGE_KEY);
   if (!raw) return MOVIES;
 
@@ -14,6 +14,6 @@ export function loadMoviesFromLocalStorage(): Movie[] {
   }
 }
 
-export function saveMoviesToLocalStorage(state: Movie[]) {
+export function saveMoviesToLocalStorage(state: MovieType[]) {
   localStorage.setItem(MOVIES_STORAGE_KEY, JSON.stringify(state));
 }

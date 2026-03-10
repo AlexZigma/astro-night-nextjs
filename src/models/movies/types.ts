@@ -1,6 +1,6 @@
 import { GenreType } from "../tags/types";
 
-export type Movie = {
+export type MovieType = {
   id: string;
   title: string;
   year: string;
@@ -12,14 +12,14 @@ export type Movie = {
   image?: string;
 };
 
-export type MoviePayload = Omit<Movie, "id">;
+export type MoviePayload = Omit<MovieType, "id">;
 
 export type MovieState = {
-  items: Movie[];
+  items: MovieType[];
   status: "loading" | "idle" | "succeeded" | "failed";
 };
 
 export type MovieCard = Pick<
-  Movie,
+  MovieType,
   "id" | "image" | "title" | "year" | "rating"
 > & { isSmall?: boolean };
