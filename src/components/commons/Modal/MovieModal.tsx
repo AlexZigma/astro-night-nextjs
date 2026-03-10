@@ -3,9 +3,9 @@
 import clsx from "clsx";
 import { SubmitEventHandler, useEffect, useState } from "react";
 
-import { useModal } from "@/app/(main)/ModalProvider";
+import { closeModal } from "@/lib/features/modal/modalSlice";
 import { addMovie } from "@/lib/features/movies/moviesSlice";
-import { useAppDispatch, useClickOutside } from "@/lib/hooks";
+import { useAppDispatch, useAppSelector, useClickOutside } from "@/lib/hooks";
 import { MoviePayload } from "@/models/movies/types";
 import { Tag } from "@/models/tags/types";
 
@@ -18,10 +18,10 @@ import StarsRange from "./StarsRange";
 export default function MovieModal() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const dispatch = useAppDispatch();
-  const { isModalOpen, closeModal } = useModal();
+  const isModalOpen = useAppSelector((state) => state.modal.isOpen);
 
   const modalRef = useClickOutside<HTMLFormElement>(() => {
-    if (isModalOpen) closeModal();
+    if (isModalOpen) dispatch(closeModal());
   });
 
   useEffect(() => {
@@ -79,14 +79,14 @@ export default function MovieModal() {
     };
 
     dispatch(addMovie(payload));
-    closeModal();
+    dispatch(closeModal());
   };
 
   if (!isModalOpen) return null;
 
   function handleCloseModal() {
     setErrors({});
-    closeModal();
+    dispatch(closeModal());
   }
 
   return (
