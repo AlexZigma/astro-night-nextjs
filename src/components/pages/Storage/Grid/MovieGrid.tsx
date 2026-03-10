@@ -11,10 +11,11 @@ import styles from "./grid.module.scss";
 import PageMarker from "./PageMarker";
 import SortToggle from "./SortToggle";
 
+const perPage = 8;
+
 export default function MovieGrid() {
   const movies = useAppSelector(selectMovies);
 
-  const perPage = 8;
   const pagesCount = useMemo(
     () => Math.ceil(movies.length / perPage),
     [movies],
