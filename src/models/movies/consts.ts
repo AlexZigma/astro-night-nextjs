@@ -1,6 +1,8 @@
 import { Movie } from "./types";
 
-export const movies: Movie[] = [
+export const MOVIES_STORAGE_KEY = "movies";
+
+export const MOVIES: Movie[] = [
   {
     id: "1",
     title: "Major Thunder",

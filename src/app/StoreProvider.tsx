@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 
 import { initializeMovies } from "@/lib/features/movies/moviesSlice";
 import { AppStore, makeStore } from "@/lib/store";
-import { loadMoviesFromLocalStorage } from "@/lib/utils";
+import { loadMoviesFromLocalStorage } from "@/models/movies/utils";
 
 export default function StoreProvider({
   children,

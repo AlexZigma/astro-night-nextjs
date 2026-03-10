@@ -9,7 +9,7 @@ import { useState } from "react";
 import PlusButton from "@/components/commons/Button/PlusButton";
 import { openModal } from "@/lib/features/modal/modalSlice";
 import { useAppDispatch } from "@/lib/hooks";
-import { navigationList } from "@/models/nav/consts";
+import { NAV_ITEMS } from "@/models/nav/consts";
 
 import styles from "./Header.module.scss";
 
@@ -54,7 +54,7 @@ export default function Header() {
           className={clsx(styles.headerNav, isMenuOpen && styles.headerNavOpen)}
         >
           <ul className={styles.headerNavList}>
-            {navigationList.map((navItem) => (
+            {NAV_ITEMS.map((navItem) => (
               <li key={navItem.link}>
                 <Link
                   href={navItem.link}
