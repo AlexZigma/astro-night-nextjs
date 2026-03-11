@@ -1,11 +1,12 @@
 "use client";
 
 import clsx from "clsx";
+import { useRouter } from "next/navigation";
 import { SubmitEventHandler, useEffect, useState } from "react";
 
 import { useAppDispatch, useAppSelector, useClickOutside } from "@/lib/hooks";
 import { closeModal } from "@/models/modal/modalSlice";
-import { addMovie } from "@/models/movies/moviesSlice";
+import { addMovie, deleteMovie, editMovie } from "@/models/movies/moviesSlice";
 import { MoviePayload } from "@/models/movies/types";
 import { Genre } from "@/models/tags/types";
 
@@ -17,8 +18,12 @@ import StarsRange from "./StarsRange";
 
 export default function MovieModal() {
   const [errors, setErrors] = useState<Record<string, string>>({});
+
   const dispatch = useAppDispatch();
   const isModalOpen = useAppSelector((state) => state.modal.isOpen);
+  const currentMovie = useAppSelector((state) => state.modal.currentMovie);
+
+  const router = useRouter();
 
   const modalRef = useClickOutside<HTMLFormElement>(() => {
     if (isModalOpen) dispatch(closeModal());
@@ -77,7 +82,11 @@ export default function MovieModal() {
       rating,
     };
 
-    dispatch(addMovie(payload));
+    if (currentMovie) {
+      dispatch(editMovie({ id: currentMovie.id, ...payload }));
+    } else {
+      dispatch(addMovie(payload));
+    }
     dispatch(closeModal());
   };
 
@@ -88,11 +97,20 @@ export default function MovieModal() {
     dispatch(closeModal());
   };
 
+  const handleDeleteMovie = () => {
+    if (!currentMovie) return;
+    dispatch(deleteMovie(currentMovie.id));
+    dispatch(closeModal());
+    router.push("/storage");
+  };
+
+  const modalTitle = currentMovie ? "Edit movie" : "Add movie";
+
   return (
     <div className={styles.overlay}>
       <form className={styles.modal} onSubmit={handleSubmit} ref={modalRef}>
         <div className={styles.modalHeader}>
-          <p className={styles.modalTitle}>Add movie</p>
+          <p className={styles.modalTitle}>{modalTitle}</p>
           <button
             type="button"
             className={styles.closeButton}
@@ -101,9 +119,14 @@ export default function MovieModal() {
         </div>
 
         <section className={styles.modalContent}>
-          <ImageInput id="image" />
+          <ImageInput id="image" defaultValue={currentMovie?.image} />
           <div className={styles.modalInputs}>
-            <StarsRange id="rating" />
+            <StarsRange
+              id="rating"
+              defaultValue={
+                currentMovie?.rating ? Number(currentMovie?.rating) : 0
+              }
+            />
 
             <div className={styles.field}>
               <input
@@ -114,6 +137,7 @@ export default function MovieModal() {
                   errors.title && styles.inputInvalid,
                 )}
                 placeholder="title*"
+                defaultValue={currentMovie?.title}
               />
               {errors.title && (
                 <span className={styles.inputError}>{errors.title}</span>
@@ -126,6 +150,7 @@ export default function MovieModal() {
                 name="director"
                 className={styles.input}
                 placeholder="director"
+                defaultValue={currentMovie?.director}
               />
             </div>
 
@@ -139,6 +164,7 @@ export default function MovieModal() {
                 )}
                 placeholder="year*"
                 inputMode="numeric"
+                defaultValue={currentMovie?.year}
               />
               {errors.year && (
                 <span className={styles.inputError}>{errors.year}</span>
@@ -146,7 +172,11 @@ export default function MovieModal() {
             </div>
 
             <div className={styles.field}>
-              <MultiSelect id="genre" isError={Boolean(errors.genre)} />
+              <MultiSelect
+                id="genre"
+                isError={Boolean(errors.genre)}
+                defaultValue={currentMovie?.genres}
+              />
               {errors.genre && (
                 <span className={styles.inputError}>{errors.genre}</span>
               )}
@@ -158,6 +188,7 @@ export default function MovieModal() {
                 name="mainActors"
                 className={styles.input}
                 placeholder="main actors"
+                defaultValue={currentMovie?.mainActors}
               />
             </div>
 
@@ -166,6 +197,7 @@ export default function MovieModal() {
               name="description"
               className={clsx(styles.input, styles.inputTextArea)}
               placeholder="description"
+              defaultValue={currentMovie?.description}
             />
           </div>
         </section>
@@ -174,6 +206,12 @@ export default function MovieModal() {
           <SmallButton type="submit" variant="hover">
             .done!.
           </SmallButton>
+
+          {currentMovie && (
+            <SmallButton type="button" onClick={handleDeleteMovie}>
+              .trach!.
+            </SmallButton>
+          )}
         </div>
       </form>
     </div>

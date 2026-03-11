@@ -98,10 +98,13 @@
   }
 
   &Footer {
+    display: flex;
     align-self: center;
     padding-block: 30px;
+    gap: 40px;
 
-    @include mobile {
+    @include tablet {
+      gap: 30px;
     }
   }
 }
