@@ -7,14 +7,18 @@ import { numberToRating } from "@/lib/utils";
 
 import styles from "./movieModal.module.scss";
 
+interface StartRangeProps {
+  id: string;
+  maxLength?: number;
+  defaultValue?: number;
+}
+
 export default memo(function StarsRange({
   id,
   maxLength = 10,
-}: {
-  id: string;
-  maxLength?: number;
-}) {
-  const [value, setValue] = useState(0.0);
+  defaultValue = 0,
+}: StartRangeProps) {
+  const [value, setValue] = useState(defaultValue);
 
   const activeCount = Math.trunc(value);
   const halfActiveCount = Number(value % 1 > 0);
