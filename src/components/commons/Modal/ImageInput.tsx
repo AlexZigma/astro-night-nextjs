@@ -6,8 +6,16 @@ import { ChangeEvent, memo, useState } from "react";
 
 import styles from "./movieModal.module.scss";
 
-export default memo(function ImageInput({ id }: { id: string }) {
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
+interface ImageInputProps {
+  id: string;
+  defaultValue?: string;
+}
+
+export default memo(function ImageInput({
+  id,
+  defaultValue = "",
+}: ImageInputProps) {
+  const [imageUrl, setImageUrl] = useState(defaultValue);
 
   const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
