@@ -12,13 +12,18 @@ import styles from "./movieModal.module.scss";
 interface MultiSelectProps {
   id: string;
   isError?: boolean;
+  defaultValue?: Genre[];
 }
 
-export default memo(function MultiSelect({ id, isError }: MultiSelectProps) {
+export default memo(function MultiSelect({
+  id: selectId,
+  isError,
+  defaultValue = [],
+}: MultiSelectProps) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useClickOutside<HTMLDivElement>(() => setIsOpen(false));
 
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [selectedTags, setSelectedTags] = useState(defaultValue);
 
   const handleTagChange =
     (tag: Genre) => (event: ChangeEvent<HTMLInputElement>) => {
@@ -70,8 +75,9 @@ export default memo(function MultiSelect({ id, isError }: MultiSelectProps) {
               </label>
               <input
                 id={tag}
-                name={id}
+                name={selectId}
                 value={tag}
+                defaultChecked={defaultValue?.includes(tag)}
                 type="checkbox"
                 className={styles.selectCheckbox}
                 onChange={handleTagChange(tag)}
