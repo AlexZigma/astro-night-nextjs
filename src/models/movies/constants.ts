@@ -1,4 +1,4 @@
-import { LoadingStatus, Movie, MovieState } from "./types";
+import { Movie } from "./types";
 
 export const MOVIES_STORAGE_KEY = "movies";
 
@@ -66,8 +66,3 @@ her with his gang`,
     genres: ["action"],
   },
 ];
-
-export const initialState: MovieState = {
-  items: MOVIES,
-  status: LoadingStatus.Loading,
-};

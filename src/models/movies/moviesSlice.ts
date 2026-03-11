@@ -1,8 +1,16 @@
 import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
 
-import { LoadingStatus, Movie, MoviePayload } from "@/models/movies/types";
+import {
+  LoadingStatus,
+  Movie,
+  MoviePayload,
+  MovieState,
+} from "@/models/movies/types";
 
-import { initialState } from "./constants";
+export const initialState: MovieState = {
+  items: [],
+  status: LoadingStatus.Loading,
+};
 
 export const moviesSlice = createSlice({
   name: "movies",
