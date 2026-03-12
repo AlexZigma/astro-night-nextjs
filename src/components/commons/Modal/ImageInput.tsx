@@ -11,17 +11,14 @@ interface ImageInputProps {
   defaultValue?: string;
 }
 
-export default memo(function ImageInput({
-  id,
-  defaultValue = "",
-}: ImageInputProps) {
+export default memo(function ImageInput({ id, defaultValue }: ImageInputProps) {
   const [imageUrl, setImageUrl] = useState(defaultValue);
 
   const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) {
-      const file = event.target.files[0];
-      setImageUrl(URL.createObjectURL(file));
-    }
+    if (!event.target.files?.[0]) return;
+
+    const file = event.target.files[0];
+    setImageUrl(URL.createObjectURL(file));
   };
   return (
     <div className={clsx(styles.picCard, styles.imageInput)}>
