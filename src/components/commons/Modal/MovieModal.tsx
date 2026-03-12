@@ -28,7 +28,7 @@ export default function MovieModal() {
   const router = useRouter();
 
   const modalRef = useClickOutside<HTMLFormElement>(() => {
-    if (isModalOpen) dispatch(closeModal());
+    if (isModalOpen && !isDeleting) dispatch(closeModal());
   });
 
   useEffect(() => {
