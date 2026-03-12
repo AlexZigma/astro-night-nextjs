@@ -6,11 +6,12 @@ import { SubmitEventHandler, useEffect, useState } from "react";
 
 import { useAppDispatch, useAppSelector, useClickOutside } from "@/lib/hooks";
 import { closeModal } from "@/models/modal/modalSlice";
-import { addMovie, deleteMovie, editMovie } from "@/models/movies/moviesSlice";
+import { addMovie, editMovie } from "@/models/movies/moviesSlice";
 import { MoviePayload } from "@/models/movies/types";
 import { Genre } from "@/models/tags/types";
 
 import SmallButton from "../Button/SmallButton";
+import ConfirmModal from "./ConfirmModal";
 import ImageInput from "./ImageInput";
 import styles from "./movieModal.module.scss";
 import MultiSelect from "./MultiSelect";
@@ -18,6 +19,7 @@ import StarsRange from "./StarsRange";
 
 export default function MovieModal() {
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const dispatch = useAppDispatch();
   const isModalOpen = useAppSelector((state) => state.modal.isOpen);
@@ -97,10 +99,15 @@ export default function MovieModal() {
     dispatch(closeModal());
   };
 
+  const handleDeleteClick = () => {
+    setIsDeleting(true);
+  };
+
   const handleDeleteMovie = () => {
     if (!currentMovie) return;
-    dispatch(deleteMovie(currentMovie.id));
+
     dispatch(closeModal());
+    setIsDeleting(false);
     router.push("/storage");
   };
 
@@ -208,12 +215,18 @@ export default function MovieModal() {
           </SmallButton>
 
           {currentMovie && (
-            <SmallButton type="button" onClick={handleDeleteMovie}>
+            <SmallButton type="button" onClick={handleDeleteClick}>
               .trach!.
             </SmallButton>
           )}
         </div>
       </form>
+      {isDeleting && (
+        <ConfirmModal
+          onClose={() => setIsDeleting(false)}
+          onConfirm={handleDeleteMovie}
+        />
+      )}
     </div>
   );
 }
