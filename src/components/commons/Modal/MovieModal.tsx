@@ -89,7 +89,7 @@ export default function MovieModal() {
       rating,
     };
 
-    if (currentMovie) {
+    if (modalMode === ModalMode.Edit && currentMovie) {
       dispatch(editMovie({ id: currentMovie.id, ...payload }));
     } else {
       dispatch(addMovie(payload));
