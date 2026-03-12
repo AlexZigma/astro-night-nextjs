@@ -6,6 +6,7 @@ import SmallButton from "@/components/commons/Button/SmallButton";
 import { CardPoster } from "@/components/commons/Card";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { openModal } from "@/models/modal/modalSlice";
+import { ModalMode } from "@/models/modal/types";
 import { selectMovieById, selectStatus } from "@/models/movies/selectors";
 import { LoadingStatus } from "@/models/movies/types";
 
@@ -33,7 +34,7 @@ export default function MoviePage({
   }
 
   const handleEditClick = () => {
-    dispatch(openModal(movie));
+    dispatch(openModal({ mode: ModalMode.Edit, movie: movie }));
   };
 
   return (

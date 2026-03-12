@@ -6,7 +6,9 @@ import { SubmitEventHandler, useEffect, useState } from "react";
 
 import { useAppDispatch, useAppSelector, useClickOutside } from "@/lib/hooks";
 import { closeModal } from "@/models/modal/modalSlice";
-import { addMovie, editMovie } from "@/models/movies/moviesSlice";
+import { selectModal } from "@/models/modal/selectors";
+import { ModalMode } from "@/models/modal/types";
+import { addMovie, deleteMovie, editMovie } from "@/models/movies/moviesSlice";
 import { MoviePayload } from "@/models/movies/types";
 import { Genre } from "@/models/tags/types";
 
@@ -22,8 +24,11 @@ export default function MovieModal() {
   const [isDeleting, setIsDeleting] = useState(false);
 
   const dispatch = useAppDispatch();
-  const isModalOpen = useAppSelector((state) => state.modal.isOpen);
-  const currentMovie = useAppSelector((state) => state.modal.currentMovie);
+  const {
+    isOpen: isModalOpen,
+    mode: modalMode,
+    currentMovie,
+  } = useAppSelector(selectModal);
 
   const router = useRouter();
 
@@ -92,8 +97,6 @@ export default function MovieModal() {
     dispatch(closeModal());
   };
 
-  if (!isModalOpen) return null;
-
   const handleCloseModal = () => {
     setErrors({});
     dispatch(closeModal());
@@ -105,13 +108,15 @@ export default function MovieModal() {
 
   const handleDeleteMovie = () => {
     if (!currentMovie) return;
-
+    dispatch(deleteMovie(currentMovie.id));
     dispatch(closeModal());
     setIsDeleting(false);
     router.push("/storage");
   };
 
-  const modalTitle = currentMovie ? "Edit movie" : "Add movie";
+  const modalTitle = modalMode === ModalMode.Add ? "Add movie" : "Edit movie";
+
+  if (!isModalOpen) return null;
 
   return (
     <div className={styles.overlay}>
@@ -214,7 +219,7 @@ export default function MovieModal() {
             .done!.
           </SmallButton>
 
-          {currentMovie && (
+          {modalMode === ModalMode.Edit && (
             <SmallButton type="button" onClick={handleDeleteClick}>
               .trach!.
             </SmallButton>

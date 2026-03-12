@@ -2,10 +2,11 @@ import { Movie } from "../movies/types";
 
 export type ModalState = {
   isOpen: boolean;
-  currentMovie?: Movie | null;
+  currentMovie?: Movie;
+  mode: ModalMode;
 };
 
-export enum ModalVariant {
+export enum ModalMode {
   Add = "add",
   Edit = "edit",
 }
