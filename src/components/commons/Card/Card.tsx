@@ -12,11 +12,11 @@ export const CardPoster = memo(function CardPoster({
   image = "/imgs/cardbg.webp",
   isBig,
 }: {
-  rating: string;
+  rating: number;
   image?: string;
   isBig?: boolean;
 }) {
-  const posterRating = numberToRating(Number(rating));
+  const posterRating = numberToRating(rating);
   return (
     <div className={clsx(styles.poster, isBig && styles.posterBig)}>
       <Image className={styles.posterImage} src={image} alt="movie card" fill />
@@ -34,7 +34,7 @@ export type MovieCardProps = {
   image?: string;
   title: string;
   year: string;
-  rating: string;
+  rating: number;
   isSmall?: boolean;
 };
 

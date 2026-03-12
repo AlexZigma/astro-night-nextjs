@@ -50,7 +50,7 @@ export default function MovieModal() {
 
     const formData = new FormData(event.target);
 
-    const rating = formData.get("rating")?.toString() ?? "";
+    const rating = Number(formData.get("rating")) || 0;
     const title = formData.get("title")?.toString().trim() ?? "";
     const year = formData.get("year")?.toString().trim() ?? "";
     const genres = formData.getAll("genre").map(String) as Genre[];
@@ -133,12 +133,7 @@ export default function MovieModal() {
         <section className={styles.modalContent}>
           <ImageInput id="image" defaultValue={currentMovie?.image} />
           <div className={styles.modalInputs}>
-            <StarsRange
-              id="rating"
-              defaultValue={
-                currentMovie?.rating ? Number(currentMovie?.rating) : 0
-              }
-            />
+            <StarsRange id="rating" defaultValue={currentMovie?.rating} />
 
             <div className={styles.field}>
               <input
