@@ -216,7 +216,7 @@ export default function MovieModal() {
 
           {modalMode === ModalMode.Edit && (
             <SmallButton type="button" onClick={handleDeleteClick}>
-              .trach!.
+              .trash!.
             </SmallButton>
           )}
         </div>
