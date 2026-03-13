@@ -1,5 +1,6 @@
 "use client";
 
+import { notFound } from "next/navigation";
 import { use } from "react";
 
 import SmallButton from "@/components/commons/Button/SmallButton";
@@ -24,11 +25,7 @@ export default function MoviePage({
   const dispatch = useAppDispatch();
 
   if (movieStatus === LoadingStatus.Succeeded && !movie) {
-    return (
-      <main className={styles.section}>
-        <p className={styles.notFound}>Movie Not Found</p>
-      </main>
-    );
+    notFound();
   } else if (!movie) {
     return <main></main>;
   }

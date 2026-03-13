@@ -1,10 +1,15 @@
 "use client";
 
 import clsx from "clsx";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { SubmitEventHandler, useEffect, useState } from "react";
 
-import { useAppDispatch, useAppSelector, useClickOutside } from "@/lib/hooks";
+import {
+  useAppDispatch,
+  useAppSelector,
+  useAsyncRouteReplace,
+  useClickOutside,
+} from "@/lib/hooks";
 import { closeModal } from "@/models/modal/modalSlice";
 import { selectModal } from "@/models/modal/selectors";
 import { ModalMode } from "@/models/modal/types";
@@ -30,7 +35,7 @@ export default function MovieModal() {
     currentMovie,
   } = useAppSelector(selectModal);
 
-  const router = useRouter();
+  const asyncPush = useAsyncRouteReplace();
   const pathname = usePathname();
 
   const modalRef = useClickOutside<HTMLFormElement>(() => {
@@ -111,10 +116,10 @@ export default function MovieModal() {
     setIsDeleting(true);
   };
 
-  const handleDeleteMovie = () => {
+  const handleDeleteMovie = async () => {
     if (!currentMovie) return;
 
-    router.replace("/storage");
+    await asyncPush("/storage");
     dispatch(deleteMovie(currentMovie.id));
   };
 
