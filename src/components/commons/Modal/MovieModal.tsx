@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { SubmitEventHandler, useEffect, useState } from "react";
 
 import { useAppDispatch, useAppSelector, useClickOutside } from "@/lib/hooks";
@@ -31,6 +31,7 @@ export default function MovieModal() {
   } = useAppSelector(selectModal);
 
   const router = useRouter();
+  const pathname = usePathname();
 
   const modalRef = useClickOutside<HTMLFormElement>(() => {
     if (isModalOpen && !isDeleting) dispatch(closeModal());
@@ -43,6 +44,10 @@ export default function MovieModal() {
       document.body.style.overflow = "";
     };
   }, [isModalOpen]);
+
+  useEffect(() => {
+    dispatch(closeModal());
+  }, [pathname, dispatch]);
 
   const handleSubmit: SubmitEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
@@ -108,10 +113,9 @@ export default function MovieModal() {
 
   const handleDeleteMovie = () => {
     if (!currentMovie) return;
+
+    router.replace("/storage");
     dispatch(deleteMovie(currentMovie.id));
-    dispatch(closeModal());
-    setIsDeleting(false);
-    router.push("/storage");
   };
 
   const modalTitle = modalMode === ModalMode.Add ? "Add movie" : "Edit movie";
