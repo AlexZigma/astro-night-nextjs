@@ -121,6 +121,7 @@ export default function MovieModal() {
 
     await asyncPush("/storage");
     dispatch(deleteMovie(currentMovie.id));
+    setIsDeleting(false);
   };
 
   const modalTitle = modalMode === ModalMode.Add ? "Add movie" : "Edit movie";
