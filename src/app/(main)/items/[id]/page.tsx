@@ -69,7 +69,10 @@ export default function MoviePage({
         </div>
         <div className={styles.cta}>
           <p className={styles.ctaTitle}>Would you like to add something?</p>
-          <SmallButton variant="active" onClick={() => dispatch(openModal())}>
+          <SmallButton
+            variant="active"
+            onClick={() => dispatch(openModal({ mode: ModalMode.Add }))}
+          >
             .yes.
           </SmallButton>
         </div>

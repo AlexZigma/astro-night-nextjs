@@ -1,30 +1,26 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { Movie } from "../movies/types";
-import { ModalMode, ModalState } from "./types";
+import { ModalMode, ModalState, OpenModalPayload } from "./types";
 
 const initialState: ModalState = {
   isOpen: false,
   mode: ModalMode.Add,
-  currentMovie: undefined,
+  currentMovie: null,
 };
 
 export const modalSlice = createSlice({
   name: "modal",
   initialState,
   reducers: {
-    openModal: (
-      state,
-      action: PayloadAction<{ mode: ModalMode; movie?: Movie } | undefined>,
-    ) => {
+    openModal: (state, action: PayloadAction<OpenModalPayload>) => {
       state.isOpen = true;
-      state.mode = action.payload?.mode ?? ModalMode.Add;
-      state.currentMovie = action.payload?.movie;
+      state.mode = action.payload.mode;
+      state.currentMovie = action.payload.movie ?? null;
     },
     closeModal: (state) => {
       state.isOpen = false;
       state.mode = ModalMode.Add;
-      state.currentMovie = undefined;
+      state.currentMovie = null;
     },
   },
 });

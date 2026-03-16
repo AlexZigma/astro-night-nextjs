@@ -9,6 +9,7 @@ import { useState } from "react";
 import PlusButton from "@/components/commons/Button/PlusButton";
 import { useAppDispatch } from "@/lib/hooks";
 import { openModal } from "@/models/modal/modalSlice";
+import { ModalMode } from "@/models/modal/types";
 import { NAV_ITEMS } from "@/models/nav/constants";
 
 import styles from "./Header.module.scss";
@@ -70,7 +71,9 @@ export default function Header() {
             ))}
           </ul>
         </nav>
-        <PlusButton onClick={() => dispatch(openModal())} />
+        <PlusButton
+          onClick={() => dispatch(openModal({ mode: ModalMode.Add }))}
+        />
       </div>
     </header>
   );
