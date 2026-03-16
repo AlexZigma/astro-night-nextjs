@@ -11,7 +11,7 @@ export const selectFirst8Movies = createSelector([selectMovies], (movies) =>
 );
 
 export const selectTop10Movies = createSelector([selectMovies], (movies) =>
-  [...movies].sort((a, b) => Number(b.rating) - Number(a.rating)).slice(0, 10),
+  [...movies].sort((a, b) => b.rating - a.rating).slice(0, 10),
 );
 
 export const selectStatus = (state: RootState) => state.movies.status;

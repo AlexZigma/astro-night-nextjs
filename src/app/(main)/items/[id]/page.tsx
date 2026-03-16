@@ -7,7 +7,9 @@ import SmallButton from "@/components/commons/Button/SmallButton";
 import { CardPoster } from "@/components/commons/Card";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { openModal } from "@/models/modal/modalSlice";
+import { ModalMode } from "@/models/modal/types";
 import { selectMovieById, selectStatus } from "@/models/movies/selectors";
+import { LoadingStatus } from "@/models/movies/types";
 
 import styles from "./page.module.scss";
 
@@ -22,11 +24,15 @@ export default function MoviePage({
   const movieStatus = useAppSelector(selectStatus);
   const dispatch = useAppDispatch();
 
-  if (movieStatus === "succeeded" && !movie) {
+  if (movieStatus === LoadingStatus.Succeeded && !movie) {
     notFound();
   } else if (!movie) {
     return <main></main>;
   }
+
+  const handleEditClick = () => {
+    dispatch(openModal({ mode: ModalMode.Edit, movie: movie }));
+  };
 
   return (
     <main className={styles.wrapper}>
@@ -36,7 +42,11 @@ export default function MoviePage({
             <span className={styles.title}>{movie.title}</span>
             <span className={styles.year}>{`[${movie.year}]`}</span>
           </p>
-          <button type="button" className={styles.edit}></button>
+          <button
+            type="button"
+            className={styles.edit}
+            onClick={handleEditClick}
+          />
         </div>
         <div className={styles.sectionContent}>
           <CardPoster rating={movie.rating} image={movie.image} isBig={true} />
@@ -59,7 +69,10 @@ export default function MoviePage({
         </div>
         <div className={styles.cta}>
           <p className={styles.ctaTitle}>Would you like to add something?</p>
-          <SmallButton variant="active" onClick={() => dispatch(openModal())}>
+          <SmallButton
+            variant="active"
+            onClick={() => dispatch(openModal({ mode: ModalMode.Add }))}
+          >
             .yes.
           </SmallButton>
         </div>

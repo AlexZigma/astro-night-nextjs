@@ -1,4 +1,4 @@
-import { LoadingStatus, Movie, MovieState } from "./types";
+import { Movie } from "./types";
 
 export const MOVIES_STORAGE_KEY = "movies";
 
@@ -7,7 +7,7 @@ export const MOVIES: Movie[] = [
     id: "1",
     title: "Major Thunder",
     year: "2018",
-    rating: "9.5",
+    rating: 9.5,
     image: "/imgs/cardbg.webp",
     genres: ["action"],
   },
@@ -16,7 +16,7 @@ export const MOVIES: Movie[] = [
     title: "Morphine",
     director: "John Doe",
     year: "2008",
-    rating: "8.5",
+    rating: 8.5,
     image: "/imgs/cardbg.webp",
     genres: ["noir", "drama", "horror"],
     mainActors: "Leonid Bichevin, Ingeborga Dapkunaite",
@@ -28,7 +28,7 @@ export const MOVIES: Movie[] = [
     title: "Akira",
     director: "Katsuhiro Otomo",
     year: "1988",
-    rating: "8.5",
+    rating: 8.5,
     image: "/imgs/cardbg.webp",
     genres: ["animation", "action", "horror"],
     mainActors: "Mitsuo Iwata, Nozomu Sasaki, Mami Koyama",
@@ -45,7 +45,7 @@ her with his gang`,
     id: "4",
     title: "Major Thunder",
     year: "2018",
-    rating: "9.5",
+    rating: 9.5,
     image: "/imgs/cardbg.webp",
     genres: ["action"],
   },
@@ -53,7 +53,7 @@ her with his gang`,
     id: "5",
     title: "Major Thunder",
     year: "2018",
-    rating: "9.5",
+    rating: 9.5,
     image: "/imgs/cardbg.webp",
     genres: ["action"],
   },
@@ -61,13 +61,8 @@ her with his gang`,
     id: "6",
     title: "Major Thunder",
     year: "2018",
-    rating: "9.5",
+    rating: 9.5,
     image: "/imgs/cardbg.webp",
     genres: ["action"],
   },
 ];
-
-export const initialState: MovieState = {
-  items: MOVIES,
-  status: LoadingStatus.Loading,
-};

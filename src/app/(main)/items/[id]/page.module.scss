@@ -1,6 +1,17 @@
 @use "@/styles/fonts" as *;
 @use "@/styles/mixins" as *;
 
+.notFound {
+  @include hXL;
+  @include tablet {
+    align-self: center;
+    @include thXL;
+  }
+  @include mobile {
+    @include mhXL;
+  }
+}
+
 .wrapper {
   background: url(/imgs/moviebg.webp) no-repeat bottom / cover;
   mix-blend-mode: lighten;

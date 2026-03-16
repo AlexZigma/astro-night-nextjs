@@ -1,12 +1,16 @@
 import { configureStore, isAnyOf } from "@reduxjs/toolkit";
 
 import modalReducer from "../models/modal/modalSlice";
-import movieReducer, { addMovie } from "../models/movies/moviesSlice";
+import movieReducer, {
+  addMovie,
+  deleteMovie,
+  editMovie,
+} from "../models/movies/moviesSlice";
 import { saveMoviesToLocalStorage } from "../models/movies/utils";
 import { listenerMiddleware, startAppListening } from "./listnerMiddleware";
 
 startAppListening({
-  matcher: isAnyOf(addMovie),
+  matcher: isAnyOf(addMovie, editMovie, deleteMovie),
   effect: (action, listenerApi) => {
     const state = listenerApi.getState();
     saveMoviesToLocalStorage(state.movies.items);

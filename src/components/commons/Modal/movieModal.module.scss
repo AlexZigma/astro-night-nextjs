@@ -98,17 +98,19 @@
   }
 
   &Footer {
+    display: flex;
     align-self: center;
     padding-block: 30px;
+    gap: 40px;
 
-    @include mobile {
+    @include tablet {
+      gap: 30px;
     }
   }
 }
 
 .field {
   display: flex;
-  position: relative;
   flex: 1;
   flex-direction: column;
   min-width: 200px;
@@ -264,7 +266,7 @@
 
   &Label {
     display: flex;
-    z-index: 10;
+    position: relative;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -312,7 +314,6 @@
   }
 
   &Inner {
-    z-index: 100;
     position: relative;
     width: 100%;
     padding: 0;
@@ -417,5 +418,42 @@
       background: url(/icons/checkMark.svg) no-repeat center / contain;
       content: "";
     }
+  }
+}
+
+.confirm {
+  display: grid;
+  position: fixed;
+  place-items: center;
+  inset: 0;
+
+  &::before {
+    position: fixed;
+    inset: 0;
+    background-color: #180926;
+    content: "";
+    opacity: 0.95;
+  }
+
+  &Content {
+    display: grid;
+    position: relative;
+    justify-items: center;
+    gap: 35px;
+  }
+
+  &Title {
+    @include hXL;
+    @include tablet {
+      @include thXL;
+    }
+    @include mobile {
+      @include mhXL;
+    }
+  }
+
+  &Buttons {
+    display: flex;
+    gap: 35px;
   }
 }

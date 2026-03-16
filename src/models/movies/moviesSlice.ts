@@ -1,8 +1,16 @@
 import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
 
-import { LoadingStatus, Movie, MoviePayload } from "@/models/movies/types";
+import {
+  LoadingStatus,
+  Movie,
+  MoviePayload,
+  MovieState,
+} from "@/models/movies/types";
 
-import { initialState } from "./constants";
+export const initialState: MovieState = {
+  items: [],
+  status: LoadingStatus.Loading,
+};
 
 export const moviesSlice = createSlice({
   name: "movies",
@@ -18,6 +26,14 @@ export const moviesSlice = createSlice({
         };
       },
     },
+    deleteMovie: (state, action: PayloadAction<string>) => {
+      state.items = state.items.filter((item) => item.id !== action.payload);
+    },
+    editMovie: (state, action: PayloadAction<Movie>) => {
+      state.items = state.items.map((item) =>
+        item.id === action.payload.id ? action.payload : item,
+      );
+    },
     initializeMovies: (state, action: PayloadAction<Movie[]>) => {
       state.items = action.payload;
       state.status = LoadingStatus.Succeeded;
@@ -25,5 +41,6 @@ export const moviesSlice = createSlice({
   },
 });
 
-export const { addMovie, initializeMovies } = moviesSlice.actions;
+export const { addMovie, deleteMovie, editMovie, initializeMovies } =
+  moviesSlice.actions;
 export default moviesSlice.reducer;
