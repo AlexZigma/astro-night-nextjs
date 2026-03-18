@@ -1,4 +1,4 @@
-import { Movie } from "./types";
+import { Movie, SortField } from "./types";
 
 export const MOVIES_STORAGE_KEY = "movies";
 
@@ -66,3 +66,5 @@ her with his gang`,
     genres: ["action"],
   },
 ];
+
+export const SortFields: SortField[] = ["rating", "title", "year"];
