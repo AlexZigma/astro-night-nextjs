@@ -49,8 +49,10 @@ export const selectFilteredSortedMovies = createSelector(
   },
 );
 
-export const selectIsFilterUsed = (state: RootState) =>
-  state.movies.filters.genres.length > 0;
+export const selectIsFilterUsed = createSelector(
+  [selectFilterGenres],
+  (genres) => genres.length > 0,
+);
 
 export const selectMovieById = (id: string) => (state: RootState) =>
   state.movies.items.find((movie) => movie.id === id);
