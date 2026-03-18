@@ -7,15 +7,17 @@ import { numberToRating } from "@/lib/utils";
 
 import styles from "./card.module.scss";
 
+export interface CardPosterProps {
+  rating: number;
+  image?: string;
+  isBig?: boolean;
+}
+
 export const CardPoster = memo(function CardPoster({
   rating,
   image = "/imgs/cardbg.webp",
   isBig,
-}: {
-  rating: number;
-  image?: string;
-  isBig?: boolean;
-}) {
+}: CardPosterProps) {
   const posterRating = numberToRating(rating);
   return (
     <div className={clsx(styles.poster, isBig && styles.posterBig)}>
