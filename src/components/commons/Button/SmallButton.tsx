@@ -6,7 +6,7 @@ import styles from "./Button.module.scss";
 
 interface SmallButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   href?: string;
-  variant?: "hover" | "active";
+  variant?: null | "hover" | "active";
 }
 
 export default memo(function SmallButton({

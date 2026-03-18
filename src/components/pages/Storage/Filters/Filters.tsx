@@ -30,7 +30,7 @@ export default function Filters() {
           <SmallButton
             key={genre}
             onClick={handleFilterChange(genre)}
-            variant={filterGenres.includes(genre) ? "active" : undefined}
+            variant={filterGenres.includes(genre) ? "active" : null}
           >
             {genre}
           </SmallButton>
