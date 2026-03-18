@@ -20,9 +20,11 @@ export default function Filters() {
     [dispatch],
   );
 
+  const filtersTitle = `Filter ( ${filterGenres.length} )`;
+
   return (
     <section className={styles.filters}>
-      <p className={styles.filtersTitle}>Filter ( {filterGenres.length} )</p>
+      <p className={styles.filtersTitle}>{filtersTitle}</p>
       <div className={styles.filtersList}>
         {GENRES.map((genre) => (
           <SmallButton
