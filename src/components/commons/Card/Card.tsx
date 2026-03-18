@@ -33,7 +33,7 @@ export type MovieCardProps = {
   id: string;
   image?: string;
   title: string;
-  year: string;
+  year: number;
   rating: number;
   isSmall?: boolean;
 };

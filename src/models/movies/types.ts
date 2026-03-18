@@ -15,7 +15,7 @@ export type MovieFilters = {
 export type Movie = {
   id: string;
   title: string;
-  year: string;
+  year: number;
   rating: number;
   genres: Genre[];
   director?: string;

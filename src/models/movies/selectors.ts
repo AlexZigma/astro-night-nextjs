@@ -41,7 +41,7 @@ export const selectFilteredSortedMovies = createSelector(
         case "title":
           return a.title.localeCompare(b.title) * sortSign;
         case "year":
-          return (Number(a.year) - Number(b.year)) * sortSign;
+          return (a.year - b.year) * sortSign;
         default:
           return 0;
       }
