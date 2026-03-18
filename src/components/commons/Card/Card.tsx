@@ -48,12 +48,12 @@ export default memo(function Card({
 }: MovieCardProps) {
   return (
     <div className={clsx(styles.card, isSmall && styles.cardSmall)}>
-      <Link className={styles.cardLink} href={`/items/${id}`} />
       <CardPoster rating={rating} image={image} />
       <div className={styles.cardInfo}>
         <p className={styles.cardTitle}>{title}</p>
         <p className={styles.cardSubtitle}>{year}</p>
       </div>
+      <Link className={styles.cardLink} href={`/items/${id}`} />
     </div>
   );
 });
