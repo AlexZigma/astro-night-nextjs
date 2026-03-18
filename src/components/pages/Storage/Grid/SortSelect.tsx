@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import SmallButton from "@/components/commons/Button/SmallButton";
 import { useAppDispatch, useAppSelector, useClickOutside } from "@/lib/hooks";
-import { SortFields } from "@/models/movies/constants";
+import { sortFields } from "@/models/movies/constants";
 import { setSortField } from "@/models/movies/moviesSlice";
 import { selectSortField } from "@/models/movies/selectors";
 import { SortField } from "@/models/movies/types";
@@ -34,7 +34,7 @@ export default function SortSelect() {
       </SmallButton>
       {isOpen && (
         <ul className={styles.selectList}>
-          {SortFields.map((field) => (
+          {sortFields.map((field) => (
             <li key={field}>
               <button
                 className={clsx(

@@ -67,4 +67,4 @@ her with his gang`,
   },
 ];
 
-export const SortFields: SortField[] = ["rating", "title", "year"];
+export const sortFields: SortField[] = ["rating", "title", "year"];
