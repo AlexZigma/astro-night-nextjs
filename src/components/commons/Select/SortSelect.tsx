@@ -2,26 +2,29 @@ import clsx from "clsx";
 import { useState } from "react";
 
 import SmallButton from "@/components/commons/Button/SmallButton";
-import { useAppDispatch, useAppSelector, useClickOutside } from "@/lib/hooks";
+import { useClickOutside } from "@/lib/hooks";
 import { sortFields } from "@/models/movies/constants";
-import { setSortField } from "@/models/movies/moviesSlice";
-import { selectSortField } from "@/models/movies/selectors";
 import { SortField } from "@/models/movies/types";
 
-import styles from "./grid.module.scss";
+import styles from "./select.module.scss";
 
-export default function SortSelect() {
+interface SortSelectProps {
+  selectedSort: SortField | null;
+  onChange: (field: SortField) => void;
+}
+
+export default function SortSelect({
+  selectedSort,
+  onChange,
+}: SortSelectProps) {
   const [isOpen, setIsOpen] = useState(false);
-
-  const dispatch = useAppDispatch();
-  const sortField = useAppSelector(selectSortField);
 
   const selectRef = useClickOutside<HTMLDivElement>(() => {
     setIsOpen(false);
   });
 
   const handleOptionChange = (field: SortField) => () => {
-    dispatch(setSortField(field));
+    onChange(field);
   };
 
   return (
@@ -30,7 +33,7 @@ export default function SortSelect() {
         className={styles.selectButton}
         onClick={() => setIsOpen((prev) => !prev)}
       >
-        {sortField ?? "sort by"}
+        {selectedSort ?? "sort by"}
       </SmallButton>
       {isOpen && (
         <ul className={styles.selectList}>
@@ -39,7 +42,7 @@ export default function SortSelect() {
               <button
                 className={clsx(
                   styles.selectItem,
-                  sortField === field && styles.selectItemActive,
+                  selectedSort === field && styles.selectItemActive,
                 )}
                 onClick={handleOptionChange(field)}
               >

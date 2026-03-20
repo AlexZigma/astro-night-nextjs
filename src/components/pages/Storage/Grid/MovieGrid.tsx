@@ -3,15 +3,17 @@
 import { useCallback, useMemo, useState } from "react";
 
 import Card from "@/components/commons/Card";
-import { useAppSelector } from "@/lib/hooks";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { setSortField } from "@/models/movies/moviesSlice";
 import {
   selectFilteredSortedMovies,
   selectIsFilterUsed,
+  selectSortField,
 } from "@/models/movies/selectors";
 
+import SortSelect from "../../../commons/Select";
 import styles from "./grid.module.scss";
 import PageMarker from "./PageMarker";
-import SortSelect from "./SortSelect";
 import SortToggle from "./SortToggle";
 
 const perPage = 8;
@@ -19,6 +21,9 @@ const perPage = 8;
 export default function MovieGrid() {
   const movies = useAppSelector(selectFilteredSortedMovies);
   const isFilterUsed = useAppSelector(selectIsFilterUsed);
+  const selectedSort = useAppSelector(selectSortField);
+
+  const dispatch = useAppDispatch();
 
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -52,7 +57,10 @@ export default function MovieGrid() {
         <p className={styles.storageTitle}>{storageTitle}</p>
         <div className={styles.storageSorting}>
           <SortToggle />
-          <SortSelect />
+          <SortSelect
+            selectedSort={selectedSort}
+            onChange={(field) => dispatch(setSortField(field))}
+          />
         </div>
       </div>
       <div className={styles.content}>
