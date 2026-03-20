@@ -1,6 +1,6 @@
 import { Genre } from "../tags/types";
 
-export type SortField = "title" | "year" | "rating" | null;
+export type SortField = keyof Pick<Movie, "title" | "year" | "rating"> | null;
 export type SortOrder = "asc" | "desc" | null;
 
 export type MoviesSort = {
