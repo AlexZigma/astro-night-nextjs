@@ -7,7 +7,7 @@ import { numberToRating } from "@/lib/utils";
 
 import styles from "./card.module.scss";
 
-export interface CardPosterProps {
+interface CardPosterProps {
   rating: number;
   image?: string;
   isBig?: boolean;
@@ -31,14 +31,14 @@ export const CardPoster = memo(function CardPoster({
   );
 });
 
-export type MovieCardProps = {
+interface MovieCardProps {
   id: string;
   image?: string;
   title: string;
   year: number;
   rating: number;
   isSmall?: boolean;
-};
+}
 
 export default memo(function Card({
   id,
