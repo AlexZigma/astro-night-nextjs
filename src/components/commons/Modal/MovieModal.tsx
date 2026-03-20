@@ -90,7 +90,7 @@ export default function MovieModal() {
 
     const payload: MoviePayload = {
       title,
-      year,
+      year: Number(year),
       genres,
       director,
       mainActors,

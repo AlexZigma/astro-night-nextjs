@@ -1,9 +1,21 @@
 import { Genre } from "../tags/types";
 
+export type SortField = keyof Pick<Movie, "title" | "year" | "rating"> | null;
+export type SortOrder = "asc" | "desc" | null;
+
+export type MoviesSort = {
+  field: SortField;
+  order: SortOrder;
+};
+
+export type MovieFilters = {
+  genres: Genre[];
+};
+
 export type Movie = {
   id: string;
   title: string;
-  year: string;
+  year: number;
   rating: number;
   genres: Genre[];
   director?: string;
@@ -24,4 +36,7 @@ export enum LoadingStatus {
 export type MovieState = {
   items: Movie[];
   status: LoadingStatus;
+
+  filters: MovieFilters;
+  sort: MoviesSort;
 };

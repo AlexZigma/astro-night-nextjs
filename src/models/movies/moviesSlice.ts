@@ -5,11 +5,16 @@ import {
   Movie,
   MoviePayload,
   MovieState,
+  SortField,
 } from "@/models/movies/types";
+
+import { Genre } from "../tags/types";
 
 export const initialState: MovieState = {
   items: [],
   status: LoadingStatus.Loading,
+  filters: { genres: [] },
+  sort: { field: null, order: null },
 };
 
 export const moviesSlice = createSlice({
@@ -38,9 +43,45 @@ export const moviesSlice = createSlice({
       state.items = action.payload;
       state.status = LoadingStatus.Succeeded;
     },
+    toggleFilterGenre: (state, action: PayloadAction<Genre>) => {
+      const genre = action.payload;
+      if (state.filters.genres.includes(genre)) {
+        state.filters.genres = state.filters.genres.filter(
+          (item) => item !== genre,
+        );
+      } else {
+        state.filters.genres = [...state.filters.genres, genre];
+      }
+    },
+    setSortField: (state, action: PayloadAction<SortField>) => {
+      const field = action.payload;
+      if (state.sort.field === field) {
+        state.sort.field = null;
+        state.sort.order = null;
+      } else if (state.sort.field) {
+        state.sort.field = action.payload;
+      } else {
+        state.sort.field = action.payload;
+        state.sort.order = "desc";
+      }
+    },
+    setSortOrder: (state) => {
+      if (!state.sort.field) {
+        state.sort.order = null;
+      } else {
+        state.sort.order = state.sort.order === "asc" ? "desc" : "asc";
+      }
+    },
   },
 });
 
-export const { addMovie, deleteMovie, editMovie, initializeMovies } =
-  moviesSlice.actions;
+export const {
+  addMovie,
+  deleteMovie,
+  editMovie,
+  initializeMovies,
+  toggleFilterGenre,
+  setSortField,
+  setSortOrder,
+} = moviesSlice.actions;
 export default moviesSlice.reducer;

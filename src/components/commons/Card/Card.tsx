@@ -7,15 +7,17 @@ import { numberToRating } from "@/lib/utils";
 
 import styles from "./card.module.scss";
 
+interface CardPosterProps {
+  rating: number;
+  image?: string;
+  isBig?: boolean;
+}
+
 export const CardPoster = memo(function CardPoster({
   rating,
   image = "/imgs/cardbg.webp",
   isBig,
-}: {
-  rating: number;
-  image?: string;
-  isBig?: boolean;
-}) {
+}: CardPosterProps) {
   const posterRating = numberToRating(rating);
   return (
     <div className={clsx(styles.poster, isBig && styles.posterBig)}>
@@ -29,14 +31,14 @@ export const CardPoster = memo(function CardPoster({
   );
 });
 
-export type MovieCardProps = {
+interface MovieCardProps {
   id: string;
   image?: string;
   title: string;
-  year: string;
+  year: number;
   rating: number;
   isSmall?: boolean;
-};
+}
 
 export default memo(function Card({
   id,
@@ -48,12 +50,12 @@ export default memo(function Card({
 }: MovieCardProps) {
   return (
     <div className={clsx(styles.card, isSmall && styles.cardSmall)}>
-      <Link className={styles.cardLink} href={`/items/${id}`} />
       <CardPoster rating={rating} image={image} />
       <div className={styles.cardInfo}>
         <p className={styles.cardTitle}>{title}</p>
         <p className={styles.cardSubtitle}>{year}</p>
       </div>
+      <Link className={styles.cardLink} href={`/items/${id}`} />
     </div>
   );
 });

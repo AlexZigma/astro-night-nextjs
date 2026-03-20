@@ -2,11 +2,16 @@
 
 import { useCallback, useMemo, useState } from "react";
 
-import SmallButton from "@/components/commons/Button/SmallButton";
 import Card from "@/components/commons/Card";
-import { useAppSelector } from "@/lib/hooks";
-import { selectMovies } from "@/models/movies/selectors";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { setSortField } from "@/models/movies/moviesSlice";
+import {
+  selectFilteredSortedMovies,
+  selectIsFilterUsed,
+  selectSortField,
+} from "@/models/movies/selectors";
 
+import SortSelect from "../../../commons/Select";
 import styles from "./grid.module.scss";
 import PageMarker from "./PageMarker";
 import SortToggle from "./SortToggle";
@@ -14,13 +19,18 @@ import SortToggle from "./SortToggle";
 const perPage = 8;
 
 export default function MovieGrid() {
-  const movies = useAppSelector(selectMovies);
+  const movies = useAppSelector(selectFilteredSortedMovies);
+  const isFilterUsed = useAppSelector(selectIsFilterUsed);
+  const selectedSort = useAppSelector(selectSortField);
+
+  const dispatch = useAppDispatch();
+
+  const [currentPage, setCurrentPage] = useState(0);
 
   const pagesCount = useMemo(
     () => Math.ceil(movies.length / perPage),
     [movies],
   );
-  const [currentPage, setCurrentPage] = useState(0);
   const pages = useMemo(
     () => Array.from({ length: pagesCount }, (_, i) => i),
     [pagesCount],
@@ -36,15 +46,21 @@ export default function MovieGrid() {
     [],
   );
 
+  const storageTitle =
+    movies.length === 0 && isFilterUsed
+      ? "No objects match those filters."
+      : `${movies.length} objects found`;
+
   return (
     <section className={styles.storage}>
       <div className={styles.storageTop}>
-        <p className={styles.storageTitle}>
-          {`${movies.length} objects found`}
-        </p>
+        <p className={styles.storageTitle}>{storageTitle}</p>
         <div className={styles.storageSorting}>
           <SortToggle />
-          <SmallButton>sort by</SmallButton>
+          <SortSelect
+            selectedSort={selectedSort}
+            onChange={(field) => dispatch(setSortField(field))}
+          />
         </div>
       </div>
       <div className={styles.content}>
