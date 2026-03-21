@@ -16,8 +16,8 @@ interface HeaderSearchProps {
 export default function HeaderSearch({ onClose }: HeaderSearchProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const searchUrl = searchQuery.trim()
-    ? `/storage/?search=${searchQuery}`
-    : "/storage";
+    ? `/items/?search=${searchQuery}`
+    : "/items";
 
   const movies = useAppSelector(selectSearchMovies);
   const dispatch = useAppDispatch();

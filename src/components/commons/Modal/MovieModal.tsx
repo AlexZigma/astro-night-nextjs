@@ -119,7 +119,7 @@ export default function MovieModal() {
   const handleDeleteMovie = async () => {
     if (!currentMovie) return;
 
-    await asyncPush("/storage");
+    await asyncPush("/items");
     dispatch(deleteMovie(currentMovie.id));
     setIsDeleting(false);
   };
