@@ -1,4 +1,5 @@
-import { useCallback } from "react";
+import clsx from "clsx";
+import { useCallback, useState } from "react";
 
 import SmallButton from "@/components/commons/Button/SmallButton";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
@@ -10,6 +11,8 @@ import { Genre } from "@/models/tags/types";
 import styles from "./filters.module.scss";
 
 export default function Filters() {
+  const [isFiltersShown, setIsFiltersShown] = useState(false);
+
   const dispatch = useAppDispatch();
   const filterGenres = useAppSelector(selectFilterGenres);
 
@@ -24,8 +27,20 @@ export default function Filters() {
 
   return (
     <section className={styles.filters}>
-      <p className={styles.filtersTitle}>{filtersTitle}</p>
-      <div className={styles.filtersList}>
+      <button
+        className={styles.filtersTitle}
+        onClick={() => {
+          setIsFiltersShown((prev) => !prev);
+        }}
+      >
+        {filtersTitle}
+      </button>
+      <div
+        className={clsx(
+          styles.filtersList,
+          isFiltersShown && styles.filtersListShown,
+        )}
+      >
         {GENRES.map((genre) => (
           <SmallButton
             key={genre}

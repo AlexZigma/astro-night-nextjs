@@ -21,6 +21,8 @@
   }
 
   &Title {
+    color: var(--cyberpink);
+    text-align: start;
     @include hXXS;
 
     @include tablet {
@@ -45,7 +47,12 @@
     }
 
     @include mobile {
+      display: none;
       gap: 8px;
+    }
+
+    &Shown {
+      display: flex;
     }
   }
 }
