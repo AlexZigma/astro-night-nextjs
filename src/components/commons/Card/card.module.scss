@@ -93,6 +93,7 @@
   @include tablet {
     width: 180px;
   }
+
   @include mobile {
     width: 165px;
   }
@@ -171,11 +172,32 @@
       }
     }
 
-    & .cardRating {
+    & .posterRating {
       @include thXS;
       @include tablet {
         @include mhXS;
       }
+    }
+  }
+
+  &XSmall {
+    width: 165px;
+
+    & .cardInfo {
+      margin-top: 12px;
+    }
+
+    & .cardTitle {
+      @include mhS;
+    }
+
+    & .cardSubtitle {
+      margin-top: 6px;
+      @include mpXXXS;
+    }
+
+    & .posterRating {
+      @include mhXS;
     }
   }
 }
