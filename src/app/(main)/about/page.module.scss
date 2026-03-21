@@ -4,11 +4,6 @@
 .about {
   position: relative;
   padding-inline: 15px;
-  padding-block: 160px;
-
-  @include mobile {
-    padding-block: 50px;
-  }
 
   &::before {
     z-index: -1;
@@ -24,8 +19,13 @@
     position: relative;
     flex-wrap: wrap;
     justify-content: center;
+    padding-block: 160px;
     gap: 100px 20px;
     color: var(--cyberpink);
+
+    @include mobile {
+      padding-block: 50px;
+    }
 
     @include container(1180, 880);
     @include tablet {
