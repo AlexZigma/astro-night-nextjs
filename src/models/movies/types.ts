@@ -10,6 +10,7 @@ export type MoviesSort = {
 
 export type MovieFilters = {
   genres: Genre[];
+  searchTitle: string;
 };
 
 export type Movie = {

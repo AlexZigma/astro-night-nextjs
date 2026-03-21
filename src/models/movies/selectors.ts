@@ -11,6 +11,9 @@ export const selectSortOrder = (state: RootState) => state.movies.sort.order;
 export const selectFilterGenres = (state: RootState) =>
   state.movies.filters.genres;
 
+export const selectFilterSearch = (state: RootState) =>
+  state.movies.filters.searchTitle;
+
 export const selectFirst8Movies = createSelector([selectMovies], (movies) =>
   movies.slice(0, 8),
 );
@@ -20,11 +23,15 @@ export const selectTop10Movies = createSelector([selectMovies], (movies) =>
 );
 
 export const selectFilteredMovies = createSelector(
-  [selectMovies, selectFilterGenres],
-  (movies, filterGenres) =>
-    movies.filter((movie) =>
-      filterGenres.every((genre) => movie.genres.includes(genre)),
-    ),
+  [selectMovies, selectFilterGenres, selectFilterSearch],
+  (movies, filterGenres, searchTitle) =>
+    movies
+      .filter((movie) =>
+        movie.title.toLowerCase().includes(searchTitle.toLowerCase()),
+      )
+      .filter((movie) =>
+        filterGenres.every((genre) => movie.genres.includes(genre)),
+      ),
 );
 
 export const selectFilteredSortedMovies = createSelector(
@@ -56,3 +63,14 @@ export const selectIsFilterUsed = createSelector(
 
 export const selectMovieById = (id: string) => (state: RootState) =>
   state.movies.items.find((movie) => movie.id === id);
+
+export const selectSearchMovies = createSelector(
+  [selectMovies, selectFilterSearch],
+  (movies, query) => {
+    const cleanQuery = query.toLowerCase();
+
+    return movies
+      .filter((movie) => movie.title.toLowerCase().includes(cleanQuery))
+      .slice(0, 5);
+  },
+);

@@ -13,7 +13,7 @@ import { Genre } from "../tags/types";
 export const initialState: MovieState = {
   items: [],
   status: LoadingStatus.Loading,
-  filters: { genres: [] },
+  filters: { genres: [], searchTitle: "" },
   sort: { field: null, order: null },
 };
 
@@ -72,6 +72,9 @@ export const moviesSlice = createSlice({
         state.sort.order = state.sort.order === "asc" ? "desc" : "asc";
       }
     },
+    setSearchTitle: (state, action: PayloadAction<string>) => {
+      state.filters.searchTitle = action.payload;
+    },
   },
 });
 
@@ -83,5 +86,6 @@ export const {
   toggleFilterGenre,
   setSortField,
   setSortOrder,
+  setSearchTitle,
 } = moviesSlice.actions;
 export default moviesSlice.reducer;
