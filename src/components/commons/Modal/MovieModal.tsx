@@ -43,14 +43,6 @@ export default function MovieModal() {
   });
 
   useEffect(() => {
-    if (!isModalOpen) return;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isModalOpen]);
-
-  useEffect(() => {
     dispatch(closeModal());
   }, [pathname, dispatch]);
 
