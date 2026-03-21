@@ -1,5 +1,11 @@
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState, useTransition } from "react";
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  useTransition,
+} from "react";
 import { useDispatch, useSelector, useStore } from "react-redux";
 
 import type { AppDispatch, AppStore, RootState } from "./store";
@@ -89,4 +95,16 @@ export const useAsyncRouteReplace = () => {
   }, [isPending]);
 
   return asynPush;
+};
+
+export const useScrollLock = (isLocked: boolean) => {
+  useLayoutEffect(() => {
+    if (!isLocked) return;
+
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isLocked]);
 };
