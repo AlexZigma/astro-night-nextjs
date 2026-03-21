@@ -34,8 +34,12 @@
     z-index: -1;
     position: absolute;
     inset: 0;
-    background: url(/imgs/storagebg.webp) no-repeat center / cover;
+    background: url(/imgs/storagebg.webp) no-repeat top / cover;
     content: "";
+
+    @include mobile {
+      display: none;
+    }
   }
 
   @include tablet {
@@ -50,7 +54,7 @@
 
   &Top {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     width: 100%;
 
