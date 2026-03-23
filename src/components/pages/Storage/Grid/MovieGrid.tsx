@@ -1,13 +1,13 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 import Card from "@/components/commons/Card";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { setSearchTitle, setSortField } from "@/models/movies/moviesSlice";
+import { setSortField } from "@/models/movies/moviesSlice";
 import {
   selectFilteredSortedMovies,
+  selectFilterSearch,
   selectIsFilterUsed,
   selectSortField,
 } from "@/models/movies/selectors";
@@ -20,23 +20,13 @@ import SortToggle from "./SortToggle";
 const perPage = 8;
 
 export default function MovieGrid() {
-  const searchParams = useSearchParams();
-  const search = searchParams.get("search");
-
   const [currentPage, setCurrentPage] = useState(0);
   const dispatch = useAppDispatch();
 
   const movies = useAppSelector(selectFilteredSortedMovies);
   const isFilterUsed = useAppSelector(selectIsFilterUsed);
   const selectedSort = useAppSelector(selectSortField);
-
-  useEffect(() => {
-    if (!search) return;
-    dispatch(setSearchTitle(search));
-    return () => {
-      dispatch(setSearchTitle(""));
-    };
-  }, [search, dispatch]);
+  const searchQuery = useAppSelector(selectFilterSearch);
 
   const pagesCount = useMemo(
     () => Math.ceil(movies.length / perPage),
@@ -57,7 +47,7 @@ export default function MovieGrid() {
     [],
   );
 
-  const searchTitle = search ? `for “${search}”` : "";
+  const searchTitle = searchQuery ? `for “${searchQuery}”` : "";
 
   const storageTitle =
     movies.length === 0 && isFilterUsed
