@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { SubmitEventHandler, useEffect, useRef, useState } from "react";
+import { SubmitEventHandler, useLayoutEffect, useRef, useState } from "react";
+import { useDebounce } from "use-debounce";
 
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { setSearchTitle } from "@/models/movies/moviesSlice";
@@ -15,6 +16,7 @@ interface HeaderSearchProps {
 
 export default function HeaderSearch({ onClose }: HeaderSearchProps) {
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchQueryDebounced] = useDebounce(searchQuery.trim(), 500);
   const searchUrl = "/items";
 
   const movies = useAppSelector(selectSearchMovies);
@@ -23,9 +25,9 @@ export default function HeaderSearch({ onClose }: HeaderSearchProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
-  useEffect(() => {
-    dispatch(setSearchTitle(searchQuery.trim()));
-  }, [dispatch, searchQuery]);
+  useLayoutEffect(() => {
+    dispatch(setSearchTitle(searchQueryDebounced));
+  }, [dispatch, searchQueryDebounced]);
 
   const handleClearSearch = () => {
     setSearchQuery("");
@@ -62,7 +64,7 @@ export default function HeaderSearch({ onClose }: HeaderSearchProps) {
           No results could be found. Please try again with a different query.
         </p>
       ) : (
-        searchQuery.trim() && (
+        searchQueryDebounced && (
           <>
             <div className={styles.searchSuggestions}>
               <div className={styles.results}>
