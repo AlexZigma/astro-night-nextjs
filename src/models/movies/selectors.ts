@@ -25,13 +25,11 @@ export const selectTop10Movies = createSelector([selectMovies], (movies) =>
 export const selectFilteredMovies = createSelector(
   [selectMovies, selectFilterGenres, selectFilterSearch],
   (movies, filterGenres, searchTitle) =>
-    movies
-      .filter((movie) =>
-        movie.title.toLowerCase().includes(searchTitle.toLowerCase()),
-      )
-      .filter((movie) =>
+    movies.filter(
+      (movie) =>
+        movie.title.toLowerCase().includes(searchTitle.toLowerCase()) &&
         filterGenres.every((genre) => movie.genres.includes(genre)),
-      ),
+    ),
 );
 
 export const selectFilteredSortedMovies = createSelector(
