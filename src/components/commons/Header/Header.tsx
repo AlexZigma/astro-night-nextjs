@@ -42,6 +42,10 @@ export default function Header() {
     setIsMenuOpen(false);
   };
 
+  const handleSearchClose = () => {
+    setIsSearchOpen(false);
+  };
+
   return (
     <header className={styles.header} ref={headerRef}>
       <div className={styles.headerContent}>
@@ -101,7 +105,7 @@ export default function Header() {
           onClick={() => dispatch(openModal({ mode: ModalMode.Add }))}
         />
       </div>
-      {isSearchOpen && <HeaderSearch onClose={() => setIsSearchOpen(false)} />}
+      {isSearchOpen && <HeaderSearch onClose={handleSearchClose} />}
     </header>
   );
 }
