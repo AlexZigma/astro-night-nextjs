@@ -23,16 +23,15 @@ export default function Filters() {
     [dispatch],
   );
 
+  const toggleIsFiltersShown = () => {
+    setIsFiltersShown((prev) => !prev);
+  };
+
   const filtersTitle = `Filter ( ${filterGenres.length} )`;
 
   return (
     <section className={styles.filters}>
-      <button
-        className={styles.filtersTitle}
-        onClick={() => {
-          setIsFiltersShown((prev) => !prev);
-        }}
-      >
+      <button className={styles.filtersTitle} onClick={toggleIsFiltersShown}>
         {filtersTitle}
       </button>
       <div
