@@ -26,6 +26,11 @@ body {
 
 main {
   flex: 1 0 auto;
+  padding-top: 134px;
+
+  @include mobile {
+    padding-top: 76px;
+  }
 }
 
 .noScroll {

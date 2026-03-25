@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import { useScrollLock } from "@/lib/hooks";
+
 import SmallButton from "../Button/SmallButton";
 import styles from "./movieModal.module.scss";
 
@@ -12,6 +14,8 @@ export default function ConfirmModal({
   onClose,
   onConfirm,
 }: ConfirmModalProps) {
+  useScrollLock(true);
+
   return (
     <div className={styles.confirm}>
       <div className={styles.confirmContent}>

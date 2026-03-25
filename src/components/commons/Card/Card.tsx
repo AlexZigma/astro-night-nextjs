@@ -37,7 +37,7 @@ interface MovieCardProps {
   title: string;
   year: number;
   rating: number;
-  isSmall?: boolean;
+  variant?: null | "small" | "xsmall";
 }
 
 export default memo(function Card({
@@ -46,10 +46,16 @@ export default memo(function Card({
   title,
   year,
   rating,
-  isSmall,
+  variant,
 }: MovieCardProps) {
   return (
-    <div className={clsx(styles.card, isSmall && styles.cardSmall)}>
+    <div
+      className={clsx(
+        styles.card,
+        variant === "small" && styles.cardSmall,
+        variant === "xsmall" && styles.cardXSmall,
+      )}
+    >
       <CardPoster rating={rating} image={image} />
       <div className={styles.cardInfo}>
         <p className={styles.cardTitle}>{title}</p>

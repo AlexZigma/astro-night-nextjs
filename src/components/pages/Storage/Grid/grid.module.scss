@@ -3,14 +3,18 @@
 
 .content {
   display: grid;
-  grid-template-columns: repeat(4, min-content);
+  grid-template-columns: repeat(4, 280px);
   row-gap: 50px;
   justify-content: space-between;
   width: 100%;
   @include container(1180, 880);
 
+  @include tablet {
+    grid-template-columns: repeat(4, 180px);
+  }
+
   @include mobile {
-    grid-template-columns: repeat(2, min-content);
+    grid-template-columns: repeat(2, 165px);
     column-gap: 15px;
     row-gap: 20px;
     justify-content: center;
@@ -30,8 +34,12 @@
     z-index: -1;
     position: absolute;
     inset: 0;
-    background: url(/imgs/storagebg.webp) no-repeat center / cover;
+    background: url(/imgs/storagebg.webp) no-repeat top / cover;
     content: "";
+
+    @include mobile {
+      display: none;
+    }
   }
 
   @include tablet {
@@ -46,7 +54,7 @@
 
   &Top {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     width: 100%;
 

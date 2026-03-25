@@ -25,7 +25,7 @@ export default function HeroSection() {
             </li>
           ))}
         </ul>
-        <Link href="/storage" className={styles.heroButton}>
+        <Link href="/items" className={styles.heroButton}>
           See more
         </Link>
       </div>
