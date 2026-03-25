@@ -14,10 +14,11 @@ interface HeaderSearchProps {
   onClose: () => void;
 }
 
+const searchUrl = "/items";
+
 export default function HeaderSearch({ onClose }: HeaderSearchProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchQueryDebounced] = useDebounce(searchQuery.trim(), 500);
-  const searchUrl = "/items";
 
   const movies = useAppSelector(selectSearchMovies);
   const dispatch = useAppDispatch();
