@@ -43,6 +43,52 @@ export default function HeaderSearch({ onClose }: HeaderSearchProps) {
     onClose();
   };
 
+  const isEmptyResults = movies.length === 0;
+
+  const renderedMovieTitles = (
+    <div className={styles.results}>
+      <span className={styles.resultsTitle}>Suggestions</span>
+      {movies.map((movie) => (
+        <Link
+          className={styles.resultsText}
+          key={movie.id}
+          href={`/items/${movie.id}`}
+          onClick={onClose}
+        >
+          {movie.title}
+        </Link>
+      ))}
+    </div>
+  );
+
+  const renderedMovies = (
+    <div className={styles.searchCards}>
+      {movies.map((movie) => (
+        <div key={movie.id} onClick={onClose}>
+          <Card
+            id={movie.id}
+            title={movie.title}
+            rating={movie.rating}
+            year={movie.year}
+            variant="xsmall"
+          />
+        </div>
+      ))}
+    </div>
+  );
+
+  const renderedSuggestions = searchQueryDebounced && (
+    <>
+      <div className={styles.searchSuggestions}>
+        {renderedMovieTitles}
+        {renderedMovies}
+      </div>
+      <Link href={searchUrl} className={styles.searchAction} onClick={onClose}>
+        View all results
+      </Link>
+    </>
+  );
+
   return (
     <div className={styles.search}>
       <div className={styles.searchTop}>
@@ -60,50 +106,12 @@ export default function HeaderSearch({ onClose }: HeaderSearchProps) {
         <button className={styles.searchClose} onClick={handleClearSearch} />
       </div>
 
-      {movies.length === 0 ? (
+      {isEmptyResults ? (
         <p className={styles.searchNoResults}>
           No results could be found. Please try again with a different query.
         </p>
       ) : (
-        searchQueryDebounced && (
-          <>
-            <div className={styles.searchSuggestions}>
-              <div className={styles.results}>
-                <span className={styles.resultsTitle}>Suggestions</span>
-                {movies.map((movie) => (
-                  <Link
-                    className={styles.resultsText}
-                    key={movie.id}
-                    href={`/items/${movie.id}`}
-                    onClick={onClose}
-                  >
-                    {movie.title}
-                  </Link>
-                ))}
-              </div>
-              <div className={styles.searchCards}>
-                {movies.map((movie) => (
-                  <div key={movie.id} onClick={onClose}>
-                    <Card
-                      id={movie.id}
-                      title={movie.title}
-                      rating={movie.rating}
-                      year={movie.year}
-                      variant="xsmall"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-            <Link
-              href={searchUrl}
-              className={styles.searchAction}
-              onClick={onClose}
-            >
-              View all results
-            </Link>
-          </>
-        )
+        renderedSuggestions
       )}
     </div>
   );
