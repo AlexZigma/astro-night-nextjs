@@ -1,13 +1,21 @@
 "use client";
 
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+
 import Filters from "@/components/pages/Storage/Filters";
-import MovieGrid from "@/components/pages/Storage/Grid";
+
+const MovieGrid = dynamic(() => import("@/components/pages/Storage/Grid"), {
+  ssr: false,
+});
 
 export default function StoragePage() {
   return (
     <main>
       <Filters />
-      <MovieGrid />
+      <Suspense>
+        <MovieGrid />
+      </Suspense>
     </main>
   );
 }
