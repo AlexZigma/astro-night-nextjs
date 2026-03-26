@@ -62,8 +62,8 @@ export const selectIsFilterUsed = createSelector(
 export const selectMovieById = (id: string) => (state: RootState) =>
   state.movies.items.find((movie) => movie.id === id);
 
-export const selectSearchMovies = createSelector(
-  [selectMovies, selectFilterSearch],
+export const select5MoviesByTitle = createSelector(
+  [selectMovies, (_, query) => query],
   (movies, query) => {
     const cleanQuery = query.toLowerCase();
 
