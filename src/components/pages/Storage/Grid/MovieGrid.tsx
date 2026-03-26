@@ -1,10 +1,11 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useCallback, useLayoutEffect, useMemo, useState } from "react";
 
 import Card from "@/components/commons/Card";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { setSortField } from "@/models/movies/moviesSlice";
+import { setSearchTitle, setSortField } from "@/models/movies/moviesSlice";
 import {
   selectFilteredSortedMovies,
   selectFilterSearch,
@@ -22,6 +23,13 @@ const perPage = 8;
 export default function MovieGrid() {
   const [currentPage, setCurrentPage] = useState(0);
   const dispatch = useAppDispatch();
+
+  const searchParams = useSearchParams();
+  const searchParamsTitle = searchParams.get("search");
+
+  useLayoutEffect(() => {
+    dispatch(setSearchTitle(searchParamsTitle ?? ""));
+  }, [searchParamsTitle, dispatch]);
 
   const movies = useAppSelector(selectFilteredSortedMovies);
   const isFilterUsed = useAppSelector(selectIsFilterUsed);
@@ -47,12 +55,12 @@ export default function MovieGrid() {
     [],
   );
 
-  const searchTitle = searchQuery ? `for “${searchQuery}”` : "";
+  const searchTitle = searchQuery ? ` for “${searchQuery}”` : "";
 
   const storageTitle =
     movies.length === 0 && isFilterUsed
       ? "No objects match those filters."
-      : `${movies.length} objects found ${searchTitle}`;
+      : `${movies.length} objects found${searchTitle}`;
 
   return (
     <section className={styles.storage}>
