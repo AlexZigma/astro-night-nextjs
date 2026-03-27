@@ -1,11 +1,10 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { SubmitEventHandler, useLayoutEffect, useRef, useState } from "react";
+import { SubmitEventHandler, useRef, useState } from "react";
 import { useDebounce } from "use-debounce";
 
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { setSearchTitle } from "@/models/movies/moviesSlice";
-import { selectSearchMovies } from "@/models/movies/selectors";
+import { useAppSelector } from "@/lib/hooks";
+import { select5MoviesByTitle } from "@/models/movies/selectors";
 
 import Card from "../Card";
 import styles from "./Header.module.scss";
@@ -14,21 +13,20 @@ interface HeaderSearchProps {
   onClose: () => void;
 }
 
-const searchUrl = "/items";
-
 export default function HeaderSearch({ onClose }: HeaderSearchProps) {
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchQueryDebounced] = useDebounce(searchQuery.trim(), 500);
+  const searchQueryTrimed = searchQuery.trim();
+  const [searchQueryDebounced] = useDebounce(searchQueryTrimed, 500);
+  const searchUrl = searchQueryTrimed
+    ? `/items?search=${searchQueryTrimed}`
+    : "/items";
 
-  const movies = useAppSelector(selectSearchMovies);
-  const dispatch = useAppDispatch();
+  const movies = useAppSelector((state) =>
+    select5MoviesByTitle(state, searchQueryDebounced),
+  );
 
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
-
-  useLayoutEffect(() => {
-    dispatch(setSearchTitle(searchQueryDebounced));
-  }, [dispatch, searchQueryDebounced]);
 
   const handleClearSearch = () => {
     setSearchQuery("");
