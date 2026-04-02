@@ -3,8 +3,7 @@ import { useEffect, useState } from "react";
 import { Provider } from "react-redux";
 
 import { AppStore, makeStore } from "@/lib/store";
-import { initializeMovies } from "@/models/movies/moviesSlice";
-import { loadMoviesFromLocalStorage } from "@/models/movies/utils";
+import { initializeMoviesRequest } from "@/models/movies/moviesSlice";
 
 export default function StoreProvider({
   children,
@@ -14,8 +13,7 @@ export default function StoreProvider({
   const [store] = useState<AppStore>(() => makeStore());
 
   useEffect(() => {
-    const movies = loadMoviesFromLocalStorage();
-    store.dispatch(initializeMovies(movies));
+    store.dispatch(initializeMoviesRequest());
   }, [store]);
 
   return <Provider store={store}>{children}</Provider>;
