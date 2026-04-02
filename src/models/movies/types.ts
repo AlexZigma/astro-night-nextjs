@@ -36,6 +36,7 @@ export enum LoadingStatus {
 
 export type MovieState = {
   items: Movie[];
+  currentMovie: Movie | null;
   status: LoadingStatus;
 
   filters: MovieFilters;

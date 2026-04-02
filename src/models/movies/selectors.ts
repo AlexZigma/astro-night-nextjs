@@ -4,6 +4,9 @@ import { RootState } from "@/lib/store";
 
 export const selectMovies = (state: RootState) => state.movies.items;
 
+export const selectCurrentMovie = (state: RootState) =>
+  state.movies.currentMovie;
+
 export const selectStatus = (state: RootState) => state.movies.status;
 
 export const selectSortField = (state: RootState) => state.movies.sort.field;
