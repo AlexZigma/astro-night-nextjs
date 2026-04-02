@@ -10,10 +10,15 @@ import {
   useAsyncRouteReplace,
   useClickOutside,
 } from "@/lib/hooks";
+import { imgToBase64 } from "@/lib/utils";
 import { closeModal } from "@/models/modal/modalSlice";
 import { selectModal } from "@/models/modal/selectors";
 import { ModalMode } from "@/models/modal/types";
-import { addMovie, deleteMovie, editMovie } from "@/models/movies/moviesSlice";
+import {
+  addMovieRequest,
+  deleteMovieRequest,
+  editMovieRequest,
+} from "@/models/movies/moviesSlice";
 import { MoviePayload } from "@/models/movies/types";
 import { Genre } from "@/models/tags/types";
 
@@ -46,7 +51,7 @@ export default function MovieModal() {
     dispatch(closeModal());
   }, [pathname, dispatch]);
 
-  const handleSubmit: SubmitEventHandler<HTMLFormElement> = (event) => {
+  const handleSubmit: SubmitEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
     if (!event.target) return;
 
@@ -54,11 +59,12 @@ export default function MovieModal() {
 
     const rating = Number(formData.get("rating")) || 0;
     const title = formData.get("title")?.toString().trim() ?? "";
-    const year = formData.get("year")?.toString().trim() ?? "";
+    const year = Number(formData.get("year")) || 0;
     const genres = formData.getAll("genre").map(String) as Genre[];
     const director = formData.get("director")?.toString().trim() ?? "";
     const mainActors = formData.get("mainActors")?.toString().trim() ?? "";
     const description = formData.get("description")?.toString().trim() ?? "";
+    const image = formData.get("image") as File | null;
 
     const newErrors: Record<string, string> = {};
 
@@ -68,12 +74,17 @@ export default function MovieModal() {
 
     if (!year) {
       newErrors.year = "you should complete this area";
-    } else if (!/^\d{4}$/.test(year)) {
+    } else if (year < 999 || year > 9999) {
       newErrors.year = "you should use valid year (YYYY)";
     }
 
     if (genres.length === 0) {
       newErrors.genre = "you should choose atleast 1 genre";
+    }
+
+    let imageBase64;
+    if (image && image.size > 0) {
+      imageBase64 = await imgToBase64(image);
     }
 
     setErrors(newErrors);
@@ -82,19 +93,19 @@ export default function MovieModal() {
 
     const payload: MoviePayload = {
       title,
-      year: Number(year),
+      year,
       genres,
       director,
       mainActors,
       description,
-      image: "/imgs/cardbg.webp",
+      image: imageBase64,
       rating,
     };
 
     if (modalMode === ModalMode.Edit && currentMovie) {
-      dispatch(editMovie({ id: currentMovie.id, ...payload }));
+      dispatch(editMovieRequest({ id: currentMovie.id, ...payload }));
     } else {
-      dispatch(addMovie(payload));
+      dispatch(addMovieRequest(payload));
     }
     dispatch(closeModal());
   };
@@ -112,7 +123,7 @@ export default function MovieModal() {
     if (!currentMovie) return;
 
     await asyncPush("/items");
-    dispatch(deleteMovie(currentMovie.id));
+    dispatch(deleteMovieRequest(currentMovie.id));
     setIsDeleting(false);
   };
 
