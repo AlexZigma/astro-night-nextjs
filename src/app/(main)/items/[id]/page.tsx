@@ -1,14 +1,19 @@
 "use client";
 
 import { notFound } from "next/navigation";
-import { use } from "react";
+import { use, useLayoutEffect } from "react";
 
 import SmallButton from "@/components/commons/Button/SmallButton";
 import { CardPoster } from "@/components/commons/Card";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { openModal } from "@/models/modal/modalSlice";
 import { ModalMode } from "@/models/modal/types";
-import { selectMovieById, selectStatus } from "@/models/movies/selectors";
+import {
+  fetchMovieRequest,
+  resetCurrentMovie,
+  resetStatus,
+} from "@/models/movies/moviesSlice";
+import { selectCurrentMovie, selectStatus } from "@/models/movies/selectors";
 import { LoadingStatus } from "@/models/movies/types";
 
 import styles from "./page.module.scss";
@@ -20,11 +25,19 @@ export default function MoviePage({
 }) {
   const { id } = use(params);
 
-  const movie = useAppSelector(selectMovieById(id));
+  const movie = useAppSelector(selectCurrentMovie);
   const movieStatus = useAppSelector(selectStatus);
   const dispatch = useAppDispatch();
 
-  if (movieStatus === LoadingStatus.Succeeded && !movie) {
+  useLayoutEffect(() => {
+    dispatch(fetchMovieRequest(id));
+    return () => {
+      dispatch(resetCurrentMovie());
+      dispatch(resetStatus());
+    };
+  }, [id, dispatch]);
+
+  if (movieStatus === LoadingStatus.Failed) {
     notFound();
   } else if (!movie) {
     return <main></main>;
