@@ -21,6 +21,7 @@ export default function HeroSection() {
                 rating={item.rating}
                 title={item.title}
                 year={item.year}
+                image={item.image}
               />
             </li>
           ))}
