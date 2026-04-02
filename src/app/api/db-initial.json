@@ -1,0 +1,114 @@
+{
+  "items": [
+    {
+      "id": "1",
+      "title": "The Godfather",
+      "director": "Francis Ford Coppola",
+      "year": 1972,
+      "rating": 9.5,
+      "image": "/imgs/card0.webp",
+      "genres": ["crime", "drama"],
+      "mainActors": "Marlon Brando, Al Pacino",
+      "description": "The aging patriarch of an organized crime dynasty transfers control to his reluctant son."
+    },
+    {
+      "id": "2",
+      "title": "Inception",
+      "director": "Christopher Nolan",
+      "year": 2010,
+      "rating": 8.5,
+      "image": "/imgs/card1.webp",
+      "genres": ["sci-fi", "action", "thriller"],
+      "mainActors": "Leonardo DiCaprio, Joseph Gordon-Levitt",
+      "description": "A thief who steals corporate secrets through dream-sharing technology is given the inverse task."
+    },
+    {
+      "id": "3",
+      "title": "Parasite",
+      "director": "Bong Joon-ho",
+      "year": 2019,
+      "rating": 8.5,
+      "image": "/imgs/card2.webp",
+      "genres": ["thriller", "drama"],
+      "mainActors": "Song Kang-ho, Lee Sun-kyun",
+      "description": "Greed and personal vendetta threaten the once amicable relationship between the rich and the poor."
+    },
+    {
+      "id": "4",
+      "title": "Interstellar",
+      "director": "Christopher Nolan",
+      "year": 2014,
+      "rating": 9.0,
+      "image": "/imgs/card0.webp",
+      "genres": ["sci-fi", "drama", "adventure"],
+      "mainActors": "Matthew McConaughey, Anne Hathaway",
+      "description": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival."
+    },
+    {
+      "id": "5",
+      "title": "The Dark Knight",
+      "director": "Christopher Nolan",
+      "year": 2008,
+      "rating": 9.0,
+      "image": "/imgs/card1.webp",
+      "genres": ["action", "crime", "drama"],
+      "mainActors": "Christian Bale, Heath Ledger",
+      "description": "When the menace known as the Joker wreaks havoc, Batman must accept one of the greatest tests."
+    },
+    {
+      "id": "6",
+      "title": "Everything Everywhere All at Once",
+      "director": "Daniel Kwan, Daniel Scheinert",
+      "year": 2022,
+      "rating": 8.0,
+      "image": "/imgs/card1.webp",
+      "genres": ["sci-fi", "comedy", "action"],
+      "mainActors": "Michelle Yeoh, Stephanie Hsu",
+      "description": "An aging Chinese immigrant is swept up in an insane adventure where she alone can save existence."
+    },
+    {
+      "id": "7",
+      "title": "The Shawshank Redemption",
+      "director": "Frank Darabont",
+      "year": 1994,
+      "rating": 9.5,
+      "image": "/imgs/card2.webp",
+      "genres": ["drama"],
+      "mainActors": "Tim Robbins, Morgan Freeman",
+      "description": "Two imprisoned men bond over a number of years, finding solace and eventual redemption."
+    },
+    {
+      "id": "8",
+      "title": "Dune: Part Two",
+      "director": "Denis Villeneuve",
+      "year": 2024,
+      "rating": 8.5,
+      "image": "/imgs/card0.webp",
+      "genres": ["sci-fi", "adventure", "drama"],
+      "mainActors": "Timothée Chalamet, Zendaya",
+      "description": "Paul Atreides unites with Chani and the Fremen while seeking revenge against conspirators."
+    },
+    {
+      "id": "9",
+      "title": "Oppenheimer",
+      "director": "Christopher Nolan",
+      "year": 2023,
+      "rating": 8.5,
+      "image": "/imgs/card1.webp",
+      "genres": ["drama", "historical", "thriller"],
+      "mainActors": "Cillian Murphy, Emily Blunt",
+      "description": "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb."
+    },
+    {
+      "id": "10",
+      "title": "The Grand Budapest Hotel",
+      "director": "Wes Anderson",
+      "year": 2014,
+      "rating": 8.0,
+      "image": "/imgs/card2.webp",
+      "genres": ["comedy", "drama"],
+      "mainActors": "Ralph Fiennes, Tony Revolori",
+      "description": "A writer encounters the owner of an aging famous hotel and learns of his life as a young lobby boy."
+    }
+  ]
+}
