@@ -34,10 +34,18 @@ export enum LoadingStatus {
   Failed = "failed",
 }
 
+export type Status = {
+  loadingStatus: LoadingStatus;
+  errorMessage: string;
+};
+
 export type MovieState = {
-  items: Movie[];
+  recentMovies: Movie[];
+  top10Movies: Movie[];
+  filteredMovies: Movie[];
+  searchedMovies: Movie[];
   currentMovie: Movie | null;
-  status: LoadingStatus;
+  status: Status;
 
   filters: MovieFilters;
   sort: MoviesSort;
