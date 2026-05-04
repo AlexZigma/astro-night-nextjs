@@ -1,15 +1,10 @@
 "use client";
 
 import clsx from "clsx";
-import { usePathname } from "next/navigation";
-import { SubmitEventHandler, useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { SubmitEventHandler, useCallback, useEffect, useState } from "react";
 
-import {
-  useAppDispatch,
-  useAppSelector,
-  useAsyncRouteReplace,
-  useClickOutside,
-} from "@/lib/hooks";
+import { useAppDispatch, useAppSelector, useClickOutside } from "@/lib/hooks";
 import { imgToBase64 } from "@/lib/utils";
 import { closeModal } from "@/models/modal/modalSlice";
 import { selectModal } from "@/models/modal/selectors";
@@ -40,12 +35,47 @@ export default function MovieModal() {
     currentMovie,
   } = useAppSelector(selectModal);
 
-  const asyncPush = useAsyncRouteReplace();
+  const router = useRouter();
   const pathname = usePathname();
 
   const modalRef = useClickOutside<HTMLFormElement>(() => {
     if (isModalOpen && !isDeleting) dispatch(closeModal());
   });
+
+  const handleCloseModal = useCallback(() => {
+    setErrors({});
+    setIsDeleting(false);
+    dispatch(closeModal());
+  }, [dispatch]);
+
+  const handleEsc = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        handleCloseModal();
+      }
+    },
+    [handleCloseModal],
+  );
+
+  const handleDeleteClick = () => {
+    setIsDeleting(true);
+  };
+
+  const handleDeleteMovie = () => {
+    if (!currentMovie) return;
+
+    dispatch(deleteMovieRequest(currentMovie.id));
+    setIsDeleting(false);
+    router.push("/items");
+  };
+
+  useEffect(() => {
+    if (!isModalOpen) return;
+    document.addEventListener("keydown", handleEsc);
+    return () => {
+      document.removeEventListener("keydown", handleEsc);
+    };
+  }, [handleEsc, isModalOpen]);
 
   useEffect(() => {
     dispatch(closeModal());
@@ -107,24 +137,6 @@ export default function MovieModal() {
     } else {
       dispatch(addMovieRequest(payload));
     }
-    dispatch(closeModal());
-  };
-
-  const handleCloseModal = () => {
-    setErrors({});
-    dispatch(closeModal());
-  };
-
-  const handleDeleteClick = () => {
-    setIsDeleting(true);
-  };
-
-  const handleDeleteMovie = async () => {
-    if (!currentMovie) return;
-
-    await asyncPush("/items");
-    dispatch(deleteMovieRequest(currentMovie.id));
-    setIsDeleting(false);
   };
 
   const modalTitle = modalMode === ModalMode.Add ? "Add movie" : "Edit movie";
