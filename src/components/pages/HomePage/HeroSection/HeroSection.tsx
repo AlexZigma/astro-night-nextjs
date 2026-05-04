@@ -1,13 +1,20 @@
 import Link from "next/link";
+import { useEffect } from "react";
 
 import Card from "@/components/commons/Card";
-import { useAppSelector } from "@/lib/hooks";
-import { selectFirst8Movies } from "@/models/movies/selectors";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { fetchInitialMoviesRequest } from "@/models/movies/moviesSlice";
+import { selectRecentMovies } from "@/models/movies/selectors";
 
 import styles from "./Hero.module.scss";
 
 export default function HeroSection() {
-  const movies = useAppSelector(selectFirst8Movies);
+  const movies = useAppSelector(selectRecentMovies);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchInitialMoviesRequest());
+  }, [dispatch]);
 
   return (
     <section className={styles.hero}>
