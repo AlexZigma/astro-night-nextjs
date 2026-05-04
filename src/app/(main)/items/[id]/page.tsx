@@ -37,7 +37,7 @@ export default function MoviePage({
     };
   }, [id, dispatch]);
 
-  if (movieStatus === LoadingStatus.Failed) {
+  if (movieStatus.loadingStatus === LoadingStatus.Failed) {
     notFound();
   } else if (!movie) {
     return <main></main>;
