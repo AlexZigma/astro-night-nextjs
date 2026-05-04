@@ -9,7 +9,6 @@ import {
   useState,
 } from "react";
 
-import { fetchMoviesByFiltersApi } from "@/app/api/utils";
 import Card from "@/components/commons/Card";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import {
