@@ -6,6 +6,7 @@ import { Alata, Anonymous_Pro } from "next/font/google";
 
 import Footer from "@/components/commons/Footer";
 import Header from "@/components/commons/Header";
+import Alert from "@/components/commons/Modal/Alert";
 import MovieModal from "@/components/commons/Modal/MovieModal";
 
 import StoreProvider from "./StoreProvider";
@@ -48,8 +49,10 @@ export default function RootLayout({
       <body className={clsx(anonymousPro.variable, alata.variable)}>
         <StoreProvider>
           <Header />
+
           {children}
           <MovieModal />
+          <Alert />
         </StoreProvider>
         <Footer />
       </body>
