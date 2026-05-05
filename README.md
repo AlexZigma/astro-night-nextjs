@@ -36,8 +36,6 @@ NEXT_PUBLIC_DB_URL=http://localhost:4000
 
 or rename `.env.example`
 
-(also you can edit server local port in package.json or run it by yourself: npx json-server src/app/api/db.json --port 4000)
-
 ### 3. Run json and development server:
 
 ```bash
