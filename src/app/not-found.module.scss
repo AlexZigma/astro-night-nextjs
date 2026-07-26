@@ -1,0 +1,84 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/fonts" as *;
+
+body:has(.notFound) {
+  & header {
+    background: none;
+  }
+
+  & footer {
+    display: none;
+  }
+}
+
+.notFound {
+  display: flex;
+  height: calc(100vh - 134px);
+  min-height: 720px;
+  padding-inline: 15px;
+  padding-bottom: 135px;
+
+  @include tablet {
+    min-height: 590px;
+    padding-bottom: 0px;
+  }
+
+  @include mobile {
+    min-height: 350px;
+    padding-bottom: 30px;
+  }
+
+  &::before {
+    z-index: -1;
+    position: fixed;
+    inset: 0;
+    background: url(/imgs/notfoundbg.webp) no-repeat center / cover;
+    content: "";
+    opacity: 0.2;
+  }
+
+  &Content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-block: auto;
+    gap: 100px;
+    @include container;
+    @include tablet {
+      gap: 49px;
+    }
+    @include mobile {
+      gap: 52px;
+    }
+  }
+
+  &Title {
+    align-self: flex-start;
+    color: var(--cyberpink);
+    @include hXL;
+    @include tablet {
+      align-self: center;
+      @include thXL;
+    }
+    @include mobile {
+      @include mhXL;
+    }
+  }
+  &404 {
+    height: 374px;
+    margin-left: 0.15em;
+
+    color: var(--cyberpink);
+    @include h404;
+
+    @include tablet {
+    }
+
+    @include mobile {
+      height: auto;
+      margin-left: 0;
+      @include mh404;
+    }
+  }
+}

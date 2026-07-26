@@ -1,0 +1,56 @@
+@use "@/styles/fonts" as *;
+@use "@/styles/mixins" as *;
+
+.footer {
+  padding-block: 25px;
+
+  @include tablet {
+    padding-block: 20px;
+  }
+
+  @include mobile {
+    padding-block: 15px;
+    gap: 10px;
+  }
+
+  &Content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    @include container;
+
+    @include tablet {
+      gap: 15px;
+    }
+    @include mobile {
+      gap: 10px;
+    }
+  }
+
+  &Title {
+    color: var(--raspberry);
+
+    @include pXL;
+
+    @include tablet {
+      @include tpXL;
+    }
+
+    @include mobile {
+      @include mpXL;
+    }
+  }
+
+  &Subtitle {
+    color: var(--raspberry);
+
+    @include pXXXXS;
+    @include tablet {
+      @include tpXXXXS;
+    }
+    @include mobile {
+      @include mpXXXXS;
+    }
+  }
+}

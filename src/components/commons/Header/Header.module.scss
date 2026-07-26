@@ -1,0 +1,277 @@
+@use "@/styles/fonts" as *;
+@use "@/styles/mixins" as *;
+
+.header {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding-inline: 15px;
+  padding-block: 30px;
+  background-color: var(--darksky);
+
+  @include mobile {
+    display: flex;
+    flex-direction: column;
+    padding-block: 15px;
+  }
+
+  &:has(.search) {
+    padding-bottom: 0;
+
+    @include mobile {
+      height: 100vh;
+      padding-bottom: 15px;
+    }
+  }
+
+  &Content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    @include container(1180, 880);
+  }
+
+  &Logo {
+    width: auto;
+    height: 74px;
+
+    @include mobile {
+      height: 46px;
+    }
+  }
+
+  &Nav {
+    margin-right: 62px;
+    margin-left: auto;
+
+    @include tablet {
+      margin: 0;
+    }
+
+    @include mobile {
+      display: flex;
+      z-index: -1;
+      position: fixed;
+      top: 0;
+      left: -100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      height: calc(100vh);
+      padding-top: 76px;
+      background-color: var(--darksky);
+      opacity: 0;
+      transition: 300ms;
+
+      &::before {
+        position: absolute;
+        inset: 0;
+        background: url(/imgs/menubg.webp) no-repeat center / cover;
+        content: "";
+        filter: blur(20px);
+        opacity: 0.2;
+      }
+    }
+
+    &Open {
+      left: 0;
+      opacity: 1;
+    }
+  }
+
+  &NavList {
+    display: flex;
+    gap: 60px;
+
+    @include mobile {
+      position: absolute;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
+  &NavLink {
+    @include pXL;
+    color: var(--raspberry);
+
+    &Active {
+      color: var(--cyberpink);
+    }
+  }
+
+  &Menu {
+    display: none;
+    appearance: none;
+    position: relative;
+    aspect-ratio: 1;
+    min-width: 40px;
+    padding: 10px 5px;
+    cursor: pointer;
+
+    @include mobile {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    &::before,
+    &::after,
+    .menuLine {
+      height: 2px;
+      border-radius: 20px;
+      background-color: var(--cyberpink);
+      content: "";
+      transition:
+        opacity 300ms,
+        transform 300ms;
+    }
+
+    &Open {
+      &::before {
+        transform: translateY(9px) rotate(45deg);
+      }
+      &::after {
+        transform: translateY(-9px) rotate(-45deg);
+      }
+      .menuLine {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+.search {
+  display: grid;
+  flex: 1;
+  align-items: center;
+  width: 100%;
+  margin-top: 15px;
+  gap: 10px;
+  border-top: 1px solid var(--cyberpink);
+  border-bottom: 1px solid var(--cyberpink);
+
+  @include container(1180, 880);
+
+  @include mobile {
+    z-index: -10;
+    grid-template-rows: min-content 1fr min-content;
+  }
+
+  &:has(.searchNoResults) {
+    grid-template-rows: min-content min-content;
+    flex: 0;
+  }
+
+  &::before {
+    z-index: -1;
+    position: fixed;
+    inset: 0;
+    background-color: #180926;
+    content: "";
+    opacity: 0.75;
+    pointer-events: none;
+  }
+
+  &Top {
+    display: grid;
+    grid-template-columns: 1fr 40px;
+    align-items: center;
+    border-bottom: 1px solid var(--cyberpink);
+  }
+
+  &Input {
+    width: 100%;
+    padding-block: 24px;
+    background: none;
+    color: var(--cyberpink);
+    text-transform: uppercase;
+
+    @include input;
+
+    @include mobile {
+      padding-block: 0;
+      @include mInput;
+    }
+
+    &::placeholder {
+      color: var(--maroon);
+    }
+  }
+
+  &Close {
+    aspect-ratio: 1;
+    width: 40px;
+    background: url(/icons/close.svg) no-repeat center / 30px;
+  }
+
+  &Suggestions {
+    display: grid;
+    grid-template-columns: 255px 1fr;
+    padding-block: 10px;
+    gap: 20px;
+
+    @include tablet {
+      grid-template-columns: 325px 1fr;
+    }
+
+    @include mobile {
+      flex: 1;
+      align-self: flex-start;
+    }
+  }
+
+  &Cards {
+    display: grid;
+    grid-template-columns: repeat(5, 165px);
+    justify-content: space-between;
+
+    @include tablet {
+      grid-template-columns: repeat(3, 165px);
+      height: 283px;
+      overflow: hidden;
+    }
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  &Action {
+    justify-self: center;
+    padding-bottom: 15px;
+    color: var(--cyberpink);
+
+    @include pXXXS;
+  }
+
+  &NoResults {
+    justify-self: center;
+    padding-bottom: 15px;
+    text-align: center;
+    @include pXSR;
+
+    @include mobile {
+      @include pXXXS;
+    }
+  }
+}
+
+.results {
+  display: grid;
+  align-content: flex-start;
+  gap: 20px;
+  &Title {
+    @include pXXSB;
+  }
+
+  &Text {
+    color: var(--white);
+
+    @include pXXSR;
+  }
+}

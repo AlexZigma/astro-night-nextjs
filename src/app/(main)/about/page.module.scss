@@ -1,0 +1,107 @@
+@use "@/styles/fonts" as *;
+@use "@/styles/mixins" as *;
+
+.about {
+  position: relative;
+  padding-inline: 15px;
+
+  &::before {
+    z-index: -1;
+    position: absolute;
+    inset: 0;
+    background: url(/imgs/menubg.webp) no-repeat center / cover;
+    content: "";
+    opacity: 0.2;
+  }
+
+  &Content {
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-block: 160px;
+    gap: 100px 20px;
+    color: var(--cyberpink);
+
+    @include mobile {
+      padding-block: 50px;
+    }
+
+    @include container(1180, 880);
+    @include tablet {
+      gap: 70px 20px;
+    }
+    @include mobile {
+      gap: 30px;
+    }
+
+    &::before {
+      position: absolute;
+      inset: 0;
+      top: 300px;
+      background: url(/imgs/stars.webp) no-repeat;
+      background-size: 100% 1100px;
+      content: "";
+      mix-blend-mode: lighten;
+
+      @include mobile {
+        top: 200px;
+      }
+    }
+  }
+  &Title {
+    flex: 1 1 100%;
+    padding-bottom: 70px;
+    text-align: center;
+    @include hAbout;
+    @include tablet {
+      @include thAbout;
+    }
+    @include mobile {
+      padding-bottom: 30px;
+      @include mhAbout;
+    }
+  }
+  &Block {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    @include mobile {
+      flex-grow: 0;
+      gap: 10px;
+      text-align: center;
+    }
+    &:nth-child(3) {
+      @include mobile {
+        padding-bottom: 10px;
+      }
+    }
+    &:nth-child(2),
+    &:nth-child(4) {
+      text-align: right;
+      @include mobile {
+        text-align: center;
+      }
+    }
+    &:last-child {
+      text-align: center;
+      @include mobile {
+        gap: 20px;
+      }
+    }
+  }
+  &Subtitle {
+    @include hL;
+    @include mobile {
+      @include mhXL;
+    }
+  }
+  &Text {
+    max-width: 382px;
+    margin-inline: auto;
+    @include pXSB;
+    @include mobile {
+      @include mpXSB;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+export type Genre =
+  | "drama"
+  | "animation"
+  | "sci-fi"
+  | "comedy"
+  | "action"
+  | "noir"
+  | "horror"
+  | "romantic"
+  | "fantasy"
+  | "crime"
+  | "western"
+  | "musical"
+  | "historical"
+  | "thriller"
+  | "documentary"
+  | "mystery"
+  | "advanture";

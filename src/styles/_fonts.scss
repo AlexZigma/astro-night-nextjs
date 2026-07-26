@@ -1,0 +1,304 @@
+@use "mixins" as *;
+
+$font-primary: var(--font-anonymous-pro);
+$font-secondary: var(--font-alata);
+
+@mixin h404 {
+  font-weight: 400;
+  font-size: 404px;
+  line-height: 404px;
+  font-family: $font-primary;
+  letter-spacing: 0.15em;
+}
+@mixin hAbout {
+  font-weight: 400;
+  font-size: 368px;
+  line-height: 368px;
+  font-family: $font-secondary;
+}
+@mixin hXL {
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 60px;
+  font-family: $font-secondary;
+}
+@mixin hL {
+  font-weight: 400;
+  font-size: 44px;
+  line-height: 37px;
+  font-family: $font-secondary;
+}
+@mixin hM {
+  font-weight: 400;
+  font-size: 42px;
+  line-height: 42px;
+  font-family: $font-secondary;
+}
+@mixin hS {
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 40px;
+  font-family: $font-secondary;
+}
+@mixin button {
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 25px;
+  font-family: $font-primary;
+}
+@mixin hXS {
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 30px;
+  font-family: $font-primary;
+  letter-spacing: -0.08em;
+}
+@mixin input {
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 30px;
+  font-family: $font-primary;
+  text-decoration: uppercase;
+}
+@mixin pXL {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 24px;
+  font-family: $font-primary;
+}
+@mixin pL {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+  font-family: $font-primary;
+  letter-spacing: 0.1em;
+}
+@mixin pS {
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 35px;
+  font-family: $font-primary;
+}
+@mixin pXSR {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  font-family: $font-primary;
+}
+@mixin pXSB {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+  font-family: $font-primary;
+}
+@mixin pMR {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 37px;
+  font-family: $font-primary;
+}
+@mixin pMB {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 37px;
+  font-family: $font-primary;
+}
+@mixin hXXS {
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 37px;
+  font-family: $font-secondary;
+}
+@mixin pXXSR {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+  font-family: $font-primary;
+}
+@mixin pXXSB {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  font-family: $font-primary;
+}
+@mixin pXXXS {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 29px;
+  font-family: $font-primary;
+}
+@mixin pXXXXS {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  font-family: $font-primary;
+  letter-spacing: 0.1em;
+}
+@mixin mh404 {
+  font-weight: 400;
+  font-size: 196px;
+  line-height: 196px;
+  font-family: $font-primary;
+  letter-spacing: 0.05em;
+}
+@mixin mhAbout {
+  font-weight: 400;
+  font-size: 108px;
+  line-height: 108px;
+  font-family: $font-secondary;
+}
+@mixin mhXL {
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 26px;
+  font-family: $font-secondary;
+}
+@mixin mButton {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 14px;
+  font-family: $font-primary;
+}
+@mixin mhXS {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 15px;
+  font-family: $font-primary;
+}
+@mixin mInput {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  font-family: $font-primary;
+}
+@mixin mhS {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 18px;
+  font-family: $font-secondary;
+}
+@mixin mpXL {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+  font-family: $font-primary;
+}
+@mixin mpXSB {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25px;
+  font-family: $font-primary;
+}
+@mixin mpXSR {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+  font-family: $font-primary;
+}
+@mixin mpL {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  font-family: $font-primary;
+  letter-spacing: 0.1em;
+}
+@mixin mhL {
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 36px;
+  font-family: $font-secondary;
+}
+@mixin mhM {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 37px;
+  font-family: $font-secondary;
+}
+@mixin mpXXXXS {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 12px;
+  font-family: $font-primary;
+  letter-spacing: 0;
+}
+@mixin mpXXXS {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 12px;
+  font-family: $font-primary;
+  letter-spacing: 0.1em;
+}
+@mixin mpXXS {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  font-family: $font-primary;
+}
+@mixin thAbout {
+  font-weight: 400;
+  font-size: 270px;
+  line-height: 270px;
+  font-family: $font-secondary;
+}
+@mixin thXL {
+  font-weight: 400;
+  font-size: 44px;
+  line-height: 44px;
+  font-family: $font-secondary;
+}
+@mixin tButton {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 25px;
+  font-family: $font-primary;
+}
+@mixin thXS {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  font-family: $font-primary;
+}
+@mixin thS {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+  font-family: $font-secondary;
+}
+@mixin tpL {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  font-family: $font-primary;
+  letter-spacing: 0.1em;
+}
+@mixin tpXL {
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 22px;
+  font-family: $font-primary;
+}
+@mixin tpMB {
+  font-weight: 700;
+  font-size: 23px;
+  line-height: 23px;
+  font-family: $font-primary;
+}
+@mixin thM {
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 25px;
+  font-family: $font-secondary;
+}
+@mixin tpS {
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 25px;
+  font-family: $font-primary;
+}
+@mixin tpXXXXS {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 13px;
+  font-family: $font-primary;
+  letter-spacing: 0.1em;
+}

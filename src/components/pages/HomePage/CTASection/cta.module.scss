@@ -1,0 +1,54 @@
+@use "@/styles/fonts" as *;
+@use "@/styles/mixins" as *;
+
+.cta {
+  position: relative;
+  height: 1080px;
+
+  @include tablet {
+    height: 567px;
+  }
+
+  @include mobile {
+    height: 387px;
+  }
+
+  &::before {
+    z-index: -1;
+    position: absolute;
+    inset: 0;
+    background: url(/imgs/ctabg.webp) no-repeat center / cover;
+    content: "";
+    opacity: 0.2;
+  }
+
+  &Content {
+    @include container;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 461px;
+    gap: 60px;
+
+    @include tablet {
+      padding-top: 228px;
+    }
+    @include mobile {
+      padding-top: 144px;
+      gap: 20px;
+    }
+  }
+  &Title {
+    color: var(--cyberpink);
+    text-align: center;
+    @include hXL;
+
+    @include tablet {
+      @include thXL;
+    }
+
+    @include mobile {
+      @include mhXL;
+    }
+  }
+}
