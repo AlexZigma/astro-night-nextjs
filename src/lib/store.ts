@@ -1,28 +1,21 @@
-import { configureStore, isAnyOf } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
+import createSagaMiddleware from "redux-saga";
 
 import modalReducer from "../models/modal/modalSlice";
-import movieReducer, {
-  addMovie,
-  deleteMovie,
-  editMovie,
-} from "../models/movies/moviesSlice";
-import { saveMoviesToLocalStorage } from "../models/movies/utils";
-import { listenerMiddleware, startAppListening } from "./listnerMiddleware";
+import movieReducer from "../models/movies/moviesSlice";
+import rootSaga from "./sagas";
 
-startAppListening({
-  matcher: isAnyOf(addMovie, editMovie, deleteMovie),
-  effect: (action, listenerApi) => {
-    const state = listenerApi.getState();
-    saveMoviesToLocalStorage(state.movies.items);
-  },
-});
+const sagaMiddleware = createSagaMiddleware();
 
 export const makeStore = () => {
-  return configureStore({
+  const store = configureStore({
     reducer: { movies: movieReducer, modal: modalReducer },
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().prepend(listenerMiddleware.middleware),
+      getDefaultMiddleware().prepend([sagaMiddleware]),
   });
+  sagaMiddleware.run(rootSaga);
+
+  return store;
 };
 
 export type AppStore = ReturnType<typeof makeStore>;

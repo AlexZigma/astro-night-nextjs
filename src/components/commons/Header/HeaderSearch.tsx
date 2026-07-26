@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { SubmitEventHandler, useRef, useState } from "react";
+import { SubmitEventHandler, useEffect, useRef, useState } from "react";
 import { useDebounce } from "use-debounce";
 
-import { useAppSelector } from "@/lib/hooks";
-import { select5MoviesByTitle } from "@/models/movies/selectors";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { findMoviesByTitleRequest } from "@/models/movies/moviesSlice";
+import { selectSearchedMovies } from "@/models/movies/selectors";
 
 import Card from "../Card";
 import styles from "./Header.module.scss";
@@ -14,6 +15,8 @@ interface HeaderSearchProps {
 }
 
 export default function HeaderSearch({ onClose }: HeaderSearchProps) {
+  const dispatch = useAppDispatch();
+
   const [searchQuery, setSearchQuery] = useState("");
   const searchQueryTrimed = searchQuery.trim();
   const [searchQueryDebounced] = useDebounce(searchQueryTrimed, 500);
@@ -21,9 +24,13 @@ export default function HeaderSearch({ onClose }: HeaderSearchProps) {
     ? `/items?search=${searchQueryTrimed}`
     : "/items";
 
-  const movies = useAppSelector((state) =>
-    select5MoviesByTitle(state, searchQueryDebounced),
-  );
+  const movies = useAppSelector(selectSearchedMovies);
+
+  useEffect(() => {
+    if (!searchQueryDebounced) return;
+
+    dispatch(findMoviesByTitleRequest(searchQueryDebounced));
+  }, [searchQueryDebounced, dispatch]);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
@@ -41,7 +48,7 @@ export default function HeaderSearch({ onClose }: HeaderSearchProps) {
     onClose();
   };
 
-  const isEmptyResults = movies.length === 0;
+  const isEmptyResults = movies.length === 0 && searchQueryDebounced;
 
   const renderedMovieTitles = (
     <div className={styles.results}>

@@ -1,4 +1,5 @@
-import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import {
   LoadingStatus,
@@ -11,8 +12,15 @@ import {
 import { Genre } from "../tags/types";
 
 export const initialState: MovieState = {
-  items: [],
-  status: LoadingStatus.Loading,
+  recentMovies: [],
+  top10Movies: [],
+  filteredMovies: [],
+  searchedMovies: [],
+  currentMovie: null,
+  status: {
+    loadingStatus: LoadingStatus.Idle,
+    errorMessage: "",
+  },
   filters: { genres: [], searchTitle: "" },
   sort: { field: null, order: null },
 };
@@ -21,28 +29,83 @@ export const moviesSlice = createSlice({
   name: "movies",
   initialState: initialState,
   reducers: {
-    addMovie: {
-      reducer(state, action: PayloadAction<Movie>) {
-        state.items.push(action.payload);
-      },
-      prepare(movie: MoviePayload) {
-        return {
-          payload: { ...movie, id: nanoid() },
-        };
-      },
+    // load initial movies
+    fetchInitialMoviesRequest: (state) => {
+      state.status.loadingStatus = LoadingStatus.Loading;
     },
-    deleteMovie: (state, action: PayloadAction<string>) => {
-      state.items = state.items.filter((item) => item.id !== action.payload);
+    fetchInitialMoviesSuccess: (
+      state,
+      action: PayloadAction<{ recentMovies: Movie[]; top10Movies: Movie[] }>,
+    ) => {
+      state.recentMovies = action.payload.recentMovies;
+      state.top10Movies = action.payload.top10Movies;
+      state.status.loadingStatus = LoadingStatus.Succeeded;
     },
-    editMovie: (state, action: PayloadAction<Movie>) => {
-      state.items = state.items.map((item) =>
-        item.id === action.payload.id ? action.payload : item,
-      );
+
+    // find movies by title
+    findMoviesByTitleRequest: (state, action: PayloadAction<string>) => {
+      state.status.loadingStatus = LoadingStatus.Loading;
     },
-    initializeMovies: (state, action: PayloadAction<Movie[]>) => {
-      state.items = action.payload;
-      state.status = LoadingStatus.Succeeded;
+    findMoviesByTitleSuccess: (state, action: PayloadAction<Movie[]>) => {
+      state.searchedMovies = action.payload;
+      state.status.loadingStatus = LoadingStatus.Succeeded;
     },
+
+    // fetch filtered movies
+    fetchFilteredMoviesRequest: (state) => {
+      state.status.loadingStatus = LoadingStatus.Loading;
+    },
+    fetchFilteredMoviesSuccess: (state, action: PayloadAction<Movie[]>) => {
+      state.filteredMovies = action.payload;
+      state.status.loadingStatus = LoadingStatus.Succeeded;
+    },
+
+    // fetch movie by id
+    fetchMovieRequest: (state, action: PayloadAction<string>) => {
+      state.status.loadingStatus = LoadingStatus.Loading;
+    },
+    fetchMovieSuccess: (state, action: PayloadAction<Movie>) => {
+      state.currentMovie = action.payload;
+      state.status.loadingStatus = LoadingStatus.Succeeded;
+    },
+
+    // add movie
+    addMovieRequest: (state, action: PayloadAction<MoviePayload>) => {
+      state.status.loadingStatus = LoadingStatus.Loading;
+    },
+    addMovieSuccess: (state, action: PayloadAction<Movie>) => {
+      state.status.loadingStatus = LoadingStatus.Succeeded;
+    },
+
+    // delete movie
+    deleteMovieRequest: (state, action: PayloadAction<string>) => {
+      state.status.loadingStatus = LoadingStatus.Loading;
+    },
+    deleteMovieSuccess: (state, action: PayloadAction<string>) => {
+      state.status.loadingStatus = LoadingStatus.Succeeded;
+    },
+
+    // edit movie
+    editMovieRequest: (state, action: PayloadAction<Movie>) => {
+      state.status.loadingStatus = LoadingStatus.Loading;
+    },
+    editMovieSuccess: (state, action: PayloadAction<Movie>) => {
+      state.status.loadingStatus = LoadingStatus.Succeeded;
+      state.currentMovie = action.payload;
+    },
+
+    setError: (state, action: PayloadAction<string>) => {
+      state.status.loadingStatus = LoadingStatus.Failed;
+      state.status.errorMessage = action.payload;
+    },
+    resetStatus: (state) => {
+      state.status.loadingStatus = LoadingStatus.Idle;
+      state.status.errorMessage = "";
+    },
+    resetCurrentMovie: (state) => {
+      state.currentMovie = null;
+    },
+
     toggleFilterGenre: (state, action: PayloadAction<Genre>) => {
       const genre = action.payload;
       if (state.filters.genres.includes(genre)) {
@@ -79,10 +142,23 @@ export const moviesSlice = createSlice({
 });
 
 export const {
-  addMovie,
-  deleteMovie,
-  editMovie,
-  initializeMovies,
+  fetchInitialMoviesRequest,
+  fetchInitialMoviesSuccess,
+  fetchFilteredMoviesRequest,
+  fetchFilteredMoviesSuccess,
+  findMoviesByTitleRequest,
+  findMoviesByTitleSuccess,
+  addMovieRequest,
+  addMovieSuccess,
+  deleteMovieRequest,
+  deleteMovieSuccess,
+  editMovieRequest,
+  editMovieSuccess,
+  fetchMovieRequest,
+  fetchMovieSuccess,
+  resetCurrentMovie,
+  setError,
+  resetStatus,
   toggleFilterGenre,
   setSortField,
   setSortOrder,

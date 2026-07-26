@@ -57,16 +57,16 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    max-height: 1100px;
+    height: 1100px;
     overflow: hidden;
     gap: 50px 20px;
 
     @include tablet {
-      max-height: 706px;
+      height: 706px;
     }
 
     @include mobile {
-      max-height: 586px;
+      height: 586px;
       gap: 20px 15px;
     }
   }
